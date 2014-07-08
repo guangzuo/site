@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4. Learning R &mdash; PSID Analysis 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="PSID Analysis 1.0 documentation" href="index.html" />
+    <link rel="next" title="5. Model Solution: The Finite Horizon Case" href="VFI.html" />
+    <link rel="prev" title="3. Review of Bayesian Analysis" href="bayesian.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="VFI.html" title="5. Model Solution: The Finite Horizon Case"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="bayesian.html" title="3. Review of Bayesian Analysis"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PSID Analysis 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="learning-r">
+<h1>4. <strong>Learning R</strong><a class="headerlink" href="#learning-r" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="plotting-systems">
+<h2>4.1. Plotting Systems<a class="headerlink" href="#plotting-systems" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>3 plotting systems: base plotting, lattice plotting and ggplot2 system</strong></p>
+</li>
+<li><p class="first">Read Stata <strong>dta</strong> data file into R:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; library(foreign)
+&gt; read.dta(&quot;data file name&quot;)
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>#</strong> sign is the way to comment in R.</p>
+</li>
+<li><p class="first"><strong>Alt + -</strong> is the short cut for assignment sign &lt;- in R.</p>
+</li>
+<li><p class="first"><strong>rm()</strong> remove all the objects in R:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; rm(list = ls()) # clean entire workspace
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>unload packages</strong> in R:</p>
+<div class="highlight-python"><div class="highlight"><pre># UNLOAD/REMOVE PACKAGES
+# By default, all loaded packages are unloaded when R quits
+# Can also open Packages window and manually uncheck
+# Or can use this code
+# To unload packages
+detach(&quot;package:ggplot2&quot;, unload = TRUE)
+?detach
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>survey</strong> package in R:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># survey package</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&quot;survey&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;survey&quot;</span><span class="p">)</span>
+<span class="n">help</span><span class="p">(</span><span class="n">package</span><span class="o">=</span><span class="s">&quot;survey&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="data-type">
+<h2>4.2. Data Type<a class="headerlink" href="#data-type" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>as.</strong> coerces one type of data into some other type of data</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; as.numeric(x)
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Matrices</strong> are vectors with a <em>dimension</em> attribute and matrices are constructed <em>column-wise</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; m &lt;- matrix(1:6, nrow=2, ncol=3)
+</pre></div>
+</div>
+<p>Matrices can also be created directly from vectors by adding a dimension attribute:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; m &lt;- 1:10
+&gt; dim(m) &lt;- c(2,5)
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Factors</strong> are used to represented categorical data</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; x &lt;- factor(c(&quot;yes&quot;,&quot;yes&quot;,&quot;no&quot;,&quot;yes&quot;,&quot;no&quot;))
+&gt; table(x)
+x
+no yes
+ 2   3
+</pre></div>
+</div>
+<p>The order of the levels can be set using the <strong>levels</strong> argument to <strong>factor()</strong>. This can be important in linear modelling because the first level is used as the baseline level:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; x &lt;- factor(c(&quot;yes&quot;,&quot;yes&quot;,&quot;no&quot;,&quot;yes&quot;,&quot;no&quot;), levels=c(&quot;yes&quot;,&quot;no&quot;))
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="subsetting">
+<h2>4.3. Subsetting<a class="headerlink" href="#subsetting" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Very Useful Logic Index</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; x &lt;- c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;c&quot;,&quot;d&quot;,&quot;a&quot;)
+&gt; x[1]
+[1] &quot;a&quot;
+&gt; x[2]
+[1] &quot;b&quot;
+&gt; x[x&gt;&quot;a&quot;]
+[1] &quot;b&quot; &quot;c&quot; &quot;c&quot; &quot;d&quot;
+&gt; u &lt;- x&gt;&quot;a&quot;
+&gt; u
+[1] FALSE  TRUE  TRUE  TRUE  TRUE FALSE
+&gt; x[u]
+[1] &quot;b&quot; &quot;c&quot; &quot;c&quot; &quot;d&quot;
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="using-ess-in-emacs-to-debug-r-code">
+<h2>4.4. Using ESS in Emacs to Debug R code<a class="headerlink" href="#using-ess-in-emacs-to-debug-r-code" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Open <strong>R</strong> session first using <strong>M + x R</strong></li>
+<li>Use <strong>C + t d</strong> to choose which function to debug</li>
+<li>Use <strong>C + t u</strong> to undebug a certain function</li>
+<li>Go back to the main script, highlight a function and evaluate it, then ESS will go to debug mode.</li>
+</ul>
+</div>
+<div class="section" id="others">
+<h2>4.5. Others<a class="headerlink" href="#others" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Create empty vector in R</strong></li>
+</ul>
+<div class="highlight-r"><div class="highlight"><pre>fx <span class="o">&lt;-</span> rep<span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="m">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>Get all unique elements in some vector</strong></li>
+</ul>
+<div class="highlight-r"><div class="highlight"><pre>ind.id <span class="o">&lt;-</span> unique<span class="p">(</span>post.X.IT<span class="o">$</span>x11101ll<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="some-useful-files-as-references">
+<h2>4.6. Some Useful Files as References<a class="headerlink" href="#some-useful-files-as-references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The comparison between <strong>R</strong> and <strong>STATA</strong> <a class="reference download internal" href="_downloads/RStata.pdf"><tt class="xref download docutils literal"><span class="pre">R</span> <span class="pre">and</span> <span class="pre">Stata</span></tt></a></li>
+<li>Google style files in <a class="reference external" href="https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">R</a></li>
+</ul>
+<ul>
+<li><p class="first">This file talks about loading packages in <tt class="xref download docutils literal"><span class="pre">Ch0104_file</span></tt></p>
+</li>
+<li><p class="first">Create bar charts for categorical variable in <tt class="xref download docutils literal"><span class="pre">Ch0201_file</span></tt></p>
+</li>
+<li><p class="first">Create frequency table for categorical variable in <tt class="xref download docutils literal"><span class="pre">Ch0301_file</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; prop.table()    # pay attention to this command
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">4. <strong>Learning R</strong></a><ul>
+<li><a class="reference internal" href="#plotting-systems">4.1. Plotting Systems</a></li>
+<li><a class="reference internal" href="#data-type">4.2. Data Type</a></li>
+<li><a class="reference internal" href="#subsetting">4.3. Subsetting</a></li>
+<li><a class="reference internal" href="#using-ess-in-emacs-to-debug-r-code">4.4. Using ESS in Emacs to Debug R code</a></li>
+<li><a class="reference internal" href="#others">4.5. Others</a></li>
+<li><a class="reference internal" href="#some-useful-files-as-references">4.6. Some Useful Files as References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="bayesian.html"
+                        title="previous chapter">3. <strong>Review of Bayesian Analysis</strong></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="VFI.html"
+                        title="next chapter">5. <strong>Model Solution: The Finite Horizon Case</strong></a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/R.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="VFI.html" title="5. Model Solution: The Finite Horizon Case"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="bayesian.html" title="3. Review of Bayesian Analysis"
+             >previous</a> |</li>
+        <li><a href="index.html">PSID Analysis 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Guang Zuo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. Review of Bayesian Analysis &mdash; PSID Analysis 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="PSID Analysis 1.0 documentation" href="index.html" />
+    <link rel="prev" title="2. Use WinBUGS within Stata" href="winbugs.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="winbugs.html" title="2. Use WinBUGS within Stata"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PSID Analysis 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="review-of-bayesian-analysis">
+<h1>3. <strong>Review of Bayesian Analysis</strong><a class="headerlink" href="#review-of-bayesian-analysis" title="Permalink to this headline">¶</a></h1>
+<p>This section is to review the Bayesian Analysis. And the materials are taken from the course E724 &#8220;Time Series&#8221; taught by Prof. Joon Park.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body">Guang Zuo</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Publisher:</th><td class="field-body">Working Paper</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Year:</th><td class="field-body">Apr. 2014</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="markov-chain-monte-carlo">
+<h2>3.1. Markov Chain Monte Carlo<a class="headerlink" href="#markov-chain-monte-carlo" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>For complicated density, we can construct Markov process whose time invariant distribution is same as the original density.</li>
+<li>We often call the &#8220;given density&#8221; as the &#8220;target density&#8221;.</li>
+<li>Remark<ul>
+<li>We can use <span class="math">\(F(x) \sim U[0,1]\)</span>, and MCMC only serves as a last resort.</li>
+<li>Second option is to construct Markov process since drawing i.i.d. sample is impossible.</li>
+</ul>
+</li>
+<li>Important Lemmas<ul>
+<li><strong>Lemma1:</strong> If transition <span class="math">\(P_1, P_2\)</span> have invariant distribution <span class="math">\(\pi\)</span>, then so does <span class="math">\(P=P_1 \cdot P_2\)</span>. They have the same invariant distribution.</li>
+<li><strong>Lemma2:</strong> If a chain has a proper invariant distribution and it is irreducible and aperiodic, then <span class="math">\(\pi\)</span> is the unique invariant distribution and is also the equilibrium distribution of the chain.</li>
+<li><strong>Periodicity:</strong> If the chain visits some value (for any subset of the state space) periodically.</li>
+<li><strong>Irreducibility:</strong> No matter where you are, you can visit with positive probability any place in the state space next time.</li>
+</ul>
+</li>
+<li>Two important Markov Chains:<ul>
+<li>Gibbs Sampler</li>
+<li>Metropolis-Hastings&#8217; Algorithm</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">3. <strong>Review of Bayesian Analysis</strong></a><ul>
+<li><a class="reference internal" href="#markov-chain-monte-carlo">3.1. Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="winbugs.html"
+                        title="previous chapter">2. <strong>Use WinBUGS within Stata</strong></a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/bayesian.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="winbugs.html" title="2. Use WinBUGS within Stata"
+             >previous</a> |</li>
+        <li><a href="index.html">PSID Analysis 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Guang Zuo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

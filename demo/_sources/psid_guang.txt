@@ -1,0 +1,1031 @@
+**Panel Study of Income Dynamics (PSID)**
+=========================================
+
+PSID data_ can be found in the website provided by University of Michigan. Detailed documents_ can be found in the provided webpage.
+
+.. _data: http://simba.isr.umich.edu/Zips/ZipMain.aspx
+.. _documents: http://psidonline.isr.umich.edu/Guide/documents.aspx
+
+:Authors:  
+          Guang Zuo
+:Publisher: Working Paper
+:Year: Apr. 2014
+
+Lists of Variables
+++++++++++++++++++
+- :ref:`indwgt` individual weight (this variable is from individual level file)
+
+- :ref:`sex` sex of individual (this variable is from individual level file)
+
+- :ref:`age` age of individual, age at the time of the interview (this variable is from individual level file)
+
+- :ref:`education` the number of grades of school that the head accomplished (this variable is from across year family files)
+
+- :ref:`race` race of head household (this variable is from across year family files)
+
+- :ref:`employment` the employment status of head, working now, unemployed, retired or other (this variable is from across year family files)
+
+- :ref:`industry` the main occupation of head (this variable is from across year family files)
+
+- :ref:`relation` relationship to head (this variable is from individual level files)
+
+- :ref:`inchead` Head’s money income from labor (this variable is from across year family files)
+
+- :ref:`incwife` Wife’s money income from labor (this variable is from across year family files)
+
+- :ref:`wagehead` Amount of Head’s wages and salary income (this variable is from across year family files)
+
+- :ref:`faminc` This variable represent the summation of the following variables: taxable income of Head and Wife; total transfer of Head and Wife; taxable prorated income of others; total prorated transfers of others (this variable is from across year family files)
+
+- :ref:`famwgt` family weight, this is core sample family weight, not Latino sample family weight (this variable is from across year family files)
+
+- :ref:`region` region where family lived at the time of interview (this variable is from across year family files)
+
+- :ref:`homeowner` FU (family unit) owns his home or pay rent or what (this variable is from across year family files)
+
+- :ref:`housevalue` house value (this variable is from across year family files)
+
+- :ref:`familysize` Number of people (children plus adults) in this FAMILY UNIT (living here) (this variable is from across year family files)
+
+- CPI-U-RS_ is the annual average Consumper Price Index research series (CPI-U-RS) using current methods (Dec.1977 = 100)
+
+.. _CPI-U-RS: https://www.census.gov/hhes/www/income/data/incpovhlth/2012/CPI-U-RS-Index-2012.pdf
+
+
+Procedures
+++++++++++
+
+- This file has a list of all variables used :download:`vars.do<data_analysis/combined/vars.do>` (do need to run it). 
+- Prepare the data using the do file here :download:`predata.do<data_analysis/combined/prepdata.do>`. This is to generate **psid_combined.dta** data file.
+- Some exploratory data analysis can be found here :download:`test_person.do<data_analysis/combined/test_person.do>`
+
+  - Try x11101ll == 18004
+
+    white male 20yrs since 1971  educ = 12 years worked in manufacturing till 1981, he then became construction worker since 1981, and income has declined dramatically (definitely an example of permanent shock).
+
+  - Try x11101ll == 18005
+
+    white male 19yrs since 1971  educ = 12 years worked in manufacturing his life time till 1999 (46yrs), he then was laid off and engaged in agriculture activity. This guy is so stubborn to hold on to manufacturing, a dying industry.
+
+
+  - Try x11101ll == 459001
+
+    white male 37yrs since 1971  educ = 12 years. He did really take the hit of inforrmational revoluation, so if you look at his income profile, it shows to be very stable and definitely less uncertainty. As you can see from his annual wage profile below 
+
+    .. _fig1:
+
+        .. image::  doc/inc1.png
+           :width: 49 %
+        .. image::  doc/inc1_1.png
+           :width: 49 %
+
+
+  - Try x11101ll == 122004
+
+    white male 18yrs since 1985  educ = 12 years. He experienced the post-informational era where the world is more uncertain. 
+
+        .. image::  doc/inc2.png
+           :width: 49 %
+        .. image::  doc/inc2_1.png
+           :width: 49 %
+
+
+  - Try x11101ll == 284001
+
+    white male 39yrs since 1971  educ = 16 years. He started his life in professional service and really enjoy a decent life and retire when he was 60yrs in 1992. 
+
+        .. image::  doc/inc3.png
+           :width: 49 %
+        .. image::  doc/inc3_1.png
+           :width: 49 %
+
+
+  - Try x11101ll == 997003
+
+    white male 35yrs since 1977  educ = 12 years. He experienced the post-informational era where the world is more uncertain. And the shock since 1980 seems to be permanant.
+
+        .. image::  doc/inc4.png
+           :width: 49 %
+        .. image::  doc/inc4_1.png
+           :width: 49 %
+ 
+
+  - Try x11101ll == 913005
+
+    white male 22yrs since 1981  educ = 16 years. His education ensures him a stable income path even in the transitional economy.
+
+        .. image::  doc/inc5.png
+           :width: 49 %
+        .. image::  doc/inc5_1.png
+           :width: 49 %
+
+  - Try x11101ll == 1072003
+
+    white male 22yrs since 1984  educ = 12 years. Apparently, high school education is not enough to lead to a better life in this informational era. He worked in manufacturing till 2007 when he was 45 yrs old, and finally switched to whole sale and retail trade sector in 2009 when he was 47 yrs old.
+
+        .. image::  doc/inc6.png
+           :width: 49 %
+        .. image::  doc/inc6_1.png
+           :width: 49 %
+
+  - Try x11101ll == 1075001
+
+    white male 38yrs since 1971 educ = 12 years. Apparently, he has a very different life from the person above although with the same level of educational attainment. He worked in manufacturing sector till he retired in 1991 when he was 58 yrs old.
+
+        .. image::  doc/inc7.png
+           :width: 49 %
+        .. image::  doc/inc7_1.png
+           :width: 49 %
+
+- **Prepare data used in Wage Regression** and do file is here :download:`wage_reg_data.do<data_analysis/combined/wage_reg_data.do>` 
+
+- Use the above data to do some **PLOTS** and do file is here :download:`plot_reg_data.do<data_analysis/combined/plot_reg_data.do>`
+
+  - Different Percentile of Log Wage Head
+        .. image::  doc/percentile.png
+  - Median of Log Wage Head for different educational group
+        .. image::  doc/med_educ.png
+  - Median of Log Wage Head for different industrial group
+        .. image::  doc/med_industry.png
+  - Median of Log Wage Head for different regions
+        .. image::  doc/med_region.png
+  - Standard Deviation of Log Wage Head across all individuals
+        .. image::  doc/std_overall.png
+  - Standard Deviation of Log Wage Head for different educational group
+        .. image::  doc/std_educ.png
+  - Standard Deviation of Log Wage Head for different industrial group
+        .. image::  doc/std_industry.png
+  - Standard Deviation of Log Wage Head for different regions
+        .. image::  doc/std_region.png
+
+- **Run a Mincerian Wage Regression** using this do file :download:`wage_reg.do<data_analysis/combined/wage_reg.do>`. It can generate residuals after the regression.
+
+- Use the above residual data to generate some **PLOTS** and do file is here :download:`plot_wage_reg_resid.do<data_analysis/combined/plot_wage_reg_resid.do>`
+
+  - Different Percentiles of Residuals After Wage Regression Year 1971 ~ 2011
+        .. image::  doc/resid_overall.png
+  - Changes in 90-10, 90-50, and 50-10 Ratios for Log Earning Residuals, 1971 ~ 2011 (this is obtained after wage regression)
+        .. image::  doc/resid_dist.png
+  - Changes in 90-10 Ratios for Log Earning Residual Across Educational Groups, 1971 ~ 2011 (different educational groups exhibit different patterns)
+        .. image::  doc/p90p10_educ.png
+  - Changes in 90-50 Ratios for Log Earning Residual Across Educational Groups, 1971 ~ 2011 (different educational groups exhibit different patterns)
+        .. image::  doc/p90p50_educ.png
+  - Changes in 50-10 Ratios for Log Earning Residual Across Educational Groups, 1971 ~ 2011 (different educational groups exhibit different patterns)
+        .. image::  doc/p50p10_educ.png
+  - Standard Deviations for Log Earning Residual Across Educational Groups, 1971 ~ 2011 (different educational groups exhibit different patterns)
+        .. image::  doc/std_dist_educ.png
+  - Standard Deviations for Log Earning Residual Across Educational Groups, 1971 ~ 2011 (different educational groups exhibit different patterns and educational groups have been redefined to include only three groups)
+        .. image::  doc/std_edu_2.png
+
+
+- Generate **LogWageResidBayesian.dta** used in the Bayesian analysis by running this do file :download:`prepdata_bayeisan.do<data_analysis/combined/prepdata_bayeisan.do>`.
+
+
+
+
+
+
+Use **STATA** to Analyze
+++++++++++++++++++++++++
+
+Techniques in STATA
+^^^^^^^^^^^^^^^^^^^
+
+- When using **psiduse.do**, one needs to specify the option regarding the design. Since the default is the balanced design, and this is the reason why I kept getting fewer observations than other people. (700+ VS 3000+)
+
+- The command xi_ can really ease the creation of indicator variables, and make it easier to include interactions in your models by allowing you to include interaction terms such as i.prog*female. The xi command also gives you the flexibility to decide which category would be the omitted category (unlike the anova command). 
+
+.. _xi: http://www.ats.ucla.edu/stat/stata/webbooks/reg/chapter3/statareg3.htm
+
+
+- The reshape_ command can convert the data from wide format into long format. This is a very handy command. 
+
+.. _reshape: http://www.ats.ucla.edu/stat/stata/modules/reshapel.htm
+
+
+- **recode** into categorical variables and **rename** the variable::
+
+    generate agegrp = age
+    recode agegrp (30/39=1) (40/49=2) (50/59=3)
+    label define educ_lbl 1 "Elementary School" 2 "Some Hish School" 3 "High School Graduate" 4 "Some College"  ///
+                          5 "College Graduate" 6 "Graduate School"
+    label value educgrp educ_lbl
+
+- **Stata Arithmetic/String Operators**, **Relational Operators** and **Logical Operators** can be found here :download:`operator.pdf<doc/operator.pdf>`
+
+- **collapse** data in STATA::
+
+    collapse (p10) p10wage = log_real_wagehead (median) medwage =  log_real_wagehead (p90) p90wage = log_real_wagehead ///
+                             (p99) p99wage = log_real_wagehead (sd) sdwage = log_real_wagehead [aw=indwgt], by(year)
+    gen p10wage_norm = p10wage/p10wage[1]
+    gen medwage_norm = medwage/medwage[1]
+    gen p90wage_norm = p90wage/p90wage[1]
+    gen p99wage_norm = p99wage/p99wage[1]
+
+    graph twoway (connected p10wage_norm year) (connected medwage_norm year) (connected p90wage_norm year) ///
+                 (connected p99wage_norm year) ,title("Different Percentiles of Log Wage Head")
+
+    graph twoway connected sdwage year,title("Standard Deviation of Log Wage Head")		 
+
+- **levelsof** can help to cycle through each value in some specific variables when the values are not consecutive::
+
+    ** regress log_real_wagehead against age + age3 + educational dummies
+    gen residual = . // generate a place to hold residuals
+
+    levelsof year, local(lvls)
+    foreach l of local lvls {
+        regress log_real_wagehead age age3 i.educgrp if year == `l' [pw=indwgt]
+	predict res_`l' if year == `l', residual
+	replace residual = res_`l' if year == `l'
+	drop res_`l'
+    }
+
+
+
+
+
+
+
+
+
+Variables Used
+++++++++++++++
+
+.. _familysize:
+
+**familynum**
+^^^^^^^^^^^^^
+Number of people (children plus adults) in this FAMILY UNIT (living here) (this variable is from across year family files)::
+
+  familysize [68]V115 [69]V493 [70]V1167 [71]V1868 [72]V2468 [73]V3017 [74]V3437 [75]V3837 [76]V4346 [77]V5254 [78]V5755 [79]V6361 ///
+             [80]V6959 [81]V7551 [82]V8249 [83]V8851 [84]V10222 [85]V11364 [86]V12763 [87]V13867 [88]V14889 [89]V16389 [90]V17798 ///
+	     [91]V19098 [92]V20398 [93]V22405 [94]ER2006 [95]ER5005 [96]ER7005 [97]ER10008 [99]ER13009 [01]ER17012 [03]ER21016 ///
+	     [05]ER25016 [07]ER36016 [09]ER42016 [11]ER47316
+
+
+.. _region:
+
+**Region**
+^^^^^^^^^^
+region where family lived at the time of interview (this variable is from across year family files)::
+
+  region [68]V361 [69]V876 [70]V1572 [71]V2284 [72]V2911 [73]V3279 [74]V3699 [75]V4178 [76]V5054 [77]V5633 [78]V6180 [79]V6773 ///
+         [80]V7419 [81]V8071 [82]V8695 [83]V9381 [84]V11028 [85]V12379 [86]V13631 [87]V14678 [88]V16152 [89]V17538 [90]V18889 ///
+	 [91]V20189 [92]V21495 [93]V23327 [94]ER4157E [95]ER6997E [96]ER9248E [97]ER12221E [99]ER16430 [01]ER20376 [03]ER24143 ///
+	 [05]ER28042 [07]ER41032 [09]ER46974 [11]ER52398
+
+- Year 1968 ~ 1969
+
+    ==============  ==========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ==========================================================
+    1               Northeast
+                    (Connecticut, Maine, Massachusetts, New Hampshire,
+		    New Jersey, New York, Pennsylvania, Rhode Island, Vermont)
+    2               North Central
+                    (Illinois, Indiana, Iowa, Kansas, Michigan, Minnesota,
+		    Missouri, Nebraska, North Dakota, Ohio, South Dakota,
+		    Wisconsin)
+    3               South
+                    (Alabama, Arkansas, Delaware, Florida, Georgia, Kentucky,
+		    Louisiana, Maryland, Mississippi, North Carolina,
+		    Oklahoma, South Carolina, Tennessee, Texas, Virginia,
+		    Washington DC, West Virginia)
+    4               West
+                    (Arizona, California, Colorado, Idaho, Montana, Nevada,
+		    New Mexico, Oregon, Utah, Washington, Wyoming)
+    ==============  ==========================================================
+
+- Year 1970 ~ 2011
+
+    ==============  ============================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ============================
+    0               Wild code (from 1999 onward)
+    1               Northeast
+    2               North Central
+    3               South
+    4               West
+    5               Alaska, Hawaii
+    6               Foreign country
+    9               NA (from 1972 onward)
+    ==============  ============================
+
+
+.. _homeowner:
+
+**homeowner**:
+^^^^^^^^^^^^^^
+FU (family unit) owns his home or pay rent or what (this variable is from across year family files)::
+
+  homeowner [68]V103 [69]V593 [70]V1264 [71]V1967 [72]V2566 [73]V3108 [74]V3522 [75]V3939 [76]V4450 [77]V5364 [78]V5864 [79]V6479 ///
+            [80]V7084 [81]V7675 [82]V8364 [83]V8974 [84]V10437 [85]V11618 [86]V13023 [87]V14126 [88]V15140 [89]V16641 [90]V18072 ///
+	    [91]V19372 [92]V20672 [93]V22427 [94]ER2032 [95]ER5031 [96]ER7031 [97]ER10035 [99]ER13040 [01]ER17043 [03]ER21042 ///
+	    [05]ER25028 [07]ER36028 [09]ER42029 [11]ER47329
+
+- Year 1968 ~ 1993
+
+    ==============  ========================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================
+    1               Owns home (or trailer, fully or jointly)
+    5               Rents (or shares rent)
+    8               Neither (owns nor rents)
+    ==============  ========================================
+
+- Year 1994 ~ 2011
+
+    ==============  =======================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  =======================================================
+    0               Inap.
+    1               Owns or is buying home, either fully or jointly; mobile
+                    home owners who rent lots are included here
+    5               Pays rent
+    8               Neither owns nor rents
+    9               DK; NA; refused (Wild code in year 2007)
+    ==============  =======================================================
+
+.. _housevalue:
+
+**Housevalue**:
+^^^^^^^^^^^^^^^
+
+house value (this variable is from across year family files)::
+
+  housevalue [68]V5 [69]V449 [70]V1122 [71]V1823 [72]V2423 [73]V3021 [74]V3417 [75]V3817 [76]V4318 [77]V5217 [78]V5717 [79]V6319 ///
+             [80]V6917 [81]V7517 [82]V8217 [83]V8817 [84]V10018 [85]V11125 [86]V12524 [87]V13724 [88]V14824 [89]V16324 [90]V17724 ///
+	     [91]V19024 [92]V20324 [93]V21610 [94]ER2033 [95]ER5032 [96]ER7032 [97]ER10036 [99]ER13041 [01]ER17044 [03]ER21043 ///
+	     [05]ER25029 [07]ER36029 [09]ER42030 [11]ER47330
+
+
+- Year 1968 ~ 1973
+    ==============  ========================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================
+    0               Inap.: not a home owner
+    1 - 99,998      Actual amount
+    99,999          $99,999 or more
+    ==============  ========================================
+
+- Year 1974
+    ==============  ========================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================
+    0               Inap.: not a home owner
+    100 - 95,000    Actual value
+    99,999          NA
+    ==============  ========================================
+
+- Year 1975 ~ 1993
+    ==============  ========================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================
+    0               Inap.: not a home owner
+    1 - 999,999     Actual amount
+    999,999         $999,999 or more
+    ==============  ========================================
+
+- Year 1994 ~ 2003
+    ==============  ========================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================
+    0               Inap.: not a home owner
+    1 - 9,999,996   Actual amount
+    9,999,997       $9,999,997 or more
+    9,999,998       DK
+    9,999,999       NA; refused
+    ==============  ========================================
+
+- Year 2005 ~ 2011
+    ==============  ========================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================
+    0               Inap.: not a home owner
+    1 - 9,999,999   Actual amount
+    9,999,997       $9,999,997 or more
+    9,999,998       DK
+    9,999,999       NA; refused
+    ==============  ========================================
+
+
+.. _famwgt:
+
+**FAMWGT**:
+^^^^^^^^^^^
+family weight, this is core sample family weight, not Latino sample family weight (this variable is from across year family files) ::
+
+ famwgt [68]V439 [69]V1014 [70]V1609 [71]V2321 [72]V2968 [73]V3301 [74]V3721 [75]V4224 [76]V5099 [77]V5665 [78]V6212 [79]V6805 ///
+        [80]V7451 [81]V8103 [82]V8727 [83]V9433 [84]V11079 [85]V12446 [86]V13687 [87]V14737 [88]V16208 [89]V17612 [90]V18943 ///
+	[91]V20243 [92]V21547 [93]V23361 [94]ER4160 [95]ER7000 [96]ER9251 [97]ER12084 [99]ER16518 [01]ER20394 [03]ER24179 ///
+	[05]ER28078 [07]ER41069 [09]ER47012 [11]ER52436
+
+Note: From 1997, both logitudinal and cross-sectional family weight are provided.
+
+
+
+.. _indwgt:
+
+**INDWGT**:
+^^^^^^^^^^^
+individual weight (this variable is from individual level file) ::
+
+    indwgt [68]ER30019 [69]ER30042 [70]ER30066 [71]ER30090 [72]ER30116 [73]ER30137 [74]ER30159 [75]ER30187 [76]ER30216 ///
+	   [77]ER30245 [78]ER30282 [79]ER30312 [80]ER30342 [81]ER30372 [82]ER30398 [83]ER30428 [84]ER30462 [85]ER30497 ///
+	   [86]ER30534 [87]ER30569 [88]ER30605 [89]ER30641 [90]ER30686 [91]ER30730 [92]ER30803 [93]ER30864 [94]ER33119 ///
+	   [95]ER33275 [96]ER33318 [97]ER33430 [99]ER33546 [01]ER33637 [03]ER33740 [05]ER33848 [07]ER33950 [09]ER34045 ///
+	   [11]ER34154
+
+Note: From year 1990 onward, core individual weight is used. If one wishes to analyze both the core and Latino samples, then combined individual weight needs to be used. From 1997 onward, both longitudinal and cross-sectional weights are provided. Here I used logitudinal weight.
+
+.. _sex:
+
+**SEX**:
+^^^^^^^^
+sex of individual (this variable is from individual level file)::
+   
+    sex [68~2011]ER32000
+
+Note:
+    ==============  =====================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  =====================
+    1               Male
+    2               Female
+    9               NA 
+    ==============  =====================
+
+.. _age:
+
+**AGE**:
+^^^^^^^^
+age of individual, age at the time of the interview (this variable is from individual level file)::
+
+    age [68]ER30004 [69]ER30023 [70]ER30046 [71]ER30070 [72]ER30094 [73]ER30120 [74]ER30141 [75]ER30163 [76]ER30191 [77]ER30220 [78]ER30249 ///
+        [79]ER30286 [80]ER30316 [81]ER30346 [82]ER30376 [83]ER30402 [84]ER30432 [85]ER30466 [86]ER30501 [87]ER30538 [88]ER30573 [89]ER30609 ///
+	[90]ER30645 [91]ER30692 [92]ER30736 [93]ER30809 [94]ER33104 [95]ER33204 [96]ER33304 [97]ER33404 [99]ER33504 [01]ER33604 [03]ER33704 ///
+	[05]ER33804 [07]ER33904 [09]ER34004 [11]ER34104
+
+.. _education:
+
+**EDUCATION**:
+^^^^^^^^^^^^^^
+the number of grades of school that the head accomplished (this variable is from across year family files)::
+
+    educ [68]V313 [69]V794 [70]V1485 [71]V2197 [72]V2823 [73]V3241 [74]V3663 [75]V4093 [76]V4684 [77]V5608 [78]V6157 ///
+         [79]V6754 [80]V7387 [81]V8039 [82]V8663 [83]V9349 [84]V10996 [85]V12400 [86]V13640 [87]V14687 [88]V16161 ///
+	 [89]V17545 [90]V18898 [91]V20198 [92]V21504 [93]V23333 [94]ER4158 [95]ER6998 [96]ER9249 [97]ER12222 ///
+	 [99]ER16516 [01]ER20457 [03]ER24148 [05]ER28047 [07]ER41037 [09]ER46981 [11]ER52405
+
+Note: the ways to collect the data are different by years
+
+- Year 1968 ~ 1974 and 1985 ~ 1990
+
+    ==============  ============================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ============================================
+    0               cannot read or write
+    1               0-5 grades
+    2               6-8 grades
+    3               9-11 grades
+    4               12 grades, high school
+    5               12 grades plus non-academic training
+    6               college, no degree
+    7               college degree, no advanced degree mentioned
+    8               college, advanced or professional degree
+    9               NA
+    ==============  ============================================
+
+
+- Year 1975 ~ 1984 and 1991 ~ 2011
+
+    ==============  ==========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ==========================================================
+    0               none
+    1               one
+    2               two
+    3               three
+    4               four
+    5               five
+    6               six
+    7               seven
+    8               eight
+    9               nine
+    10              ten
+    11              eleven
+    12              twelve; GED
+    13              first year of college
+    14              second year of college, with or without Associate's degree
+    15              third year of college
+    16              fourth year of college; college graduate
+    17              at least some postgraduate work
+    99              NA
+    ==============  ==========================================================   
+
+.. _race:
+
+**RACE**:
+^^^^^^^^^
+race of head household (this variable is from across year family files)::
+
+    race [68]V181 [69]V801 [70]V1490 [71]V2202 [72]V2828 [73]V3300 [74]V3720 [75]V4204 [76]V5096 [77]V5662 [78]V6209 ///
+	 [79]V6802 [80]V7447 [81]V8099 [82]V8723 [83]V9408 [84]V11055 [85]V11938 [86]V13565 [87]V14612 [88]V16086 ///
+	 [89]V17483 [90]V18814 [91]V20114 [92]V21420 [93]V23276 [94]ER3944 [95]ER6814 [96]ER9060 [97]ER11848 ///
+	 [99]ER15928 [01]ER19989 [03]ER23426 [05]ER27393 [07]ER40565 [09]ER46543 [11]ER51904
+
+
+Note: This variable was copied from 1972, and since in 1974 most interviews were taken by telephone.
+
+- Year 1968 ~ 1984
+
+    ==============  =============================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  =============================================
+    1               white
+    2               black
+    3               Spanish-American, Puerto Rican, Mexian, Cuban
+    7               other
+    9               NA
+    ==============  =============================================
+
+- Year 1985 ~ 1989
+
+    ==============  =============================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  =============================================
+    0               Inap.: head is male, no wife/"wife"; head is female
+    1               white
+    2               black
+    3               American Indian, Aleut, Eskimo
+    4               Asian, Pacific Islander
+    7               Other
+    8               more than 2 mentions
+    9               NA
+    ==============  =============================================
+
+- Year 1990 ~ 2004
+
+    ==============  =============================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  =============================================
+    1               white
+    2               black
+    3               American Indian, Aleut, Eskimo
+    4               Asian, Pacific Islander
+    5               Metions Latino origin or descent
+    6               Mentions color other than black or white
+    7               Other
+    8               more than 2 mentions
+    9               NA
+    ==============  =============================================
+
+  - Year 2005 ~ 2011
+
+    ==============  =============================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  =============================================
+    0               wild code
+    1               white
+    2               black, African American, or Negro
+    3               American Indian or Alaska Native
+    4               Asian
+    5               Native Hawaiian or Pacific Islander
+    7               Other
+    9               NA
+    ==============  =============================================
+
+.. _employment:
+
+**EMPLOYMENT STATUS**:
+^^^^^^^^^^^^^^^^^^^^^^
+the employment status of head, working now, unemployed, retired or other (this variable is from across year family files)::
+
+    empstatus [68]V196 [69]V639 [70]V1278 [71]V1983 [72]V2581 [73]V3114 [74]V3528 [75]V3967 [76]V4458 [77]V5373 [78]V5872 ///
+              [79]V6492 [80]V7095 [81]V7706 [82]V8374 [83]V9005 [84]V10453 [85]V11637 [86]V13046 [87]V14146 [88]V15154 ///
+	      [89]V16655 [90]V18093 [91]V19393 [92]V20693 [93]V22448 [94]ER2068 [95]ER5067 [96]ER7163 [97]ER10081 [99]ER13205 ///
+              [01]ER17216 [03]ER21123 [05]ER25104 [07]ER36109 [09]ER42140 [11]ER47448
+
+
+- Year 1968 ~ 1975
+
+    ==============  =============================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  =============================================
+    1               Working now, or only temporarily laid off
+    2               Looking for work, unemployed
+    3               Retired, permanently disabled
+    4               housewife
+    5               student
+    6               Other
+    ==============  =============================================
+
+- Year 1976 ~ 1996
+
+    ==============  ========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================================
+    1               Working now
+    2               Only temporarily laid off, sick leave or maternity leave
+    3               Looking for work, unemployed
+    4               Retired
+    5               permanently disabled; temporarily disable (from 1996 on)
+    6               housewife
+    7               student
+    8               Other; "workfare"; in prison or jail
+    9               NA; refused (from 1996 on)
+    ==============  ========================================================
+
+- Year 1997 ~ 2001
+
+    ==============  ========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================================
+    1               Working now
+    2               Only temporarily laid off, sick leave or maternity leave
+    3               Looking for work, unemployed
+    4               Retired
+    5               permanently disabled; temporarily disable (from 1996 on)
+    6               Keeping house
+    7               student
+    8               Other; "workfare"; in prison or jail
+    98              DK
+    99              NA; refused
+    ==============  ========================================================
+
+- Year 2003
+
+    ==============  ========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================================
+    0               Wild code
+    1               Working now
+    2               Only temporarily laid off, sick leave or maternity leave
+    3               Looking for work, unemployed
+    4               Retired
+    5               permanently disabled; temporarily disable (from 1996 on)
+    6               Keeping house
+    7               student
+    8               Other; "workfare"; in prison or jail
+    22              Wild code
+    99              NA; refused
+    ==============  ========================================================
+
+.. _industry:
+
+**INDUSTRY OF HEAD**:
+^^^^^^^^^^^^^^^^^^^^^
+the main occupation of head (this variable is from across year family files)::
+
+    industry [68]V197_B [69]V640_B [70]V1279_B [71]V1985_A [72]V2583_A [73]V3116_A [74]V3531_A [75]V3969_A [76]V4460_A ///
+             [77]V5375_A [78]V5874_A [79]V6498_A [80]V7101_A [81]V7713 [82]V8381 [83]V9012 [84]V10461 [85]V11652 [86]V13055 ///
+	     [87]V14155 [88]V15163 [89]V16664 [90]V18102 [91]V19402 [92]V20702 [93]V22457 [94]ER4018 [95]ER6858 [96]ER9109 ///
+	     [97]ER12086 [99]ER13216 [01]ER17227 [03]ER21146 [05]ER25128 [07]ER36133 [09]ER42168 [11]ER47480
+
+- Year 1968 ~ 2001
+
+    ==============  ===========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ===========================================================
+    0               Inap.: not eligible for retroactive coding
+    17-28           Agriculture, Forestry, and Fisheries
+    47-57           Mining
+    67-77           Construction
+    107-398         Manufacturing
+    407-479         Transportation, Communications, and Other Public Utilities
+    507-698         Wholesale and Retail Trade
+    707-718         Finance, Insurance, and Real Estate
+    727-759         Business and Repair Services
+    769-798         Personal Services
+    807-809         Entertainment and Recreation Service
+    828-897         Professional and Related Services
+    907-937         Public Administration
+    999             NA
+    ==============  ===========================================================
+
+- Year 2003 ~ 2011
+
+    ==============  =====================================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  =====================================================================
+    0               Inap.: did not work for money or has not worked for money
+    17-29           Agriculture, Forestry, and Fisheries
+    37-49           Mining
+    57-69           Utilities
+    77              Construction
+    107-399         Manufacturing
+    407-459         Wholesale Trade
+    467-579         Retail Trade
+    607-639         Transportation and Warehousing
+    647-679         Information
+    687-699         Finance and Insurance
+    707-719         Real Estate and Rental and Leasing
+    727-749         Professional, Scientific, and Technical Services
+    757-779         Management, Administrative and Support, and Waste Management Services
+    786-789         Educational Services
+    797-847         Health Care and Social Assistance
+    848             Wild code
+    856-859         Arts, Entertainment, and Recreation
+    866-869         Accommodations and Food Services
+    877-929         Other Services (Except Public Administration)
+    937-987         Public Administration and Active Duty Military
+    999             NA
+    ==============  =====================================================================
+
+.. _relation:
+
+**RELATIONSHIP TO HEAD**:
+^^^^^^^^^^^^^^^^^^^^^^^^^
+relationship to head (this variable is from individual level files)::
+
+    relation [68]ER30003 [69]ER30022 [70]ER30045 [71]ER30069 [72]ER30093 [73]ER30119 [74]ER30140 [75]ER30162 [76]ER30190 ///
+             [77]ER30219 [78]ER30248 [79]ER30285 [80]ER30315 [81]ER30345 [82]ER30375 [83]ER30401 [84]ER30431 [85]ER30465 ///
+	     [86]ER30500 [87]ER30537 [88]ER30572 [89]ER30608 [90]ER30644 [91]ER30691 [92]ER30735 [93]ER30808 [94]ER33103 ///
+	     [95]ER33203 [96]ER33303 [97]ER33403 [99]ER33503 [01]ER33603 [03]ER33703 [05]ER33803 [07]ER33903 [09]ER34003 ///
+	     [11]ER34103
+
+- Year 1968 
+
+    ==============  ====================================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ====================================================================
+    0               Individual from core sample who was born or moved in after interview
+    1               Head
+    2               Wife/"Wife"
+    3               Son or daughter
+    4               Brother or sister
+    5               Father or mother
+    6               Grandchild, niece, nephew, other relative under 18
+    7               Other, including in-laws, other adult relatives
+    8               Husband or Wife of Head who moved out or died
+    9               NA
+    ==============  ==================================================================== 
+
+- Year 1969 ~ 1982 
+
+    ==============  ====================================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ====================================================================
+    0               Individual from core sample who was born or moved in after interview
+    1               Head
+    2               Wife/"Wife"
+    3               Son or daughter (Child, stepchild)
+    4               Brother or sister (Sibling)
+    5               Father or mother (Parent)
+    6               Grandchild, niece, nephew, other relative under 18 (great-grandchild)
+    7               Other, including in-laws, other adult relatives
+    8               Nonrelative
+    9               Husband of Head (i.e., wife was Head of family)
+    ==============  ====================================================================
+
+- Year 1983 ~ 2011
+
+    ==============  ==========================================================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ==========================================================================================
+    0               Individual from core sample who was born or moved in after interview
+    10              Head
+    20              Legal wife
+    22              "Wife", female cohabitor who has lived with Head for 12 months or more
+    30              Son or daughter of Head (includes adopted children but not stepchildren)
+    33              Stepson or stepdaughter of Head (children of legal wife)
+    35              Son or daughter of "wife" but not Head
+    37              Son-in-law or daughter-in-law of Head (includes stepchildren-in-law)
+    38              Foster son or foster daughter, not legally adopted
+    40              Brother or sister of Head (includes step and half sisters and brothers
+    47              Brother-in-law or sister-in-law of Head
+    48              Brother or sister of Head's cohabitor 
+    50              Father or mother of Head (includes stepparents)
+    57              Father-in-law or mother-in-law of Head
+    58              Father or mother of Head's cohabitor
+    60              Grandson or granddaughter of Head (includes grandchildren of legal wife)
+    65              Great-grandson or great-granddaughter of Head (includes great-grandchildren of legal wife)
+    66              Grandfather or grandmother of Head
+    67              Grandfather or grandmother of legal wife
+    68              Great-grandfather or great-grandmother of Head
+    69              Great-grandfather or great-grandmother of legal wife
+    70              Nephew or niece of Head
+    71              Nephew or niece of legal wife
+    72              Uncle or Aunt of Head
+    73              Uncle or Aunt of legal wife 
+    74              Cousin of Head
+    75              Cousin of legal wife
+    83              Children of first-year cohabitor but not of Head
+    88              First-year cohabitor of Head
+    90              Legal husband of Head
+    95              Other relative of Head
+    96              Other relative of legal wife
+    97              Other relative of cohabitor
+    98              Other nonrelatives
+    ==============  ==========================================================================================
+
+.. _inchead:
+
+**Labor Income of Head**:
+^^^^^^^^^^^^^^^^^^^^^^^^^
+Head's money income from labor (this variable is from across year family files)::
+
+    inchead [68]V74 [69]V514 [70]V1196 [71]V1897 [72]V2498 [73]V3051 [74]V3463 [75]V3863 [76]V5031 [77]V5627 [78]V6174 ///
+            [79]V6767 [80]V7413 [81]V8066 [82]V8690 [83]V9376 [84]V11023 [85]V12372 [86]V13624 [87]V14671 [88]V16145 ///
+	    [89]V17534 [90]V18878 [91]V20178 [92]V21484 [93]V23323 [94]ER4140 [95]ER6980 [96]ER9231 [97]ER12080 ///
+	    [99]ER16463 [01]ER20443 [03]ER24116 [05]ER27931 [07]ER40921 [09]ER46829 [11]ER52237 
+
+- Year 1968 ~ 1974: Labor part of farm income and business income, wages, bonuses, overtime, commissions, professional practice, labor part of income from roomers and boarders or business income.
+
+- Year 1975: This is the sum of the actual amounts of labor part of farm income and business income, bonuses, overtime, commissions, professional practice, trade, labor part of income from roomers and boarders or market gardening.
+
+- Year 1976: Summation of the following variables: labor part of farm income; labor part of business income; head's wages income; head's bonuses, overtime, commissions; head's income from professional practice or trade; labor part of roomer income.
+
+- Year 1994 ~ 2011: Starting from year 1994, labor income data excluded Farm and Unincorporated Business Income. This variable is the sum of several labor income components from the raw data, including, in addition to wages and salaries (ER20425), any separate reports of bonuses (ER20427), overtime (ER20429), tips (ER20431), commissions (ER20433), professional practice or trade (ER20435), market gardening (ER20437), miscellaneous labor income (ER20439), and extra job income (ER20441).
+
+.. _incwife:
+
+**Labor Income of Wife**:
+^^^^^^^^^^^^^^^^^^^^^^^^^
+Wife's money income from labor (this variable is from across year family files)::
+
+    incwife [68]V75 [69]V516 [70]V1198 [71]V1899 [72]V2500 [73]V3053 [74]V3465 [75]V3865 [76]V4379 [77]V5289 [78]V5788 ///
+            [79]V6398 [80]V6988 [81]V7580 [82]V8273 [83]V8881 [84]V10263 [85]V11404 [86]V12803 [87]V13905 [88]V14920 ///
+	    [89]V16420 [90]V17836 [91]V19136 [92]V20436 [93]V23324 [94]ER4144 [95]ER6984 [96]ER9235 [97]ER12082 ///
+	    [99]ER16465 [01]ER20447 [03]ER24135 [05]ER27943 [07]ER40933 [09]ER46841 [11]ER52249
+
+- Year 1968 ~ 1975: Wife's income from work.
+- Year 1976 ~ 1985: Strangely, this variable is now called wife's annual wage, or called wife labor/wage.
+- Year 1986 ~ 1993: The values for this variable in the range 000001-999998 represent the actual wage income in whole dollars; all missing data were assigned. If the Wife/"Wife" had any income from farming, business, market gardening, or roomers and boarders, labor-asset splits were made following the same rules as those for the Head. The labor portion of such income is included here; the asset portion is included in the appropriate variable's) in the range V12805-V12808; V12809 contains only the Wife's/"wife's" total asset portion.
+- Year 1994 ~ 2011: Excluding farm and unincorporated business income. Note that farm income (ER4117) and the labor portion of business income (ER4141) are not included here.
+
+.. _wagehead:
+
+**Header's Wages**:
+^^^^^^^^^^^^^^^^^^^
+Amount of Head's wages and salary income (this variable is from across year family files)::
+
+     wagehead [71]V1892 [72]V2493 [73]V3046 [74]V3458 [75]V3858 [76]V4373 [77]V5283 [78]V5782 [79]V6391 [80]V6981 [81]V7573 ///
+              [82]V8265 [83]V8873 [84]V10256 [85]V11397 [86]V12796 [87]V13898 [88]V14913 [89]V16413 [90]V17829 [91]V19129 ///
+	      [92]V20429 [93]V21739 [94]ER4122 [95]ER6962 [96]ER9213 [97]ER12196 [99]ER16493 [01]ER20425 [03]ER24117 ///
+	      [05]ER27913 [07]ER40903 [09]ER46811 [11]ER52219
+
+- Year 1971 ~ 2011: Amount of Head's Wages. This variable is only a subset of Head's labor income, which is the sum of the actual amounts of labor part of farm income and business income, bonuses, overtime, commissions, professional practice, labor part of income from roomers and boarders or business income. 
+
+- From year 1994, value 9,999,999 was for Latino sample family and 1-9,999,998 was actual amount.
+
+.. _faminc:
+
+**Total Family Income**:
+^^^^^^^^^^^^^^^^^^^^^^^^
+This variable represent the summation of the following variables: taxable income of Head and Wife; total transfer of Head and Wife; taxable prorated income of others; total prorated transfers of others (this variable is from across year family files).::
+   
+    faminc [68]V81 [69]V529 [70]V1514 [71]V2226 [72]V2852 [73]V3256 [74]V3676 [75]V4154 [76]V5029 [77]V5626 [78]V6173 [79]V6766 ///
+           [80]V7412 [81]V8065 [82]V8689 [83]V9375 [84]V11022 [85]V12371 [86]V13623 [87]V14670 [88]V16144 [89]V17533 [90]V18875 ///
+	   [91]V20175 [92]V21481 [93]V23322 [94]ER4153 [95]ER6993 [96]ER9244 [97]ER12079 [99]ER16462 [01]ER20456 [03]ER24099 ///
+	   [05]ER28037 [07]ER41027 [09]ER46935 [11]ER52343
+
+- Year 1969 ~ 1979: 1-99,998 was actual amount and 99,999 was top code.
+- Year 1980: 2-999,998 was actual amount and 999,999 was top code.
+- Year 1981 ~ 1993: 1 denoted one dollar or less, including zero and negative amounts. 2-9,999,998 was actual amount and 9,999,999 was top code.
+- Year 1994 ~ 1996
+
+    ==============  ====================================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ====================================================================
+    -999,998 - -1   Actual loss
+    -999,999        Loss of $999,999 or more
+    0               No family money income in 1993
+    1 - 9,999,999   Actual amount
+    9,999,999       Latino sample family
+    ==============  ==================================================================== 
+
+- Year 1997
+
+    ==================  ====================================================================
+
+    Value/Range         Code Value/Range Text 
+
+    ==================  ====================================================================
+    -99,998.99 - -.01   Actual loss
+    .01 - 999,998.99    Actual amount
+    .00                 Inap.: no loss or gain
+    ==================  ==================================================================== 
+
+- Year 1999
+
+    ==============  ====================================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ====================================================================
+    -999,998 - -1   Actual loss
+    0               No family money income
+    1 - 9,999,998   Actual amount
+    9,999,999       $9,999,999 or more
+    ==============  ==================================================================== 
+
+- Year 2001
+
+    ==============  ====================================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ====================================================================
+    -999,998 - -1   Actual loss
+    -999,999        Loss of $999,999 or more
+    0               No family money income
+    1 - 9,999,998   Actual amount
+    9,999,999       $9,999,999 or more
+    ==============  ==================================================================== 
+
+Reference Files
++++++++++++++++
+
+**All the data codebooks can be found below:**
+
+- :download:`2011 Individual Data Codebook<data_analysis/psidindv/ind2011er_codebook.pdf>`
+- :download:`1968 Family Data Codebook<data_analysis/fam1968/fam1968_codebook.pdf>`
+- :download:`1969 Family Data Codebook<data_analysis/fam1969/FAM1969_codebook.pdf>`
+- :download:`1970 Family Data Codebook<data_analysis/fam1970/FAM1970_codebook.pdf>`
+- :download:`1971 Family Data Codebook<data_analysis/fam1971/FAM1971_codebook.pdf>`
+- :download:`1972 Family Data Codebook<data_analysis/fam1972/FAM1972_codebook.pdf>`
+- :download:`1973 Family Data Codebook<data_analysis/fam1973/FAM1973_codebook.pdf>`
+- :download:`1974 Family Data Codebook<data_analysis/fam1974/FAM1974_codebook.pdf>`
+- :download:`1975 Family Data Codebook<data_analysis/fam1975/FAM1975_codebook.pdf>`
+- :download:`1976 Family Data Codebook<data_analysis/fam1976/FAM1976_codebook.pdf>`
+- :download:`1977 Family Data Codebook<data_analysis/fam1977/FAM1977_codebook.pdf>`
+- :download:`1978 Family Data Codebook<data_analysis/fam1978/FAM1978_codebook.pdf>`
+- :download:`1979 Family Data Codebook<data_analysis/fam1979/FAM1979_codebook.pdf>`
+- :download:`1980 Family Data Codebook<data_analysis/fam1980/FAM1980_codebook.pdf>`
+- :download:`1981 Family Data Codebook<data_analysis/fam1981/FAM1981_codebook.pdf>`
+- :download:`1982 Family Data Codebook<data_analysis/fam1982/FAM1982_codebook.pdf>`
+- :download:`1983 Family Data Codebook<data_analysis/fam1983/FAM1983_codebook.pdf>`
+- :download:`1984 Family Data Codebook<data_analysis/fam1984/FAM1984_codebook.pdf>`
+- :download:`1985 Family Data Codebook<data_analysis/fam1985/FAM1985_codebook.pdf>`
+- :download:`1986 Family Data Codebook<data_analysis/fam1986/FAM1986_codebook.pdf>`
+- :download:`1987 Family Data Codebook<data_analysis/fam1987/FAM1987_codebook.pdf>`
+- :download:`1988 Family Data Codebook<data_analysis/fam1988/FAM1988_codebook.pdf>`
+- :download:`1989 Family Data Codebook<data_analysis/fam1989/FAM1989_codebook.pdf>`
+- :download:`1990 Family Data Codebook<data_analysis/fam1990/FAM1990_codebook.pdf>`
+- :download:`1991 Family Data Codebook<data_analysis/fam1991/FAM1991_codebook.pdf>`
+- :download:`1992 Family Data Codebook<data_analysis/fam1992/FAM1992_codebook.pdf>`
+- :download:`1993 Family Data Codebook<data_analysis/fam1993/fam1993_codebook.pdf>`
+- :download:`1994 Family Data Codebook<data_analysis/fam1994er/fam1994er_codebook.pdf>`
+- :download:`1995 Family Data Codebook<data_analysis/fam1995er/fam1995er_codebook.pdf>`
+- :download:`1996 Family Data Codebook<data_analysis/fam1996er/fam1996er_codebook.pdf>`
+- :download:`1997 Family Data Codebook<data_analysis/fam1997er/fam1997er_codebook.pdf>`
+- :download:`1999 Family Data Codebook<data_analysis/fam1999er/fam1999er_codebook.pdf>`
+- :download:`2001 Family Data Codebook<data_analysis/fam2001er/fam2001er_codebook.pdf>`
+- :download:`2003 Family Data Codebook<data_analysis/fam2003er/fam2003er_codebook.pdf>`
+- :download:`2005 Family Data Codebook<data_analysis/fam2005er/fam2005er_codebook.pdf>`
+- :download:`2007 Family Data Codebook<data_analysis/fam2007er/FAM2007ER_codebook.pdf>`
+- :download:`2009 Family Data Codebook<data_analysis/fam2009er/FAM2009ER_codebook.pdf>`
+- :download:`2011 Family Data Codebook<data_analysis/fam2011er/fam2011er_codebook.pdf>`

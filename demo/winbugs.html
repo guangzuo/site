@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Use WinBUGS within Stata &mdash; PSID Analysis 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="PSID Analysis 1.0 documentation" href="index.html" />
+    <link rel="next" title="3. Review of Bayesian Analysis" href="bayesian.html" />
+    <link rel="prev" title="1. Panel Study of Income Dynamics (PSID)" href="psid_guang.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="bayesian.html" title="3. Review of Bayesian Analysis"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="psid_guang.html" title="1. Panel Study of Income Dynamics (PSID)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PSID Analysis 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="use-winbugs-within-stata">
+<h1>2. <strong>Use WinBUGS within Stata</strong><a class="headerlink" href="#use-winbugs-within-stata" title="Permalink to this headline">¶</a></h1>
+<p>This is a website keeping all the documents about Bayesian analysis using WINBUGS within Stata. One can find <a class="reference external" href="http://www.openbugs.net/w/FrontPage">OpenBUGS</a> here and <a class="reference external" href="http://www2.mrc-bsu.cam.ac.uk/bugs/winbugs/remote14.shtml">WinBUGS</a> here.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body">Guang Zuo</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Publisher:</th><td class="field-body">Working Paper</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Year:</th><td class="field-body">Apr. 2014</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="install-winbugs-from-stata">
+<h2>2.1. Install WinBUGS from Stata<a class="headerlink" href="#install-winbugs-from-stata" title="Permalink to this headline">¶</a></h2>
+<p>The followings are needed steps to install WinBUGS from Stata.:</p>
+<div class="highlight-python"><div class="highlight"><pre>1. net from http://www2.le.ac.uk/departments/health-sciences/research/gen-epi/Progs/winbugsfromstata
+2. net describe winbugsfromstata
+3. net install winbugsfromstata
+</pre></div>
+</div>
+</div>
+<div class="section" id="first-test-with-winbugs">
+<h2>2.2. First Test with WinBUGS<a class="headerlink" href="#first-test-with-winbugs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The paper by John Thompson et.al. provides a very good summary of using WinBUGS within Stata. The paper can be found  <a class="reference download internal" href="_downloads/thompson.pdf"><tt class="xref download docutils literal"><span class="pre">here</span></tt></a></li>
+<li>Test example can be found in the website from from Yu-Sung <a class="reference external" href="http://yusung.blogspot.com/2007/01/using-winbugs-from-stata.html">Su</a>.</li>
+</ul>
+<ul class="simple">
+<li>If one needs to access the home directory from <em>wine</em>, the absolute path should be <strong>z:/home/guang</strong>. And <strong>z</strong> needs to be small case, otherwise it won&#8217;t work.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. <strong>Use WinBUGS within Stata</strong></a><ul>
+<li><a class="reference internal" href="#install-winbugs-from-stata">2.1. Install WinBUGS from Stata</a></li>
+<li><a class="reference internal" href="#first-test-with-winbugs">2.2. First Test with WinBUGS</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="psid_guang.html"
+                        title="previous chapter">1. <strong>Panel Study of Income Dynamics (PSID)</strong></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bayesian.html"
+                        title="next chapter">3. <strong>Review of Bayesian Analysis</strong></a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/winbugs.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="bayesian.html" title="3. Review of Bayesian Analysis"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="psid_guang.html" title="1. Panel Study of Income Dynamics (PSID)"
+             >previous</a> |</li>
+        <li><a href="index.html">PSID Analysis 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Guang Zuo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

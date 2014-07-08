@@ -1,0 +1,51 @@
+===========================================
+**Model Solution: The Finite Horizon Case**
+===========================================
+
+Technical Questions:
+--------------------
+
+- When first discretize the state space of a household (a, y, rm, ph), how the boundaries of these variables be determined?
+  
+  - I set consumption to be zero in order to compute a_max;
+  - I set a_min = - 120% * purchased housing price.
+
+
+
+Ada and Cooper (2003): Use Markov Chain to Approximate AR(1) Process
+--------------------------------------------------------------------
+
+- The transition given in Makoto Nakajima's note is **INCORRECT**, one needs to refer to **page 58** in Ada and Cooper's book "Dynamic Economics: Quantitative Methods and Applications". 
+
+
+- The notes that I wrote for using Markov chain to approximate AR(1) process:
+
+  - :download:`Note on Ada and Cooper(2003) approximateion<doc/ar1.pdf>`
+  - :download:`Numerical Approximation<doc/integration.pdf>`
+
+Linear Interpolation
+--------------------
+
+- For linear interpolation, one can refer to the file here:
+
+  - :download:`Linear Interpolation<doc/CompMiniCourse.pdf>`
+  - :download:`Note by Guang<doc/linear_interpolation.pdf>`
+
+Calibration of Age-Dependent Component of Log Income
+----------------------------------------------------
+
+- The stata do file to get the profile can be found in :download:`**income_profile.do**<data_analysis/combined/income_profile.do>`
+
+- The fitted plot can be found in the following graph
+
+  .. image:: doc/income_profile.png
+     :width: 60 %
+	     
+Reference
+---------
+
+- The Dynamic Programming materials provided by Raul Santaeulaia-Llopis :download:`Finite Horizon Case<doc/Econ5725I_Dynamic_Programming.pdf>`.
+
+- The Ada and Cooper (2003) method to approximate AR(1) process using Markov chain :download:`Ada and Cooper<doc/ada2003.pdf>`
+
+- Chapter 5 of Ada and Cooper (2003) :download:`Dynamic Economics<doc/dynamic_economics.pdf>`

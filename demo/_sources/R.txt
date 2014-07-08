@@ -1,0 +1,137 @@
+==============
+**Learning R**
+==============
+
+Plotting Systems
+----------------
+
+- **3 plotting systems: base plotting, lattice plotting and ggplot2 system**
+
+- Read Stata **dta** data file into R::
+
+    > library(foreign)
+    > read.dta("data file name")
+
+- **#** sign is the way to comment in R.
+
+- **Alt + -** is the short cut for assignment sign <- in R.
+
+- **rm()** remove all the objects in R::
+
+    > rm(list = ls()) # clean entire workspace
+
+- **unload packages** in R::
+
+    # UNLOAD/REMOVE PACKAGES
+    # By default, all loaded packages are unloaded when R quits
+    # Can also open Packages window and manually uncheck
+    # Or can use this code
+    # To unload packages
+    detach("package:ggplot2", unload = TRUE)
+    ?detach
+
+- **survey** package in R::
+
+    # survey package
+    install.packages("survey")
+    require("survey")
+    help(package="survey")
+
+Data Type
+---------
+
+- **as.** coerces one type of data into some other type of data ::
+
+    > as.numeric(x)
+
+- **Matrices** are vectors with a *dimension* attribute and matrices are constructed *column-wise*::
+
+    > m <- matrix(1:6, nrow=2, ncol=3)
+
+  Matrices can also be created directly from vectors by adding a dimension attribute::
+
+    > m <- 1:10
+    > dim(m) <- c(2,5)
+
+- **Factors** are used to represented categorical data ::
+
+    > x <- factor(c("yes","yes","no","yes","no"))
+    > table(x)
+    x
+    no yes
+     2   3
+
+  The order of the levels can be set using the **levels** argument to **factor()**. This can be important in linear modelling because the first level is used as the baseline level::
+
+    > x <- factor(c("yes","yes","no","yes","no"), levels=c("yes","no"))
+
+Subsetting
+----------
+
+- **Very Useful Logic Index**::
+
+    > x <- c("a","b","c","c","d","a")
+    > x[1]
+    [1] "a"
+    > x[2]
+    [1] "b"
+    > x[x>"a"]
+    [1] "b" "c" "c" "d"
+    > u <- x>"a"
+    > u
+    [1] FALSE  TRUE  TRUE  TRUE  TRUE FALSE
+    > x[u]
+    [1] "b" "c" "c" "d"
+
+Using ESS in Emacs to Debug R code
+----------------------------------
+
+- Open **R** session first using **M + x R**
+- Use **C + t d** to choose which function to debug
+- Use **C + t u** to undebug a certain function
+- Go back to the main script, highlight a function and evaluate it, then ESS will go to debug mode.
+
+
+
+
+
+
+
+
+
+Others
+------
+
+- **Create empty vector in R**
+
+.. code-block:: r
+    
+    fx <- rep(NA, 10)
+    
+- **Get all unique elements in some vector**
+
+.. code-block:: r
+
+   ind.id <- unique(post.X.IT$x11101ll)
+
+
+
+
+
+
+
+Some Useful Files as References
+-------------------------------
+
+- The comparison between **R** and **STATA** :download:`R and Stata<doc/RStata.pdf>`
+- Google style files in R_
+
+.. _R: https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml
+
+- This file talks about loading packages in :download:`Ch0104_file<R_training/Ex_Files_RStats_EssT/Exercise Files/Ch01/01_04/final/Ex01_04.R>`
+
+- Create bar charts for categorical variable in :download:`Ch0201_file<R_training/Ex_Files_RStats_EssT/Exercise Files/Ch02/02_01/final/Ex02_01.R>`
+
+- Create frequency table for categorical variable in :download:`Ch0301_file<R_training/Ex_Files_RStats_EssT/Exercise Files/Ch03/03_01/final/Ex03_01.R>`::
+  
+    > prop.table()    # pay attention to this command

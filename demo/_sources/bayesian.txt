@@ -1,0 +1,34 @@
+**Review of Bayesian Analysis**
+===============================
+
+This section is to review the Bayesian Analysis. And the materials are taken from the course E724 "Time Series" taught by Prof. Joon Park. 
+
+
+:Authors:  
+          Guang Zuo
+:Publisher: Working Paper
+:Year: Apr. 2014
+
+Markov Chain Monte Carlo
+------------------------
+
+- For complicated density, we can construct Markov process whose time invariant distribution is same as the original density.
+- We often call the "given density" as the "target density".
+- Remark
+
+  - We can use :math:`F(x) \sim U[0,1]`, and MCMC only serves as a last resort.  
+  - Second option is to construct Markov process since drawing i.i.d. sample is impossible. 
+
+- Important Lemmas
+
+  - **Lemma1:** If transition :math:`P_1, P_2` have invariant distribution :math:`\pi`, then so does :math:`P=P_1 \cdot P_2`. They have the same invariant distribution.
+  - **Lemma2:** If a chain has a proper invariant distribution and it is irreducible and aperiodic, then :math:`\pi` is the unique invariant distribution and is also the equilibrium distribution of the chain.
+  - **Periodicity:** If the chain visits some value (for any subset of the state space) periodically.
+  - **Irreducibility:** No matter where you are, you can visit with positive probability any place in the state space next time.
+
+- Two important Markov Chains:
+  
+  - Gibbs Sampler
+  - Metropolis-Hastings' Algorithm
+    
+    

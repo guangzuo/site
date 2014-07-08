@@ -1,0 +1,35 @@
+**Use WinBUGS within Stata**
+============================
+
+This is a website keeping all the documents about Bayesian analysis using WINBUGS within Stata. One can find OpenBUGS_ here and WinBUGS_ here.
+
+.. _OpenBUGS: http://www.openbugs.net/w/FrontPage
+.. _WinBUGS: http://www2.mrc-bsu.cam.ac.uk/bugs/winbugs/remote14.shtml
+
+
+:Authors:  
+          Guang Zuo
+:Publisher: Working Paper
+:Year: Apr. 2014
+
+
+Install WinBUGS from Stata
+--------------------------
+
+The followings are needed steps to install WinBUGS from Stata.::
+
+  1. net from http://www2.le.ac.uk/departments/health-sciences/research/gen-epi/Progs/winbugsfromstata
+  2. net describe winbugsfromstata
+  3. net install winbugsfromstata
+
+
+First Test with WinBUGS
+-----------------------
+
+- The paper by John Thompson et.al. provides a very good summary of using WinBUGS within Stata. The paper can be found  :download:`here <doc/thompson.pdf>`
+
+- Test example can be found in the website from from Yu-Sung Su_.
+
+.. _Su: http://yusung.blogspot.com/2007/01/using-winbugs-from-stata.html
+
+- If one needs to access the home directory from *wine*, the absolute path should be **z:/home/guang**. And **z** needs to be small case, otherwise it won't work.

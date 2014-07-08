@@ -1,0 +1,1910 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. Panel Study of Income Dynamics (PSID) &mdash; PSID Analysis 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="PSID Analysis 1.0 documentation" href="index.html" />
+    <link rel="next" title="2. Use WinBUGS within Stata" href="winbugs.html" />
+    <link rel="prev" title="Welcome to PSID Analysis’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="winbugs.html" title="2. Use WinBUGS within Stata"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to PSID Analysis’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PSID Analysis 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="panel-study-of-income-dynamics-psid">
+<h1>1. <strong>Panel Study of Income Dynamics (PSID)</strong><a class="headerlink" href="#panel-study-of-income-dynamics-psid" title="Permalink to this headline">¶</a></h1>
+<p>PSID <a class="reference external" href="http://simba.isr.umich.edu/Zips/ZipMain.aspx">data</a> can be found in the website provided by University of Michigan. Detailed <a class="reference external" href="http://psidonline.isr.umich.edu/Guide/documents.aspx">documents</a> can be found in the provided webpage.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body">Guang Zuo</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Publisher:</th><td class="field-body">Working Paper</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Year:</th><td class="field-body">Apr. 2014</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="lists-of-variables">
+<h2>1.1. Lists of Variables<a class="headerlink" href="#lists-of-variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="#indwgt"><em>INDWGT:</em></a> individual weight (this variable is from individual level file)</li>
+<li><a class="reference internal" href="#sex"><em>SEX:</em></a> sex of individual (this variable is from individual level file)</li>
+<li><a class="reference internal" href="#age"><em>AGE:</em></a> age of individual, age at the time of the interview (this variable is from individual level file)</li>
+<li><a class="reference internal" href="#education"><em>EDUCATION:</em></a> the number of grades of school that the head accomplished (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#race"><em>RACE:</em></a> race of head household (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#employment"><em>EMPLOYMENT STATUS:</em></a> the employment status of head, working now, unemployed, retired or other (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#industry"><em>INDUSTRY OF HEAD:</em></a> the main occupation of head (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#relation"><em>RELATIONSHIP TO HEAD:</em></a> relationship to head (this variable is from individual level files)</li>
+<li><a class="reference internal" href="#inchead"><em>Labor Income of Head:</em></a> Head’s money income from labor (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#incwife"><em>Labor Income of Wife:</em></a> Wife’s money income from labor (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#wagehead"><em>Header&#8217;s Wages:</em></a> Amount of Head’s wages and salary income (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#faminc"><em>Total Family Income:</em></a> This variable represent the summation of the following variables: taxable income of Head and Wife; total transfer of Head and Wife; taxable prorated income of others; total prorated transfers of others (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#famwgt"><em>FAMWGT:</em></a> family weight, this is core sample family weight, not Latino sample family weight (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#region"><em>Region</em></a> region where family lived at the time of interview (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#homeowner"><em>homeowner:</em></a> FU (family unit) owns his home or pay rent or what (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#housevalue"><em>Housevalue:</em></a> house value (this variable is from across year family files)</li>
+<li><a class="reference internal" href="#familysize"><em>familynum</em></a> Number of people (children plus adults) in this FAMILY UNIT (living here) (this variable is from across year family files)</li>
+<li><a class="reference external" href="https://www.census.gov/hhes/www/income/data/incpovhlth/2012/CPI-U-RS-Index-2012.pdf">CPI-U-RS</a> is the annual average Consumper Price Index research series (CPI-U-RS) using current methods (Dec.1977 = 100)</li>
+</ul>
+</div>
+<div class="section" id="procedures">
+<h2>1.2. Procedures<a class="headerlink" href="#procedures" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">This file has a list of all variables used <a class="reference download internal" href="_downloads/vars.do"><tt class="xref download docutils literal"><span class="pre">vars.do</span></tt></a> (do need to run it).</p>
+</li>
+<li><p class="first">Prepare the data using the do file here <a class="reference download internal" href="_downloads/prepdata.do"><tt class="xref download docutils literal"><span class="pre">predata.do</span></tt></a>. This is to generate <strong>psid_combined.dta</strong> data file.</p>
+</li>
+<li><p class="first">Some exploratory data analysis can be found here <a class="reference download internal" href="_downloads/test_person.do"><tt class="xref download docutils literal"><span class="pre">test_person.do</span></tt></a></p>
+<ul>
+<li><p class="first">Try x11101ll == 18004</p>
+<p>white male 20yrs since 1971  educ = 12 years worked in manufacturing till 1981, he then became construction worker since 1981, and income has declined dramatically (definitely an example of permanent shock).</p>
+</li>
+<li><p class="first">Try x11101ll == 18005</p>
+<p>white male 19yrs since 1971  educ = 12 years worked in manufacturing his life time till 1999 (46yrs), he then was laid off and engaged in agriculture activity. This guy is so stubborn to hold on to manufacturing, a dying industry.</p>
+</li>
+<li><p class="first">Try x11101ll == 459001</p>
+<p>white male 37yrs since 1971  educ = 12 years. He did really take the hit of inforrmational revoluation, so if you look at his income profile, it shows to be very stable and definitely less uncertainty. As you can see from his annual wage profile below</p>
+<blockquote id="fig1">
+<div><a class="reference internal image-reference" href="_images/inc1.png"><img alt="_images/inc1.png" src="_images/inc1.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/inc1_1.png"><img alt="_images/inc1_1.png" src="_images/inc1_1.png" style="width: 49%;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Try x11101ll == 122004</p>
+<p>white male 18yrs since 1985  educ = 12 years. He experienced the post-informational era where the world is more uncertain.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/inc2.png"><img alt="_images/inc2.png" src="_images/inc2.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/inc2_1.png"><img alt="_images/inc2_1.png" src="_images/inc2_1.png" style="width: 49%;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Try x11101ll == 284001</p>
+<p>white male 39yrs since 1971  educ = 16 years. He started his life in professional service and really enjoy a decent life and retire when he was 60yrs in 1992.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/inc3.png"><img alt="_images/inc3.png" src="_images/inc3.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/inc3_1.png"><img alt="_images/inc3_1.png" src="_images/inc3_1.png" style="width: 49%;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Try x11101ll == 997003</p>
+<p>white male 35yrs since 1977  educ = 12 years. He experienced the post-informational era where the world is more uncertain. And the shock since 1980 seems to be permanant.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/inc4.png"><img alt="_images/inc4.png" src="_images/inc4.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/inc4_1.png"><img alt="_images/inc4_1.png" src="_images/inc4_1.png" style="width: 49%;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Try x11101ll == 913005</p>
+<p>white male 22yrs since 1981  educ = 16 years. His education ensures him a stable income path even in the transitional economy.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/inc5.png"><img alt="_images/inc5.png" src="_images/inc5.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/inc5_1.png"><img alt="_images/inc5_1.png" src="_images/inc5_1.png" style="width: 49%;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Try x11101ll == 1072003</p>
+<p>white male 22yrs since 1984  educ = 12 years. Apparently, high school education is not enough to lead to a better life in this informational era. He worked in manufacturing till 2007 when he was 45 yrs old, and finally switched to whole sale and retail trade sector in 2009 when he was 47 yrs old.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/inc6.png"><img alt="_images/inc6.png" src="_images/inc6.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/inc6_1.png"><img alt="_images/inc6_1.png" src="_images/inc6_1.png" style="width: 49%;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Try x11101ll == 1075001</p>
+<p>white male 38yrs since 1971 educ = 12 years. Apparently, he has a very different life from the person above although with the same level of educational attainment. He worked in manufacturing sector till he retired in 1991 when he was 58 yrs old.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/inc7.png"><img alt="_images/inc7.png" src="_images/inc7.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/inc7_1.png"><img alt="_images/inc7_1.png" src="_images/inc7_1.png" style="width: 49%;" /></a>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p class="first"><strong>Prepare data used in Wage Regression</strong> and do file is here <a class="reference download internal" href="_downloads/wage_reg_data.do"><tt class="xref download docutils literal"><span class="pre">wage_reg_data.do</span></tt></a></p>
+</li>
+<li><p class="first">Use the above data to do some <strong>PLOTS</strong> and do file is here <a class="reference download internal" href="_downloads/plot_reg_data.do"><tt class="xref download docutils literal"><span class="pre">plot_reg_data.do</span></tt></a></p>
+<ul>
+<li><dl class="first docutils">
+<dt>Different Percentile of Log Wage Head</dt>
+<dd><img alt="_images/percentile.png" class="first last" src="_images/percentile.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Median of Log Wage Head for different educational group</dt>
+<dd><img alt="_images/med_educ.png" class="first last" src="_images/med_educ.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Median of Log Wage Head for different industrial group</dt>
+<dd><img alt="_images/med_industry.png" class="first last" src="_images/med_industry.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Median of Log Wage Head for different regions</dt>
+<dd><img alt="_images/med_region.png" class="first last" src="_images/med_region.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Standard Deviation of Log Wage Head across all individuals</dt>
+<dd><img alt="_images/std_overall.png" class="first last" src="_images/std_overall.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Standard Deviation of Log Wage Head for different educational group</dt>
+<dd><img alt="_images/std_educ.png" class="first last" src="_images/std_educ.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Standard Deviation of Log Wage Head for different industrial group</dt>
+<dd><img alt="_images/std_industry.png" class="first last" src="_images/std_industry.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Standard Deviation of Log Wage Head for different regions</dt>
+<dd><img alt="_images/std_region.png" class="first last" src="_images/std_region.png" />
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p class="first"><strong>Run a Mincerian Wage Regression</strong> using this do file <a class="reference download internal" href="_downloads/wage_reg.do"><tt class="xref download docutils literal"><span class="pre">wage_reg.do</span></tt></a>. It can generate residuals after the regression.</p>
+</li>
+<li><p class="first">Use the above residual data to generate some <strong>PLOTS</strong> and do file is here <a class="reference download internal" href="_downloads/plot_wage_reg_resid.do"><tt class="xref download docutils literal"><span class="pre">plot_wage_reg_resid.do</span></tt></a></p>
+<ul>
+<li><dl class="first docutils">
+<dt>Different Percentiles of Residuals After Wage Regression Year 1971 ~ 2011</dt>
+<dd><img alt="_images/resid_overall.png" class="first last" src="_images/resid_overall.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Changes in 90-10, 90-50, and 50-10 Ratios for Log Earning Residuals, 1971 ~ 2011 (this is obtained after wage regression)</dt>
+<dd><img alt="_images/resid_dist.png" class="first last" src="_images/resid_dist.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Changes in 90-10 Ratios for Log Earning Residual Across Educational Groups, 1971 ~ 2011 (different educational groups exhibit different patterns)</dt>
+<dd><img alt="_images/p90p10_educ.png" class="first last" src="_images/p90p10_educ.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Changes in 90-50 Ratios for Log Earning Residual Across Educational Groups, 1971 ~ 2011 (different educational groups exhibit different patterns)</dt>
+<dd><img alt="_images/p90p50_educ.png" class="first last" src="_images/p90p50_educ.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Changes in 50-10 Ratios for Log Earning Residual Across Educational Groups, 1971 ~ 2011 (different educational groups exhibit different patterns)</dt>
+<dd><img alt="_images/p50p10_educ.png" class="first last" src="_images/p50p10_educ.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Standard Deviations for Log Earning Residual Across Educational Groups, 1971 ~ 2011 (different educational groups exhibit different patterns)</dt>
+<dd><img alt="_images/std_dist_educ.png" class="first last" src="_images/std_dist_educ.png" />
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Standard Deviations for Log Earning Residual Across Educational Groups, 1971 ~ 2011 (different educational groups exhibit different patterns and educational groups have been redefined to include only three groups)</dt>
+<dd><img alt="_images/std_edu_2.png" class="first last" src="_images/std_edu_2.png" />
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p class="first">Generate <strong>LogWageResidBayesian.dta</strong> used in the Bayesian analysis by running this do file <a class="reference download internal" href="_downloads/prepdata_bayeisan.do"><tt class="xref download docutils literal"><span class="pre">prepdata_bayeisan.do</span></tt></a>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="use-stata-to-analyze">
+<h2>1.3. Use <strong>STATA</strong> to Analyze<a class="headerlink" href="#use-stata-to-analyze" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="techniques-in-stata">
+<h3>1.3.1. Techniques in STATA<a class="headerlink" href="#techniques-in-stata" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>When using <strong>psiduse.do</strong>, one needs to specify the option regarding the design. Since the default is the balanced design, and this is the reason why I kept getting fewer observations than other people. (700+ VS 3000+)</li>
+<li>The command <a class="reference external" href="http://www.ats.ucla.edu/stat/stata/webbooks/reg/chapter3/statareg3.htm">xi</a> can really ease the creation of indicator variables, and make it easier to include interactions in your models by allowing you to include interaction terms such as i.prog*female. The xi command also gives you the flexibility to decide which category would be the omitted category (unlike the anova command).</li>
+</ul>
+<ul class="simple">
+<li>The <a class="reference external" href="http://www.ats.ucla.edu/stat/stata/modules/reshapel.htm">reshape</a> command can convert the data from wide format into long format. This is a very handy command.</li>
+</ul>
+<ul>
+<li><p class="first"><strong>recode</strong> into categorical variables and <strong>rename</strong> the variable:</p>
+<div class="highlight-python"><div class="highlight"><pre>generate agegrp = age
+recode agegrp (30/39=1) (40/49=2) (50/59=3)
+label define educ_lbl 1 &quot;Elementary School&quot; 2 &quot;Some Hish School&quot; 3 &quot;High School Graduate&quot; 4 &quot;Some College&quot;  ///
+                      5 &quot;College Graduate&quot; 6 &quot;Graduate School&quot;
+label value educgrp educ_lbl
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Stata Arithmetic/String Operators</strong>, <strong>Relational Operators</strong> and <strong>Logical Operators</strong> can be found here <a class="reference download internal" href="_downloads/operator.pdf"><tt class="xref download docutils literal"><span class="pre">operator.pdf</span></tt></a></p>
+</li>
+<li><p class="first"><strong>collapse</strong> data in STATA:</p>
+<div class="highlight-python"><div class="highlight"><pre>collapse (p10) p10wage = log_real_wagehead (median) medwage =  log_real_wagehead (p90) p90wage = log_real_wagehead ///
+                         (p99) p99wage = log_real_wagehead (sd) sdwage = log_real_wagehead [aw=indwgt], by(year)
+gen p10wage_norm = p10wage/p10wage[1]
+gen medwage_norm = medwage/medwage[1]
+gen p90wage_norm = p90wage/p90wage[1]
+gen p99wage_norm = p99wage/p99wage[1]
+
+graph twoway (connected p10wage_norm year) (connected medwage_norm year) (connected p90wage_norm year) ///
+             (connected p99wage_norm year) ,title(&quot;Different Percentiles of Log Wage Head&quot;)
+
+graph twoway connected sdwage year,title(&quot;Standard Deviation of Log Wage Head&quot;)
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>levelsof</strong> can help to cycle through each value in some specific variables when the values are not consecutive:</p>
+<div class="highlight-python"><div class="highlight"><pre>** regress log_real_wagehead against age + age3 + educational dummies
+gen residual = . // generate a place to hold residuals
+
+levelsof year, local(lvls)
+foreach l of local lvls {
+    regress log_real_wagehead age age3 i.educgrp if year == `l&#39; [pw=indwgt]
+    predict res_`l&#39; if year == `l&#39;, residual
+    replace residual = res_`l&#39; if year == `l&#39;
+    drop res_`l&#39;
+}
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="variables-used">
+<h2>1.4. Variables Used<a class="headerlink" href="#variables-used" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="familynum">
+<span id="familysize"></span><h3>1.4.1. <strong>familynum</strong><a class="headerlink" href="#familynum" title="Permalink to this headline">¶</a></h3>
+<p>Number of people (children plus adults) in this FAMILY UNIT (living here) (this variable is from across year family files):</p>
+<div class="highlight-python"><div class="highlight"><pre>familysize [68]V115 [69]V493 [70]V1167 [71]V1868 [72]V2468 [73]V3017 [74]V3437 [75]V3837 [76]V4346 [77]V5254 [78]V5755 [79]V6361 ///
+           [80]V6959 [81]V7551 [82]V8249 [83]V8851 [84]V10222 [85]V11364 [86]V12763 [87]V13867 [88]V14889 [89]V16389 [90]V17798 ///
+           [91]V19098 [92]V20398 [93]V22405 [94]ER2006 [95]ER5005 [96]ER7005 [97]ER10008 [99]ER13009 [01]ER17012 [03]ER21016 ///
+           [05]ER25016 [07]ER36016 [09]ER42016 [11]ER47316
+</pre></div>
+</div>
+</div>
+<div class="section" id="region">
+<span id="id1"></span><h3>1.4.2. <strong>Region</strong><a class="headerlink" href="#region" title="Permalink to this headline">¶</a></h3>
+<p>region where family lived at the time of interview (this variable is from across year family files):</p>
+<div class="highlight-python"><div class="highlight"><pre>region [68]V361 [69]V876 [70]V1572 [71]V2284 [72]V2911 [73]V3279 [74]V3699 [75]V4178 [76]V5054 [77]V5633 [78]V6180 [79]V6773 ///
+       [80]V7419 [81]V8071 [82]V8695 [83]V9381 [84]V11028 [85]V12379 [86]V13631 [87]V14678 [88]V16152 [89]V17538 [90]V18889 ///
+       [91]V20189 [92]V21495 [93]V23327 [94]ER4157E [95]ER6997E [96]ER9248E [97]ER12221E [99]ER16430 [01]ER20376 [03]ER24143 ///
+       [05]ER28042 [07]ER41032 [09]ER46974 [11]ER52398
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Year 1968 ~ 1969</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Northeast
+(Connecticut, Maine, Massachusetts, New Hampshire,
+New Jersey, New York, Pennsylvania, Rhode Island, Vermont)</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>North Central
+(Illinois, Indiana, Iowa, Kansas, Michigan, Minnesota,
+Missouri, Nebraska, North Dakota, Ohio, South Dakota,
+Wisconsin)</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>South
+(Alabama, Arkansas, Delaware, Florida, Georgia, Kentucky,
+Louisiana, Maryland, Mississippi, North Carolina,
+Oklahoma, South Carolina, Tennessee, Texas, Virginia,
+Washington DC, West Virginia)</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>West
+(Arizona, California, Colorado, Idaho, Montana, Nevada,
+New Mexico, Oregon, Utah, Washington, Wyoming)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1970 ~ 2011</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Wild code (from 1999 onward)</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Northeast</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>North Central</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>South</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>West</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>Alaska, Hawaii</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>Foreign country</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>NA (from 1972 onward)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="homeowner">
+<span id="id2"></span><h3>1.4.3. <strong>homeowner</strong>:<a class="headerlink" href="#homeowner" title="Permalink to this headline">¶</a></h3>
+<p>FU (family unit) owns his home or pay rent or what (this variable is from across year family files):</p>
+<div class="highlight-python"><div class="highlight"><pre>homeowner [68]V103 [69]V593 [70]V1264 [71]V1967 [72]V2566 [73]V3108 [74]V3522 [75]V3939 [76]V4450 [77]V5364 [78]V5864 [79]V6479 ///
+          [80]V7084 [81]V7675 [82]V8364 [83]V8974 [84]V10437 [85]V11618 [86]V13023 [87]V14126 [88]V15140 [89]V16641 [90]V18072 ///
+          [91]V19372 [92]V20672 [93]V22427 [94]ER2032 [95]ER5031 [96]ER7031 [97]ER10035 [99]ER13040 [01]ER17043 [03]ER21042 ///
+          [05]ER25028 [07]ER36028 [09]ER42029 [11]ER47329
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Year 1968 ~ 1993</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Owns home (or trailer, fully or jointly)</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>Rents (or shares rent)</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>Neither (owns nor rents)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1994 ~ 2011</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Owns or is buying home, either fully or jointly; mobile
+home owners who rent lots are included here</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>Pays rent</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>Neither owns nor rents</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>DK; NA; refused (Wild code in year 2007)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="housevalue">
+<span id="id3"></span><h3>1.4.4. <strong>Housevalue</strong>:<a class="headerlink" href="#housevalue" title="Permalink to this headline">¶</a></h3>
+<p>house value (this variable is from across year family files):</p>
+<div class="highlight-python"><div class="highlight"><pre>housevalue [68]V5 [69]V449 [70]V1122 [71]V1823 [72]V2423 [73]V3021 [74]V3417 [75]V3817 [76]V4318 [77]V5217 [78]V5717 [79]V6319 ///
+           [80]V6917 [81]V7517 [82]V8217 [83]V8817 [84]V10018 [85]V11125 [86]V12524 [87]V13724 [88]V14824 [89]V16324 [90]V17724 ///
+           [91]V19024 [92]V20324 [93]V21610 [94]ER2033 [95]ER5032 [96]ER7032 [97]ER10036 [99]ER13041 [01]ER17044 [03]ER21043 ///
+           [05]ER25029 [07]ER36029 [09]ER42030 [11]ER47330
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>Year 1968 ~ 1973</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.: not a home owner</td>
+</tr>
+<tr class="row-odd"><td>1 - 99,998</td>
+<td>Actual amount</td>
+</tr>
+<tr class="row-even"><td>99,999</td>
+<td>$99,999 or more</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Year 1974</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.: not a home owner</td>
+</tr>
+<tr class="row-odd"><td>100 - 95,000</td>
+<td>Actual value</td>
+</tr>
+<tr class="row-even"><td>99,999</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Year 1975 ~ 1993</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.: not a home owner</td>
+</tr>
+<tr class="row-odd"><td>1 - 999,999</td>
+<td>Actual amount</td>
+</tr>
+<tr class="row-even"><td>999,999</td>
+<td>$999,999 or more</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Year 1994 ~ 2003</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.: not a home owner</td>
+</tr>
+<tr class="row-odd"><td>1 - 9,999,996</td>
+<td>Actual amount</td>
+</tr>
+<tr class="row-even"><td>9,999,997</td>
+<td>$9,999,997 or more</td>
+</tr>
+<tr class="row-odd"><td>9,999,998</td>
+<td>DK</td>
+</tr>
+<tr class="row-even"><td>9,999,999</td>
+<td>NA; refused</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Year 2005 ~ 2011</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.: not a home owner</td>
+</tr>
+<tr class="row-odd"><td>1 - 9,999,999</td>
+<td>Actual amount</td>
+</tr>
+<tr class="row-even"><td>9,999,997</td>
+<td>$9,999,997 or more</td>
+</tr>
+<tr class="row-odd"><td>9,999,998</td>
+<td>DK</td>
+</tr>
+<tr class="row-even"><td>9,999,999</td>
+<td>NA; refused</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="famwgt">
+<span id="id4"></span><h3>1.4.5. <strong>FAMWGT</strong>:<a class="headerlink" href="#famwgt" title="Permalink to this headline">¶</a></h3>
+<p>family weight, this is core sample family weight, not Latino sample family weight (this variable is from across year family files)</p>
+<div class="highlight-python"><div class="highlight"><pre>famwgt [68]V439 [69]V1014 [70]V1609 [71]V2321 [72]V2968 [73]V3301 [74]V3721 [75]V4224 [76]V5099 [77]V5665 [78]V6212 [79]V6805 ///
+       [80]V7451 [81]V8103 [82]V8727 [83]V9433 [84]V11079 [85]V12446 [86]V13687 [87]V14737 [88]V16208 [89]V17612 [90]V18943 ///
+       [91]V20243 [92]V21547 [93]V23361 [94]ER4160 [95]ER7000 [96]ER9251 [97]ER12084 [99]ER16518 [01]ER20394 [03]ER24179 ///
+       [05]ER28078 [07]ER41069 [09]ER47012 [11]ER52436
+</pre></div>
+</div>
+<p>Note: From 1997, both logitudinal and cross-sectional family weight are provided.</p>
+</div>
+<div class="section" id="indwgt">
+<span id="id5"></span><h3>1.4.6. <strong>INDWGT</strong>:<a class="headerlink" href="#indwgt" title="Permalink to this headline">¶</a></h3>
+<p>individual weight (this variable is from individual level file)</p>
+<div class="highlight-python"><div class="highlight"><pre>indwgt [68]ER30019 [69]ER30042 [70]ER30066 [71]ER30090 [72]ER30116 [73]ER30137 [74]ER30159 [75]ER30187 [76]ER30216 ///
+       [77]ER30245 [78]ER30282 [79]ER30312 [80]ER30342 [81]ER30372 [82]ER30398 [83]ER30428 [84]ER30462 [85]ER30497 ///
+       [86]ER30534 [87]ER30569 [88]ER30605 [89]ER30641 [90]ER30686 [91]ER30730 [92]ER30803 [93]ER30864 [94]ER33119 ///
+       [95]ER33275 [96]ER33318 [97]ER33430 [99]ER33546 [01]ER33637 [03]ER33740 [05]ER33848 [07]ER33950 [09]ER34045 ///
+       [11]ER34154
+</pre></div>
+</div>
+<p>Note: From year 1990 onward, core individual weight is used. If one wishes to analyze both the core and Latino samples, then combined individual weight needs to be used. From 1997 onward, both longitudinal and cross-sectional weights are provided. Here I used logitudinal weight.</p>
+</div>
+<div class="section" id="sex">
+<span id="id6"></span><h3>1.4.7. <strong>SEX</strong>:<a class="headerlink" href="#sex" title="Permalink to this headline">¶</a></h3>
+<p>sex of individual (this variable is from individual level file):</p>
+<div class="highlight-python"><div class="highlight"><pre>sex [68~2011]ER32000
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Note:</dt>
+<dd><table border="1" class="first last docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Male</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Female</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+<div class="section" id="age">
+<span id="id7"></span><h3>1.4.8. <strong>AGE</strong>:<a class="headerlink" href="#age" title="Permalink to this headline">¶</a></h3>
+<p>age of individual, age at the time of the interview (this variable is from individual level file):</p>
+<div class="highlight-python"><div class="highlight"><pre>age [68]ER30004 [69]ER30023 [70]ER30046 [71]ER30070 [72]ER30094 [73]ER30120 [74]ER30141 [75]ER30163 [76]ER30191 [77]ER30220 [78]ER30249 ///
+    [79]ER30286 [80]ER30316 [81]ER30346 [82]ER30376 [83]ER30402 [84]ER30432 [85]ER30466 [86]ER30501 [87]ER30538 [88]ER30573 [89]ER30609 ///
+    [90]ER30645 [91]ER30692 [92]ER30736 [93]ER30809 [94]ER33104 [95]ER33204 [96]ER33304 [97]ER33404 [99]ER33504 [01]ER33604 [03]ER33704 ///
+    [05]ER33804 [07]ER33904 [09]ER34004 [11]ER34104
+</pre></div>
+</div>
+</div>
+<div class="section" id="education">
+<span id="id8"></span><h3>1.4.9. <strong>EDUCATION</strong>:<a class="headerlink" href="#education" title="Permalink to this headline">¶</a></h3>
+<p>the number of grades of school that the head accomplished (this variable is from across year family files):</p>
+<div class="highlight-python"><div class="highlight"><pre>educ [68]V313 [69]V794 [70]V1485 [71]V2197 [72]V2823 [73]V3241 [74]V3663 [75]V4093 [76]V4684 [77]V5608 [78]V6157 ///
+     [79]V6754 [80]V7387 [81]V8039 [82]V8663 [83]V9349 [84]V10996 [85]V12400 [86]V13640 [87]V14687 [88]V16161 ///
+     [89]V17545 [90]V18898 [91]V20198 [92]V21504 [93]V23333 [94]ER4158 [95]ER6998 [96]ER9249 [97]ER12222 ///
+     [99]ER16516 [01]ER20457 [03]ER24148 [05]ER28047 [07]ER41037 [09]ER46981 [11]ER52405
+</pre></div>
+</div>
+<p>Note: the ways to collect the data are different by years</p>
+<ul>
+<li><p class="first">Year 1968 ~ 1974 and 1985 ~ 1990</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>cannot read or write</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>0-5 grades</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>6-8 grades</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>9-11 grades</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>12 grades, high school</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>12 grades plus non-academic training</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>college, no degree</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>college degree, no advanced degree mentioned</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>college, advanced or professional degree</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1975 ~ 1984 and 1991 ~ 2011</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>none</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>one</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>two</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>three</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>four</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>five</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>six</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>seven</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>eight</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>nine</td>
+</tr>
+<tr class="row-even"><td>10</td>
+<td>ten</td>
+</tr>
+<tr class="row-odd"><td>11</td>
+<td>eleven</td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td>twelve; GED</td>
+</tr>
+<tr class="row-odd"><td>13</td>
+<td>first year of college</td>
+</tr>
+<tr class="row-even"><td>14</td>
+<td>second year of college, with or without Associate&#8217;s degree</td>
+</tr>
+<tr class="row-odd"><td>15</td>
+<td>third year of college</td>
+</tr>
+<tr class="row-even"><td>16</td>
+<td>fourth year of college; college graduate</td>
+</tr>
+<tr class="row-odd"><td>17</td>
+<td>at least some postgraduate work</td>
+</tr>
+<tr class="row-even"><td>99</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="race">
+<span id="id9"></span><h3>1.4.10. <strong>RACE</strong>:<a class="headerlink" href="#race" title="Permalink to this headline">¶</a></h3>
+<p>race of head household (this variable is from across year family files):</p>
+<div class="highlight-python"><div class="highlight"><pre>race [68]V181 [69]V801 [70]V1490 [71]V2202 [72]V2828 [73]V3300 [74]V3720 [75]V4204 [76]V5096 [77]V5662 [78]V6209 ///
+     [79]V6802 [80]V7447 [81]V8099 [82]V8723 [83]V9408 [84]V11055 [85]V11938 [86]V13565 [87]V14612 [88]V16086 ///
+     [89]V17483 [90]V18814 [91]V20114 [92]V21420 [93]V23276 [94]ER3944 [95]ER6814 [96]ER9060 [97]ER11848 ///
+     [99]ER15928 [01]ER19989 [03]ER23426 [05]ER27393 [07]ER40565 [09]ER46543 [11]ER51904
+</pre></div>
+</div>
+<p>Note: This variable was copied from 1972, and since in 1974 most interviews were taken by telephone.</p>
+<ul>
+<li><p class="first">Year 1968 ~ 1984</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>white</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>black</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>Spanish-American, Puerto Rican, Mexian, Cuban</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>other</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1985 ~ 1989</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.: head is male, no wife/&#8221;wife&#8221;; head is female</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>white</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>black</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>American Indian, Aleut, Eskimo</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>Asian, Pacific Islander</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>Other</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>more than 2 mentions</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1990 ~ 2004</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>white</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>black</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>American Indian, Aleut, Eskimo</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>Asian, Pacific Islander</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>Metions Latino origin or descent</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>Mentions color other than black or white</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>Other</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>more than 2 mentions</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<ul>
+<li><p class="first">Year 2005 ~ 2011</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>wild code</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>white</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>black, African American, or Negro</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>American Indian or Alaska Native</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>Asian</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>Native Hawaiian or Pacific Islander</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>Other</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="employment-status">
+<span id="employment"></span><h3>1.4.11. <strong>EMPLOYMENT STATUS</strong>:<a class="headerlink" href="#employment-status" title="Permalink to this headline">¶</a></h3>
+<p>the employment status of head, working now, unemployed, retired or other (this variable is from across year family files):</p>
+<div class="highlight-python"><div class="highlight"><pre>empstatus [68]V196 [69]V639 [70]V1278 [71]V1983 [72]V2581 [73]V3114 [74]V3528 [75]V3967 [76]V4458 [77]V5373 [78]V5872 ///
+          [79]V6492 [80]V7095 [81]V7706 [82]V8374 [83]V9005 [84]V10453 [85]V11637 [86]V13046 [87]V14146 [88]V15154 ///
+          [89]V16655 [90]V18093 [91]V19393 [92]V20693 [93]V22448 [94]ER2068 [95]ER5067 [96]ER7163 [97]ER10081 [99]ER13205 ///
+          [01]ER17216 [03]ER21123 [05]ER25104 [07]ER36109 [09]ER42140 [11]ER47448
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Year 1968 ~ 1975</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Working now, or only temporarily laid off</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Looking for work, unemployed</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>Retired, permanently disabled</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>housewife</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>student</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>Other</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1976 ~ 1996</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Working now</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Only temporarily laid off, sick leave or maternity leave</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>Looking for work, unemployed</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>Retired</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>permanently disabled; temporarily disable (from 1996 on)</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>housewife</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>student</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>Other; &#8220;workfare&#8221;; in prison or jail</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>NA; refused (from 1996 on)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1997 ~ 2001</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Working now</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Only temporarily laid off, sick leave or maternity leave</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>Looking for work, unemployed</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>Retired</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>permanently disabled; temporarily disable (from 1996 on)</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>Keeping house</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>student</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>Other; &#8220;workfare&#8221;; in prison or jail</td>
+</tr>
+<tr class="row-even"><td>98</td>
+<td>DK</td>
+</tr>
+<tr class="row-odd"><td>99</td>
+<td>NA; refused</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 2003</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Wild code</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Working now</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>Only temporarily laid off, sick leave or maternity leave</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>Looking for work, unemployed</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>Retired</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>permanently disabled; temporarily disable (from 1996 on)</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>Keeping house</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>student</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>Other; &#8220;workfare&#8221;; in prison or jail</td>
+</tr>
+<tr class="row-odd"><td>22</td>
+<td>Wild code</td>
+</tr>
+<tr class="row-even"><td>99</td>
+<td>NA; refused</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="industry-of-head">
+<span id="industry"></span><h3>1.4.12. <strong>INDUSTRY OF HEAD</strong>:<a class="headerlink" href="#industry-of-head" title="Permalink to this headline">¶</a></h3>
+<p>the main occupation of head (this variable is from across year family files):</p>
+<div class="highlight-python"><div class="highlight"><pre>industry [68]V197_B [69]V640_B [70]V1279_B [71]V1985_A [72]V2583_A [73]V3116_A [74]V3531_A [75]V3969_A [76]V4460_A ///
+         [77]V5375_A [78]V5874_A [79]V6498_A [80]V7101_A [81]V7713 [82]V8381 [83]V9012 [84]V10461 [85]V11652 [86]V13055 ///
+         [87]V14155 [88]V15163 [89]V16664 [90]V18102 [91]V19402 [92]V20702 [93]V22457 [94]ER4018 [95]ER6858 [96]ER9109 ///
+         [97]ER12086 [99]ER13216 [01]ER17227 [03]ER21146 [05]ER25128 [07]ER36133 [09]ER42168 [11]ER47480
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Year 1968 ~ 2001</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.: not eligible for retroactive coding</td>
+</tr>
+<tr class="row-odd"><td>17-28</td>
+<td>Agriculture, Forestry, and Fisheries</td>
+</tr>
+<tr class="row-even"><td>47-57</td>
+<td>Mining</td>
+</tr>
+<tr class="row-odd"><td>67-77</td>
+<td>Construction</td>
+</tr>
+<tr class="row-even"><td>107-398</td>
+<td>Manufacturing</td>
+</tr>
+<tr class="row-odd"><td>407-479</td>
+<td>Transportation, Communications, and Other Public Utilities</td>
+</tr>
+<tr class="row-even"><td>507-698</td>
+<td>Wholesale and Retail Trade</td>
+</tr>
+<tr class="row-odd"><td>707-718</td>
+<td>Finance, Insurance, and Real Estate</td>
+</tr>
+<tr class="row-even"><td>727-759</td>
+<td>Business and Repair Services</td>
+</tr>
+<tr class="row-odd"><td>769-798</td>
+<td>Personal Services</td>
+</tr>
+<tr class="row-even"><td>807-809</td>
+<td>Entertainment and Recreation Service</td>
+</tr>
+<tr class="row-odd"><td>828-897</td>
+<td>Professional and Related Services</td>
+</tr>
+<tr class="row-even"><td>907-937</td>
+<td>Public Administration</td>
+</tr>
+<tr class="row-odd"><td>999</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 2003 ~ 2011</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.: did not work for money or has not worked for money</td>
+</tr>
+<tr class="row-odd"><td>17-29</td>
+<td>Agriculture, Forestry, and Fisheries</td>
+</tr>
+<tr class="row-even"><td>37-49</td>
+<td>Mining</td>
+</tr>
+<tr class="row-odd"><td>57-69</td>
+<td>Utilities</td>
+</tr>
+<tr class="row-even"><td>77</td>
+<td>Construction</td>
+</tr>
+<tr class="row-odd"><td>107-399</td>
+<td>Manufacturing</td>
+</tr>
+<tr class="row-even"><td>407-459</td>
+<td>Wholesale Trade</td>
+</tr>
+<tr class="row-odd"><td>467-579</td>
+<td>Retail Trade</td>
+</tr>
+<tr class="row-even"><td>607-639</td>
+<td>Transportation and Warehousing</td>
+</tr>
+<tr class="row-odd"><td>647-679</td>
+<td>Information</td>
+</tr>
+<tr class="row-even"><td>687-699</td>
+<td>Finance and Insurance</td>
+</tr>
+<tr class="row-odd"><td>707-719</td>
+<td>Real Estate and Rental and Leasing</td>
+</tr>
+<tr class="row-even"><td>727-749</td>
+<td>Professional, Scientific, and Technical Services</td>
+</tr>
+<tr class="row-odd"><td>757-779</td>
+<td>Management, Administrative and Support, and Waste Management Services</td>
+</tr>
+<tr class="row-even"><td>786-789</td>
+<td>Educational Services</td>
+</tr>
+<tr class="row-odd"><td>797-847</td>
+<td>Health Care and Social Assistance</td>
+</tr>
+<tr class="row-even"><td>848</td>
+<td>Wild code</td>
+</tr>
+<tr class="row-odd"><td>856-859</td>
+<td>Arts, Entertainment, and Recreation</td>
+</tr>
+<tr class="row-even"><td>866-869</td>
+<td>Accommodations and Food Services</td>
+</tr>
+<tr class="row-odd"><td>877-929</td>
+<td>Other Services (Except Public Administration)</td>
+</tr>
+<tr class="row-even"><td>937-987</td>
+<td>Public Administration and Active Duty Military</td>
+</tr>
+<tr class="row-odd"><td>999</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="relationship-to-head">
+<span id="relation"></span><h3>1.4.13. <strong>RELATIONSHIP TO HEAD</strong>:<a class="headerlink" href="#relationship-to-head" title="Permalink to this headline">¶</a></h3>
+<p>relationship to head (this variable is from individual level files):</p>
+<div class="highlight-python"><div class="highlight"><pre>relation [68]ER30003 [69]ER30022 [70]ER30045 [71]ER30069 [72]ER30093 [73]ER30119 [74]ER30140 [75]ER30162 [76]ER30190 ///
+         [77]ER30219 [78]ER30248 [79]ER30285 [80]ER30315 [81]ER30345 [82]ER30375 [83]ER30401 [84]ER30431 [85]ER30465 ///
+         [86]ER30500 [87]ER30537 [88]ER30572 [89]ER30608 [90]ER30644 [91]ER30691 [92]ER30735 [93]ER30808 [94]ER33103 ///
+         [95]ER33203 [96]ER33303 [97]ER33403 [99]ER33503 [01]ER33603 [03]ER33703 [05]ER33803 [07]ER33903 [09]ER34003 ///
+         [11]ER34103
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Year 1968</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Individual from core sample who was born or moved in after interview</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Head</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>Wife/&#8221;Wife&#8221;</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>Son or daughter</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>Brother or sister</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>Father or mother</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>Grandchild, niece, nephew, other relative under 18</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>Other, including in-laws, other adult relatives</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>Husband or Wife of Head who moved out or died</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1969 ~ 1982</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Individual from core sample who was born or moved in after interview</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Head</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>Wife/&#8221;Wife&#8221;</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>Son or daughter (Child, stepchild)</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>Brother or sister (Sibling)</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>Father or mother (Parent)</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>Grandchild, niece, nephew, other relative under 18 (great-grandchild)</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>Other, including in-laws, other adult relatives</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>Nonrelative</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>Husband of Head (i.e., wife was Head of family)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1983 ~ 2011</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Individual from core sample who was born or moved in after interview</td>
+</tr>
+<tr class="row-odd"><td>10</td>
+<td>Head</td>
+</tr>
+<tr class="row-even"><td>20</td>
+<td>Legal wife</td>
+</tr>
+<tr class="row-odd"><td>22</td>
+<td>&#8220;Wife&#8221;, female cohabitor who has lived with Head for 12 months or more</td>
+</tr>
+<tr class="row-even"><td>30</td>
+<td>Son or daughter of Head (includes adopted children but not stepchildren)</td>
+</tr>
+<tr class="row-odd"><td>33</td>
+<td>Stepson or stepdaughter of Head (children of legal wife)</td>
+</tr>
+<tr class="row-even"><td>35</td>
+<td>Son or daughter of &#8220;wife&#8221; but not Head</td>
+</tr>
+<tr class="row-odd"><td>37</td>
+<td>Son-in-law or daughter-in-law of Head (includes stepchildren-in-law)</td>
+</tr>
+<tr class="row-even"><td>38</td>
+<td>Foster son or foster daughter, not legally adopted</td>
+</tr>
+<tr class="row-odd"><td>40</td>
+<td>Brother or sister of Head (includes step and half sisters and brothers</td>
+</tr>
+<tr class="row-even"><td>47</td>
+<td>Brother-in-law or sister-in-law of Head</td>
+</tr>
+<tr class="row-odd"><td>48</td>
+<td>Brother or sister of Head&#8217;s cohabitor</td>
+</tr>
+<tr class="row-even"><td>50</td>
+<td>Father or mother of Head (includes stepparents)</td>
+</tr>
+<tr class="row-odd"><td>57</td>
+<td>Father-in-law or mother-in-law of Head</td>
+</tr>
+<tr class="row-even"><td>58</td>
+<td>Father or mother of Head&#8217;s cohabitor</td>
+</tr>
+<tr class="row-odd"><td>60</td>
+<td>Grandson or granddaughter of Head (includes grandchildren of legal wife)</td>
+</tr>
+<tr class="row-even"><td>65</td>
+<td>Great-grandson or great-granddaughter of Head (includes great-grandchildren of legal wife)</td>
+</tr>
+<tr class="row-odd"><td>66</td>
+<td>Grandfather or grandmother of Head</td>
+</tr>
+<tr class="row-even"><td>67</td>
+<td>Grandfather or grandmother of legal wife</td>
+</tr>
+<tr class="row-odd"><td>68</td>
+<td>Great-grandfather or great-grandmother of Head</td>
+</tr>
+<tr class="row-even"><td>69</td>
+<td>Great-grandfather or great-grandmother of legal wife</td>
+</tr>
+<tr class="row-odd"><td>70</td>
+<td>Nephew or niece of Head</td>
+</tr>
+<tr class="row-even"><td>71</td>
+<td>Nephew or niece of legal wife</td>
+</tr>
+<tr class="row-odd"><td>72</td>
+<td>Uncle or Aunt of Head</td>
+</tr>
+<tr class="row-even"><td>73</td>
+<td>Uncle or Aunt of legal wife</td>
+</tr>
+<tr class="row-odd"><td>74</td>
+<td>Cousin of Head</td>
+</tr>
+<tr class="row-even"><td>75</td>
+<td>Cousin of legal wife</td>
+</tr>
+<tr class="row-odd"><td>83</td>
+<td>Children of first-year cohabitor but not of Head</td>
+</tr>
+<tr class="row-even"><td>88</td>
+<td>First-year cohabitor of Head</td>
+</tr>
+<tr class="row-odd"><td>90</td>
+<td>Legal husband of Head</td>
+</tr>
+<tr class="row-even"><td>95</td>
+<td>Other relative of Head</td>
+</tr>
+<tr class="row-odd"><td>96</td>
+<td>Other relative of legal wife</td>
+</tr>
+<tr class="row-even"><td>97</td>
+<td>Other relative of cohabitor</td>
+</tr>
+<tr class="row-odd"><td>98</td>
+<td>Other nonrelatives</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="labor-income-of-head">
+<span id="inchead"></span><h3>1.4.14. <strong>Labor Income of Head</strong>:<a class="headerlink" href="#labor-income-of-head" title="Permalink to this headline">¶</a></h3>
+<p>Head&#8217;s money income from labor (this variable is from across year family files):</p>
+<div class="highlight-python"><div class="highlight"><pre>inchead [68]V74 [69]V514 [70]V1196 [71]V1897 [72]V2498 [73]V3051 [74]V3463 [75]V3863 [76]V5031 [77]V5627 [78]V6174 ///
+        [79]V6767 [80]V7413 [81]V8066 [82]V8690 [83]V9376 [84]V11023 [85]V12372 [86]V13624 [87]V14671 [88]V16145 ///
+        [89]V17534 [90]V18878 [91]V20178 [92]V21484 [93]V23323 [94]ER4140 [95]ER6980 [96]ER9231 [97]ER12080 ///
+        [99]ER16463 [01]ER20443 [03]ER24116 [05]ER27931 [07]ER40921 [09]ER46829 [11]ER52237
+</pre></div>
+</div>
+<ul class="simple">
+<li>Year 1968 ~ 1974: Labor part of farm income and business income, wages, bonuses, overtime, commissions, professional practice, labor part of income from roomers and boarders or business income.</li>
+<li>Year 1975: This is the sum of the actual amounts of labor part of farm income and business income, bonuses, overtime, commissions, professional practice, trade, labor part of income from roomers and boarders or market gardening.</li>
+<li>Year 1976: Summation of the following variables: labor part of farm income; labor part of business income; head&#8217;s wages income; head&#8217;s bonuses, overtime, commissions; head&#8217;s income from professional practice or trade; labor part of roomer income.</li>
+<li>Year 1994 ~ 2011: Starting from year 1994, labor income data excluded Farm and Unincorporated Business Income. This variable is the sum of several labor income components from the raw data, including, in addition to wages and salaries (ER20425), any separate reports of bonuses (ER20427), overtime (ER20429), tips (ER20431), commissions (ER20433), professional practice or trade (ER20435), market gardening (ER20437), miscellaneous labor income (ER20439), and extra job income (ER20441).</li>
+</ul>
+</div>
+<div class="section" id="labor-income-of-wife">
+<span id="incwife"></span><h3>1.4.15. <strong>Labor Income of Wife</strong>:<a class="headerlink" href="#labor-income-of-wife" title="Permalink to this headline">¶</a></h3>
+<p>Wife&#8217;s money income from labor (this variable is from across year family files):</p>
+<div class="highlight-python"><div class="highlight"><pre>incwife [68]V75 [69]V516 [70]V1198 [71]V1899 [72]V2500 [73]V3053 [74]V3465 [75]V3865 [76]V4379 [77]V5289 [78]V5788 ///
+        [79]V6398 [80]V6988 [81]V7580 [82]V8273 [83]V8881 [84]V10263 [85]V11404 [86]V12803 [87]V13905 [88]V14920 ///
+        [89]V16420 [90]V17836 [91]V19136 [92]V20436 [93]V23324 [94]ER4144 [95]ER6984 [96]ER9235 [97]ER12082 ///
+        [99]ER16465 [01]ER20447 [03]ER24135 [05]ER27943 [07]ER40933 [09]ER46841 [11]ER52249
+</pre></div>
+</div>
+<ul class="simple">
+<li>Year 1968 ~ 1975: Wife&#8217;s income from work.</li>
+<li>Year 1976 ~ 1985: Strangely, this variable is now called wife&#8217;s annual wage, or called wife labor/wage.</li>
+<li>Year 1986 ~ 1993: The values for this variable in the range 000001-999998 represent the actual wage income in whole dollars; all missing data were assigned. If the Wife/&#8221;Wife&#8221; had any income from farming, business, market gardening, or roomers and boarders, labor-asset splits were made following the same rules as those for the Head. The labor portion of such income is included here; the asset portion is included in the appropriate variable&#8217;s) in the range V12805-V12808; V12809 contains only the Wife&#8217;s/&#8221;wife&#8217;s&#8221; total asset portion.</li>
+<li>Year 1994 ~ 2011: Excluding farm and unincorporated business income. Note that farm income (ER4117) and the labor portion of business income (ER4141) are not included here.</li>
+</ul>
+</div>
+<div class="section" id="header-s-wages">
+<span id="wagehead"></span><h3>1.4.16. <strong>Header&#8217;s Wages</strong>:<a class="headerlink" href="#header-s-wages" title="Permalink to this headline">¶</a></h3>
+<p>Amount of Head&#8217;s wages and salary income (this variable is from across year family files):</p>
+<div class="highlight-python"><div class="highlight"><pre>wagehead [71]V1892 [72]V2493 [73]V3046 [74]V3458 [75]V3858 [76]V4373 [77]V5283 [78]V5782 [79]V6391 [80]V6981 [81]V7573 ///
+         [82]V8265 [83]V8873 [84]V10256 [85]V11397 [86]V12796 [87]V13898 [88]V14913 [89]V16413 [90]V17829 [91]V19129 ///
+         [92]V20429 [93]V21739 [94]ER4122 [95]ER6962 [96]ER9213 [97]ER12196 [99]ER16493 [01]ER20425 [03]ER24117 ///
+         [05]ER27913 [07]ER40903 [09]ER46811 [11]ER52219
+</pre></div>
+</div>
+<ul class="simple">
+<li>Year 1971 ~ 2011: Amount of Head&#8217;s Wages. This variable is only a subset of Head&#8217;s labor income, which is the sum of the actual amounts of labor part of farm income and business income, bonuses, overtime, commissions, professional practice, labor part of income from roomers and boarders or business income.</li>
+<li>From year 1994, value 9,999,999 was for Latino sample family and 1-9,999,998 was actual amount.</li>
+</ul>
+</div>
+<div class="section" id="total-family-income">
+<span id="faminc"></span><h3>1.4.17. <strong>Total Family Income</strong>:<a class="headerlink" href="#total-family-income" title="Permalink to this headline">¶</a></h3>
+<p>This variable represent the summation of the following variables: taxable income of Head and Wife; total transfer of Head and Wife; taxable prorated income of others; total prorated transfers of others (this variable is from across year family files).:</p>
+<div class="highlight-python"><div class="highlight"><pre>faminc [68]V81 [69]V529 [70]V1514 [71]V2226 [72]V2852 [73]V3256 [74]V3676 [75]V4154 [76]V5029 [77]V5626 [78]V6173 [79]V6766 ///
+       [80]V7412 [81]V8065 [82]V8689 [83]V9375 [84]V11022 [85]V12371 [86]V13623 [87]V14670 [88]V16144 [89]V17533 [90]V18875 ///
+       [91]V20175 [92]V21481 [93]V23322 [94]ER4153 [95]ER6993 [96]ER9244 [97]ER12079 [99]ER16462 [01]ER20456 [03]ER24099 ///
+       [05]ER28037 [07]ER41027 [09]ER46935 [11]ER52343
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Year 1969 ~ 1979: 1-99,998 was actual amount and 99,999 was top code.</p>
+</li>
+<li><p class="first">Year 1980: 2-999,998 was actual amount and 999,999 was top code.</p>
+</li>
+<li><p class="first">Year 1981 ~ 1993: 1 denoted one dollar or less, including zero and negative amounts. 2-9,999,998 was actual amount and 9,999,999 was top code.</p>
+</li>
+<li><p class="first">Year 1994 ~ 1996</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-999,998 - -1</td>
+<td>Actual loss</td>
+</tr>
+<tr class="row-odd"><td>-999,999</td>
+<td>Loss of $999,999 or more</td>
+</tr>
+<tr class="row-even"><td>0</td>
+<td>No family money income in 1993</td>
+</tr>
+<tr class="row-odd"><td>1 - 9,999,999</td>
+<td>Actual amount</td>
+</tr>
+<tr class="row-even"><td>9,999,999</td>
+<td>Latino sample family</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1997</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-99,998.99 - -.01</td>
+<td>Actual loss</td>
+</tr>
+<tr class="row-odd"><td>.01 - 999,998.99</td>
+<td>Actual amount</td>
+</tr>
+<tr class="row-even"><td>.00</td>
+<td>Inap.: no loss or gain</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1999</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-999,998 - -1</td>
+<td>Actual loss</td>
+</tr>
+<tr class="row-odd"><td>0</td>
+<td>No family money income</td>
+</tr>
+<tr class="row-even"><td>1 - 9,999,998</td>
+<td>Actual amount</td>
+</tr>
+<tr class="row-odd"><td>9,999,999</td>
+<td>$9,999,999 or more</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 2001</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-999,998 - -1</td>
+<td>Actual loss</td>
+</tr>
+<tr class="row-odd"><td>-999,999</td>
+<td>Loss of $999,999 or more</td>
+</tr>
+<tr class="row-even"><td>0</td>
+<td>No family money income</td>
+</tr>
+<tr class="row-odd"><td>1 - 9,999,998</td>
+<td>Actual amount</td>
+</tr>
+<tr class="row-even"><td>9,999,999</td>
+<td>$9,999,999 or more</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="reference-files">
+<h2>1.5. Reference Files<a class="headerlink" href="#reference-files" title="Permalink to this headline">¶</a></h2>
+<p><strong>All the data codebooks can be found below:</strong></p>
+<ul class="simple">
+<li><a class="reference download internal" href="_downloads/ind2011er_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">2011</span> <span class="pre">Individual</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/fam1968_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1968</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1969_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1969</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1970_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1970</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1971_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1971</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1972_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1972</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1973_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1973</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1974_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1974</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1975_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1975</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1976_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1976</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1977_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1977</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1978_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1978</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1979_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1979</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1980_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1980</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1981_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1981</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1982_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1982</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1983_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1983</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1984_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1984</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1985_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1985</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1986_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1986</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1987_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1987</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1988_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1988</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1989_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1989</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1990_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1990</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1991_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1991</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM1992_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1992</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/fam1993_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1993</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/fam1994er_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1994</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/fam1995er_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1995</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/fam1996er_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1996</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/fam1997er_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1997</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/fam1999er_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">1999</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/fam2001er_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">2001</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/fam2003er_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">2003</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/fam2005er_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">2005</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM2007ER_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">2007</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/FAM2009ER_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">2009</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/fam2011er_codebook.pdf"><tt class="xref download docutils literal"><span class="pre">2011</span> <span class="pre">Family</span> <span class="pre">Data</span> <span class="pre">Codebook</span></tt></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. <strong>Panel Study of Income Dynamics (PSID)</strong></a><ul>
+<li><a class="reference internal" href="#lists-of-variables">1.1. Lists of Variables</a></li>
+<li><a class="reference internal" href="#procedures">1.2. Procedures</a></li>
+<li><a class="reference internal" href="#use-stata-to-analyze">1.3. Use <strong>STATA</strong> to Analyze</a><ul>
+<li><a class="reference internal" href="#techniques-in-stata">1.3.1. Techniques in STATA</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#variables-used">1.4. Variables Used</a><ul>
+<li><a class="reference internal" href="#familynum">1.4.1. <strong>familynum</strong></a></li>
+<li><a class="reference internal" href="#region">1.4.2. <strong>Region</strong></a></li>
+<li><a class="reference internal" href="#homeowner">1.4.3. <strong>homeowner</strong>:</a></li>
+<li><a class="reference internal" href="#housevalue">1.4.4. <strong>Housevalue</strong>:</a></li>
+<li><a class="reference internal" href="#famwgt">1.4.5. <strong>FAMWGT</strong>:</a></li>
+<li><a class="reference internal" href="#indwgt">1.4.6. <strong>INDWGT</strong>:</a></li>
+<li><a class="reference internal" href="#sex">1.4.7. <strong>SEX</strong>:</a></li>
+<li><a class="reference internal" href="#age">1.4.8. <strong>AGE</strong>:</a></li>
+<li><a class="reference internal" href="#education">1.4.9. <strong>EDUCATION</strong>:</a></li>
+<li><a class="reference internal" href="#race">1.4.10. <strong>RACE</strong>:</a></li>
+<li><a class="reference internal" href="#employment-status">1.4.11. <strong>EMPLOYMENT STATUS</strong>:</a></li>
+<li><a class="reference internal" href="#industry-of-head">1.4.12. <strong>INDUSTRY OF HEAD</strong>:</a></li>
+<li><a class="reference internal" href="#relationship-to-head">1.4.13. <strong>RELATIONSHIP TO HEAD</strong>:</a></li>
+<li><a class="reference internal" href="#labor-income-of-head">1.4.14. <strong>Labor Income of Head</strong>:</a></li>
+<li><a class="reference internal" href="#labor-income-of-wife">1.4.15. <strong>Labor Income of Wife</strong>:</a></li>
+<li><a class="reference internal" href="#header-s-wages">1.4.16. <strong>Header&#8217;s Wages</strong>:</a></li>
+<li><a class="reference internal" href="#total-family-income">1.4.17. <strong>Total Family Income</strong>:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reference-files">1.5. Reference Files</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to PSID Analysis&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="winbugs.html"
+                        title="next chapter">2. <strong>Use WinBUGS within Stata</strong></a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/psid_guang.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="winbugs.html" title="2. Use WinBUGS within Stata"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to PSID Analysis’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">PSID Analysis 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Guang Zuo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
