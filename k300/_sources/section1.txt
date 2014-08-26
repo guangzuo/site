@@ -30,7 +30,7 @@ The **edit** command can provide an Excel alike view of your data file. And this
   edit
 
 .. image:: pics/2.png
-   :width: 70 %
+   :width: 80 %
 
 The **describe** command shows you basic information about a Stata data file. As you can see, it tells us the number of observations in the file, the number of variables, the names of the variables, and more. ::
 
