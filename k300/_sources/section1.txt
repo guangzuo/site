@@ -59,7 +59,7 @@ The pie chart is here
 
 Bar chart can also be produced once variable **f1** and **f2** are generated: ::
 
-  graph hbar (count) f1 f2
+  graph hbar (sum) f1 f2
 
 The bar chart is here
 
@@ -85,3 +85,12 @@ Finally, the output should be shown as follows.
 
 .. image:: pics/5.png
    :width: 50 %   
+
+Section 1.3: Do-file
+====================
+
+You can always organize your commands in **do file**. For the exercise we did above, you can find the do file below. You may want to download it and familiarize yourself with Stata commands we learned in this section. 
+
+Try to develop the habit of using **do file** at the beginning, you will find it extremely helpful in keeping track of your project.
+
+- :download:`Section 1 Do File<code/section1/section_1.do>`
