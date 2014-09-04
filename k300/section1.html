@@ -106,12 +106,29 @@ graph pie f1 f2
 <a class="reference internal image-reference" href="_images/5.png"><img alt="_images/5.png" src="_images/5.png" style="width: 50%;" /></a>
 </div>
 </div>
-<div class="section" id="section-1-3-do-file">
-<h2>Section 1.3: Do-file<a class="headerlink" href="#section-1-3-do-file" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="section-1-3-central-tendency-and-variability">
+<h2>Section 1.3: Central Tendency and Variability<a class="headerlink" href="#section-1-3-central-tendency-and-variability" title="Permalink to this headline">¶</a></h2>
+<p>In this section, let&#8217;s create our own data and use self-created data set to get the information about central tendency and variability of the data.</p>
+<p>The most straightforward way to create your own data is to use data editor. You can simply type in the command <em>edit</em> or click the &#8220;Data Editor (Edit)&#8221; button to invoke the data editor. Then in the pop-up window, you can input data the same way as you would in Excel.</p>
+<p>To rename the variables (which are automatically named var1, var2, etc.), right click on one of the cells in the column you want to rename and then choose &#8220;Variable Properties&#8221; to change the name. If everything is done right, the data editor should look like the following window.</p>
+<a class="reference internal image-reference" href="_images/6.png"><img alt="_images/6.png" src="_images/6.png" style="width: 80%;" /></a>
+<p>In order to use the data later, one needs to save it. By simply clicking &#8220;File-&gt;Save as...&#8221;, you can specify the name of the file (<em>age.dta</em> for instance) and the path you want to save the file.</p>
+<p>To analyze the data <em>age.dta</em> we created, we need to tell Stata where to find the data file. One way to do this is go to &#8220;File-&gt;Change Working Directory...&#8221; to locate the path where <em>age.dta</em> is stored.</p>
+<p>Then the following command can be used to find out the central tendency of the data <em>age.dta</em>.</p>
+<div class="highlight-python"><div class="highlight"><pre>use age.dta
+summarize Age, detail
+</pre></div>
+</div>
+<p>The output which can be found below displays the median (50% percentile), the mean, the standard deviation as well as other statistics.</p>
+<a class="reference internal image-reference" href="_images/7.png"><img alt="_images/7.png" src="_images/7.png" style="width: 50%;" /></a>
+</div>
+<div class="section" id="do-file">
+<h2>Do-file<a class="headerlink" href="#do-file" title="Permalink to this headline">¶</a></h2>
 <p>You can always organize your commands in <strong>do file</strong>. For the exercise we did above, you can find the do file below. You may want to download it and familiarize yourself with Stata commands we learned in this section.</p>
 <p>Try to develop the habit of using <strong>do file</strong> at the beginning, you will find it extremely helpful in keeping track of your project.</p>
 <ul class="simple">
-<li><a class="reference download internal" href="_downloads/section_1.do"><tt class="xref download docutils literal"><span class="pre">Section</span> <span class="pre">1</span> <span class="pre">Do</span> <span class="pre">File</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/section_1.do"><tt class="xref download docutils literal"><span class="pre">Do</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">1.1</span> <span class="pre">to</span> <span class="pre">Section</span> <span class="pre">1.2</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/section_1_2.do"><tt class="xref download docutils literal"><span class="pre">Do</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">1.3</span></tt></a></li>
 </ul>
 </div>
 </div>
