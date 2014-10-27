@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Section 2: t Test Flavors &mdash; Stata User Manual in K300 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Stata User Manual in K300 1.0 documentation" href="index.html" />
+    <link rel="prev" title="Section 1: Introduction and Descriptive Statistics" href="section1.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Stata User Manual in K300 1.0 documentation</span></a></h1>
+        <h2 class="heading"><span>Section 2: t Test Flavors</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="section1.html"><strong>Section 1: Introduction and Descriptive Statistics</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="section-2-t-test-flavors">
+<h1><strong>Section 2: t Test Flavors</strong><a class="headerlink" href="#section-2-t-test-flavors" title="Permalink to this headline">¶</a></h1>
+<p>This Section introduces you to the implementation of the three t-test techniques we have learned. The toy examples used below are taken directly from the practice we did in the class. You can refer to the file &#8220;Practice Problems in Lecture Note&#8221; (Practice Problems thereafter) on On-Course.</p>
+<div class="section" id="sectioin-2-1-single-sample-t-test">
+<h2>Sectioin 2.1: Single Sample t Test<a class="headerlink" href="#sectioin-2-1-single-sample-t-test" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="question-20-pay-per-can-in-practice-problems">
+<h3><em>Question 20 &#8220;Pay Per Can&#8221; in Practice Problems</em><a class="headerlink" href="#question-20-pay-per-can-in-practice-problems" title="Permalink to this headline">¶</a></h3>
+<p>The first step is to set the working directory of STATA into the folder where holds the data. The data we are using in this example can be found in the last section &#8220;Do-files and Data files&#8221; (<a class="reference internal" href="#files">files</a>).</p>
+<p>Through <strong>use</strong> command you can load the data we want to analyze.</p>
+<div class="highlight-python"><div class="highlight"><pre>use pay_per_can.dta
+</pre></div>
+</div>
+<p><strong>edit</strong> command allows you to inspect the data you are currently loading.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">edit</span>
+</pre></div>
+</div>
+<p>As you can see from the data file, there&#8217;s only one variable called &#8220;weight&#8221;, which is the weight of trash can. To test whether the &#8220;pay per can&#8221; program has changed the weights of people&#8217;s trash cans, single sample t test should be used. The <strong>ttest</strong> command can help you do the analysis.</p>
+<div class="highlight-python"><div class="highlight"><pre>ttest weight == 47
+</pre></div>
+</div>
+<p>The output looks like the following</p>
+<img alt="_images/section2_1.png" src="_images/section2_1.png" />
+<p>Now, it is time to get the information from this output and make the final conclusion for our single sample t test. Let me first explain some terms from the output:</p>
+<ul class="simple">
+<li><strong>Obs</strong>: sample size of the data</li>
+<li><strong>Mean</strong>: sample mean from the data</li>
+<li><strong>St. Err.</strong>: estimate of the standard error, the standard deviation of our comparison distribution</li>
+<li><strong>Std. Dev.</strong>: estimate of population standard deviation made up of individual raw scores.</li>
+<li><strong>Ho</strong>: This is our null hypothesis, remember we need to test whether the population average weight of trash can is different from 47.</li>
+<li><strong>Ha</strong>: This is our research hypothesis. For the sake of completeness, STATA provides us with three possibilities: (1) left-tailed test &#8220;Ha: mean &lt; 47&#8221;; (2) two-tailed test &#8220;Ha: mean != 47&#8221;; (3) right-tailed test &#8220;Ha: mean &gt; 47&#8221;.</li>
+<li><strong>Pr(T &lt; t), Pr(|T| &gt; |t|), Pr(T &gt; t)</strong>: these are p-values for three different tests (left, right, or two-tailed tests). Apparently, as far as our concern, p value is 0.0079.</li>
+<li><strong>t</strong>: t gives you the t test-statistic obtained from our sample data.</li>
+<li><strong>degree of freedom</strong>: this tells us the comparison distribution here should be t distribution with degree of freedom 5 (sample size minus one).</li>
+</ul>
+<p>In terms of making final conclusion, we can use one of the following two methods:
+(1) compare t test statistic (t = -4.2705) against critical value (+/- 2.571 under alpha level of 5%);
+(2) compare p-value (p = 0.0079) against alpha level (5% or other values).</p>
+<p>Apparently it is much easier to use second method to make the conclusion regarding this t test, whenever you have a p-value which is less than alpha level, you should reject the null hypothesis. And here since p-value is 0.0079, we are going to reject the null hypothesis and conclude that the effect of &#8220;pay per can&#8221; program on the weight of trash can is significant.</p>
+</div>
+</div>
+<div class="section" id="section-2-2-within-subject-t-test">
+<h2>Section 2.2: Within-Subject t Test<a class="headerlink" href="#section-2-2-within-subject-t-test" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="qeustion-21-hypnosis-in-practice-problems">
+<h3><em>Qeustion 21 &#8220;Hypnosis&#8221; in Practice Problems</em><a class="headerlink" href="#qeustion-21-hypnosis-in-practice-problems" title="Permalink to this headline">¶</a></h3>
+<p>In order to proceed, you need to use <strong>clea all</strong> to clear all the data in the memory that is previously loaded, and then redirect the working directory of STATA to the folder where hold the data we are about to use. You can find the data in the last section &#8220;Do-files and Data files&#8221;.</p>
+<p>Load the data we want to analyze.</p>
+<div class="highlight-python"><div class="highlight"><pre>use hypnosis.dta
+</pre></div>
+</div>
+<p>Use <strong>edit</strong> to inspect your data.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">edit</span>
+</pre></div>
+</div>
+<p>There are three variables in the data file, the variable &#8220;Participant&#8221; in the first column gives the identification number of the participants in the experiment, the variable &#8220;Before_Treatment&#8221; in the second column is the number of cigarettes smoked before the hypnosis treatment, the last variable &#8220;After_Treatment&#8221; specifies the number of cigarettes smoked after the hypnosis treatment. A simple <strong>ttest</strong> command can help you do the within-subject t test.</p>
+<div class="highlight-python"><div class="highlight"><pre>ttest After_Treatment == Before_Treatment
+</pre></div>
+</div>
+<p>The output is here</p>
+<img alt="_images/section2_2.png" src="_images/section2_2.png" />
+<p>The output is almost the same as the output in single sample t test. STATA creats a new variable &#8220;diff&#8221; which is the difference between after treatment value and before treatment value for each participant. Then from there, STATA basically conducted a single sample t test analysis on the &#8220;diff&#8221; variable. In this analysis we get a t test statistic of -2.5 and p-value is 0.087 under a two-tailed test. Hence, in terms of conclusion, we fail to reject the null and hence there was not a significant effect of hypnosis on cigarette smoking.</p>
+</div>
+</div>
+<div class="section" id="section-2-3-between-subject-t-test">
+<h2>Section 2.3: Between-Subject t Test<a class="headerlink" href="#section-2-3-between-subject-t-test" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="qeustion-29-hiccups-in-practice-problems">
+<h3><em>Qeustion 29 &#8220;Hiccups&#8221; in Practice Problems</em><a class="headerlink" href="#qeustion-29-hiccups-in-practice-problems" title="Permalink to this headline">¶</a></h3>
+<p>As always, clear all the previously loaded data in the memory and change the working directory to the path where holds the data we are about to analyze. You can find the data in the last section &#8220;Do-files and Data files&#8221;. This time we use &#8220;hiccups.dta&#8221;, which is about a new drug on curing hiccups.</p>
+<p>Load the data we want to analyze.</p>
+<div class="highlight-python"><div class="highlight"><pre>use hiccups.dta
+</pre></div>
+</div>
+<p>Use <strong>edit</strong> to inspect your data.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">edit</span>
+</pre></div>
+</div>
+<p>The first variable &#8220;hiccup&#8221; is the number of hiccups people make, the second variable &#8220;medicine&#8221; is an indicator of whether the new drug is given, 0 means placebo is given while 1 indicates the new drug is given. A modified version of <strong>ttest</strong> is used, we add an option &#8220;by(medicine)&#8221; since we want to compare two groups of people according to whether the new drug is given or not.</p>
+<div class="highlight-python"><div class="highlight"><pre>ttest hiccup, by(medicine)
+</pre></div>
+</div>
+<p>The output is given here</p>
+<img alt="_images/section2_3.png" src="_images/section2_3.png" />
+<p>Some new variables in the output deserve to be explained.</p>
+<ul class="simple">
+<li><strong>Group</strong>: It gives categories(levels) of the independent variable that you manipulated. In our case IV is medicine and it has two levels which are 0 (placebo) and 1 (new drug).</li>
+<li><strong>combined</strong>: The statistics following <strong>combined</strong> are calculated from the pool data coming from all categories (levels) of your IV.</li>
+<li><strong>diff</strong>: It is about the difference of two groups of data we are interested in.</li>
+<li><strong>diff = mean(0) - mean(1)</strong>: It is about the population mean difference between 0 (placebo) group and 1 (new drug) group.</li>
+<li><strong>Ho: diff = 0</strong>: The null hypothesis, where the two groups are the same.</li>
+</ul>
+<p>From the output, we get a t score of 2.7344 and p-value of 0.0128, we can conclude that there was a significant effect of the new drug on curing hiccups.</p>
+</div>
+<div class="section" id="labeling-your-independent-variable">
+<span id="files"></span><h3><em>Labeling Your Independent Variable</em><a class="headerlink" href="#labeling-your-independent-variable" title="Permalink to this headline">¶</a></h3>
+<p>We used 0 and 1 to denote two levels of our independent variable &#8220;medicine&#8221;. Suppose some time has pasted, you go back to check the data and your statistical analysis. By then I bet you would have no idea what 0 and 1 mean. This is where a <strong>label</strong> can help, it serves as a tag telling you what 0 or 1 stands for.</p>
+<p>We can use the command <strong>label define</strong> to create a label <em>med_label</em> that associates 0 with <em>placebo</em> and 1 with <em>new drug</em>.</p>
+<div class="highlight-python"><div class="highlight"><pre>label define med_label 0 &quot;placebo&quot; 1 &quot;new drug&quot;
+</pre></div>
+</div>
+<p>We then use <strong>label values</strong> command to assign the newly created label <em>med_label</em> to our IV medicine.</p>
+<div class="highlight-python"><div class="highlight"><pre>label values medicine med_label
+</pre></div>
+</div>
+<p>Then if you use <strong>edit</strong> to inspect your data, it will become the following. The data on the right is the one after defining <em>med_label</em>.</p>
+<a class="reference internal image-reference" href="_images/section2_5.png"><img alt="_images/section2_5.png" src="_images/section2_5.png" style="width: 20%;" /></a>
+<a class="reference internal image-reference" href="_images/section2_4.png"><img alt="_images/section2_4.png" src="_images/section2_4.png" style="width: 20%;" /></a>
+<p>Same command can be used to conduct between subject t test.</p>
+<div class="highlight-python"><div class="highlight"><pre>ttest hiccup, by(medicine)
+</pre></div>
+</div>
+<p>The output is almost the same as before except for that we are much clearer about the distinction between placebo group and the group that intook the new drug.</p>
+<img alt="_images/section2_6.png" src="_images/section2_6.png" />
+</div>
+</div>
+<div class="section" id="do-files-and-data-files">
+<h2>Do-files and Data files<a class="headerlink" href="#do-files-and-data-files" title="Permalink to this headline">¶</a></h2>
+<p>The do file and data files used in the examples can be found here.</p>
+<ul class="simple">
+<li><a class="reference download internal" href="_downloads/section2.do"><tt class="xref download docutils literal"><span class="pre">Do</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">2</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/pay_per_can.dta"><tt class="xref download docutils literal"><span class="pre">Data</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">2.1</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/hypnosis.dta"><tt class="xref download docutils literal"><span class="pre">Data</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">2.2</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/hiccups.dta"><tt class="xref download docutils literal"><span class="pre">Data</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">2.3</span></tt></a></li>
+</ul>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="section1.html"><strong>Section 1: Introduction and Descriptive Statistics</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Guang Zuo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
