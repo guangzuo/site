@@ -108,7 +108,6 @@ Some new variables in the output deserve to be explained.
 
 From the output, we get a t score of 2.7344 and p-value of 0.0128, we can conclude that there was a significant effect of the new drug on curing hiccups. 
 
-.. _files:
 
 *Labeling Your Independent Variable*
 ------------------------------------
@@ -138,6 +137,7 @@ The output is almost the same as before except for that we are much clearer abou
 
 .. image:: pics/section2_6.png
 
+.. _files:
 
 Do-files and Data files
 =======================

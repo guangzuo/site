@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sectio 3: Analysis of Variance (ANOVA) &mdash; Stata User Manual in K300 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Stata User Manual in K300 1.0 documentation" href="index.html" />
+    <link rel="prev" title="Section 2: t Test Flavors" href="section2.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Stata User Manual in K300 1.0 documentation</span></a></h1>
+        <h2 class="heading"><span>Sectio 3: Analysis of Variance (ANOVA)</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="section2.html"><strong>Section 2: t Test Flavors</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="sectio-3-analysis-of-variance-anova">
+<h1><strong>Sectio 3: Analysis of Variance (ANOVA)</strong><a class="headerlink" href="#sectio-3-analysis-of-variance-anova" title="Permalink to this headline">¶</a></h1>
+<p>This section opens the door of using Stata for conducting analysis of variance to you. If you still have fresh memory about exam 3, that&#8217;d be great. Since all the examples used in this section are taken from that exam. Never mind if cannot recall the questions on exam 3, you can always refer to exam 3 answer key on On-Course.</p>
+<div class="section" id="section-3-1-one-way-between-subject-anova">
+<h2>Section 3.1: One-way Between-Subject ANOVA<a class="headerlink" href="#section-3-1-one-way-between-subject-anova" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dog-size-on-dog-fear">
+<h3><em>Dog Size on Dog Fear</em><a class="headerlink" href="#dog-size-on-dog-fear" title="Permalink to this headline">¶</a></h3>
+<p>By now, you need to remember to always set the working directory of STATA into the folder where holds the data. The data we are using in this example can be found in the last section &#8220;Do-files and Data files&#8221; (<a class="reference internal" href="#files">files</a>). Also, do remeber to use <strong>clear all</strong> to clear the memory in STATA before you proceed.</p>
+<p>This is question 3 in exam 3. Load the data we are about to analyze.</p>
+<div class="highlight-python"><div class="highlight"><pre>use dog_fear.dta
+</pre></div>
+</div>
+<p>If you use <strong>edit</strong> to inspect your data, you will notice that categorical variable &#8220;dog_size&#8221; takes value 0, 1, or 2. Here 0 indicates small dog, 1 indicates medium dog, and 2 represents large dog. To remind us what these numbers stand for, we can use <strong>label define</strong> and <strong>label values</strong> command to change the numeric values into characters.</p>
+<div class="highlight-python"><div class="highlight"><pre>label define dog 0 &quot;Small&quot; 1 &quot;Medium&quot; 2 &quot;Large&quot;, replace
+label values dog_size dog
+</pre></div>
+</div>
+<p>To conduct one-way between-subject ANOVA test, command <strong>oneway</strong> can gets you there.</p>
+<div class="highlight-python"><div class="highlight"><pre>oneway fear dog_size
+</pre></div>
+</div>
+<p>The output is given in the following picture</p>
+<img alt="_images/section3_1.png" src="_images/section3_1.png" />
+<p>By now, you should be very familiar with the source table. But let&#8217;s still work through the details of the output:</p>
+<ul class="simple">
+<li><strong>Source</strong>: 1st column of the table gives you where various statistics come from: <em>between groups</em>, <em>within groups</em>, or <em>total</em>.</li>
+<li><strong>SS</strong>: sum of squares</li>
+<li><strong>df</strong>: degree of freedom</li>
+<li><strong>MS</strong>: estimates of variances, we use <span class="math">\(S^2\)</span> instead in the class.</li>
+<li><strong>F</strong>: F-score that we love.</li>
+<li><strong>Prob &gt; F</strong>: p-value for this ANOVA test, which is much more informative than providing critical value as we did in the class.</li>
+<li><strong>Bartlett&#8217;s test</strong>: This is a test regarding the implicit assumption we make when conducting ANOVA test, which is that we assume data in different groups are coming from populations with the same variance. Here p-value is given as <em>Prob&gt;chi2</em>. In this case, p-value is 0.403 and hence it&#8217;s safe to assume equal variance and our ANOVA test is valid.</li>
+</ul>
+<p>After getting a significant result, we can conduct post-hoc tests to check where exactly lies the difference which contributes to the significant result. <strong>oneway</strong> can help us realize this goal, but we need to provide more options after <strong>oneway</strong> command.</p>
+<div class="highlight-python"><div class="highlight"><pre>oneway fear dog_size, bonferroni scheffe
+</pre></div>
+</div>
+<p>In STATA, options are always specified at the end of the main command. The options and the main command are always separated with a comma &#8221;,&#8221;. The option &#8220;bonferroni scheffe&#8221; requires <strong>oneway</strong> command to also provide Bonferroni and Scheffe post-hoc test. The output is given in the following figure:</p>
+<img alt="_images/section3_2.png" src="_images/section3_2.png" />
+<p>To implement one-way between ANOVA test, another more powerful command can also be used. <strong>anova</strong> command would be your alternative</p>
+<div class="highlight-python"><div class="highlight"><pre>anova fear dog_size
+</pre></div>
+</div>
+<p>The output would look like the following:</p>
+<img alt="_images/section3_3.png" src="_images/section3_3.png" />
+<p>The output deserves some elaboration:</p>
+<ul class="simple">
+<li><strong>R-square</strong>: The effect size or <span class="math">\(R^2\)</span> we talked about in the class.</li>
+<li><strong>Adj R-squared</strong>: Adjusted <span class="math">\(R^2\)</span> which takes into the adjustment of number of IVs, since <span class="math">\(R^2\)</span> would in general increase as the number of IVs increases. More will be discussed when we learn linear regression models.</li>
+<li><strong>Root MSE</strong>: The square root of mean square error, we leave this for later when we learn linear regression models.</li>
+<li><strong>Partial SS</strong>: Same as <strong>SS</strong> in the table above, sum of squares.</li>
+<li><strong>Model</strong>: This is related to linear regression, it indicates the model as a whole is significant or not. Here we only have one IV, and hence <strong>Model</strong> gives the same result as <strong>dog_size</strong>. p-value is 0.0004, and therefore the model as a whole is highly significant.</li>
+<li><strong>dog_size</strong>: Same as <strong>Between groups</strong>.</li>
+<li><strong>Residual</strong>: Same as <strong>Within groups</strong>.</li>
+</ul>
+<p>Now after using <strong>anova</strong>, we can conduct Hukey HSD post-hoc test. Remember, you need to first run <strong>anova</strong> and then to conduct Hukey HSD test. It won&#8217;t work otherwise. Let&#8217;s first install <strong>tukeyhsd</strong> and also <strong>qsturng</strong> in STATA by typing:</p>
+<div class="highlight-python"><div class="highlight"><pre>findit tukeyhsd
+findit qsturng
+</pre></div>
+</div>
+<p><strong>findit</strong> helps you to locate statistic packages available in the internet, following the instruction in the pop-up window to install it. After installing them, you can use it to conduct Tukey HSD post-hoc test.</p>
+<div class="highlight-python"><div class="highlight"><pre>tukeyhsd dog_size
+</pre></div>
+</div>
+<img alt="_images/section3_4.png" src="_images/section3_4.png" />
+</div>
+</div>
+<div class="section" id="section-3-2-one-way-within-subject-anova">
+<h2>Section 3.2: One-way Within-Subject ANOVA<a class="headerlink" href="#section-3-2-one-way-within-subject-anova" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="emotional-stimuli-on-memory">
+<h3><em>Emotional Stimuli on Memory</em><a class="headerlink" href="#emotional-stimuli-on-memory" title="Permalink to this headline">¶</a></h3>
+<p>Use <strong>clear all</strong> to free-up the memory in STATA in order to proceed.  First we need to load the data. This is question 4 in exam 3</p>
+<div class="highlight-python"><div class="highlight"><pre>use memory.dta
+</pre></div>
+</div>
+<p>Here we have three variables: &#8220;recall&#8221; is our DV which represents percentage of successful recalls, &#8220;participant&#8221; denotes the index of different participants (we have participant 1 to 6), and &#8220;picture&#8221; represents the types of pictures being displayed (0 is negative picture, 1 is neutral picture, and 2 is positive picture). Similarly, we can make our lives much easier by using labels if you need to later revisit our data analysis.</p>
+<div class="highlight-python"><div class="highlight"><pre>label define part 1 &quot;A&quot; 2 &quot;B&quot; 3 &quot;C&quot; 4 &quot;D&quot; 5 &quot;E&quot; 6 &quot;F&quot;, replace
+label values participant part
+
+label define pic 0 &quot;Negative&quot; 1 &quot;Neutral&quot; 2 &quot;Positive&quot;, replace
+label values picture pic
+</pre></div>
+</div>
+<p>To conduct one-way within-subject ANOVA test, we need to use <strong>anova</strong></p>
+<div class="highlight-python"><div class="highlight"><pre>anova recall participant picture, repeated(picture)
+</pre></div>
+</div>
+<p>Here the option <em>repeated()</em> need to added to inform <strong>anova</strong> to conduct one-way within-subject ANOVA test. The output is given as follows:</p>
+<img alt="_images/section3_5.png" src="_images/section3_5.png" />
+<p>Two source tables are provided as outputs, let&#8217;s just focus on the first table.</p>
+<ul class="simple">
+<li><strong>Model</strong>: This is again related to linear regression, where DV is &#8220;recall&#8221; and two IVs are &#8220;participant&#8221; and &#8220;picture&#8221;. This row tries to evaluate whether the linear regression model as a whole is significant or not.</li>
+<li><strong>participant</strong>: This is what we refer to as <em>Subject</em> in the class.</li>
+<li><strong>picture</strong>: This is what we refer to as <em>Between</em> in the class.</li>
+<li><strong>Residual</strong>: This is what we refer to as <em>Within</em> in the class.</li>
+<li><strong>Prob &gt; F</strong>: This column gives p-value in this test. Note that we only computed one F score in class, which helped us to determine whether the factor we manipulated was significant or not. Apparently, p-value for IV &#8220;picture&#8221; is 0.0003 which gives us significant result. You may also notice that the other F score regarding &#8220;participant&#8221; is also given. Although we didn&#8217;t compute it in the class, you can easily infer that it tells you whether you see a significant difference among different participants. Here p-value is 0.4535, and therefore it&#8217;s not significant. There was not a significant performance difference among all the participants in this experiment.</li>
+</ul>
+<p>In case you wonder post-hoc test, you can use <strong>tukeyhsd</strong> to achieve this</p>
+<div class="highlight-python"><div class="highlight"><pre>tukeyhsd picture
+</pre></div>
+</div>
+<img alt="_images/section3_6.png" src="_images/section3_6.png" />
+</div>
+</div>
+<div class="section" id="section-3-3-two-way-between-subject-anova">
+<h2>Section 3.3: Two-way Between-Subject ANOVA<a class="headerlink" href="#section-3-3-two-way-between-subject-anova" title="Permalink to this headline">¶</a></h2>
+<p>To proceed, use <strong>clear all</strong> to free-up the memory in STATA. Load the data we will use, and this is question 1 in exam 3</p>
+<div class="highlight-python"><div class="highlight"><pre>use decision.dta
+</pre></div>
+</div>
+<p>In the data we have three variables: &#8220;decision&#8221; is our DV which reflects people&#8217;s ability to differentiate between the objectively best and the objectively worst cars, &#8220;conscious_A&#8221; is factor A (first IV) which is about whether people were being distracted when making decisions (0 is conscious thought, and 1 is unconscious thought), and &#8220;complexity_B&#8221; is factor B (second IV) which is about the complexity of the task (0 is low level complexity, 1 is medium level, and 2 is high level). Label can be used to help us keep track of different levels of these two factors.</p>
+<div class="highlight-python"><div class="highlight"><pre>label define factor_A 0 &quot;conscious&quot; 1 &quot;unconscious&quot;, replace
+label values conscious_A factor_A
+
+label define factor_B 0 &quot;low&quot; 1 &quot;medium&quot; 2 &quot;high&quot;, replace
+label values complexity_B factor_B
+</pre></div>
+</div>
+<p><strong>anova</strong> can help us conduct two-way between-subject ANOVA test. The generic form is</p>
+<div class="highlight-python"><div class="highlight"><pre>anova DV 1stIV##2ndIV
+</pre></div>
+</div>
+<p>The example here, the command would be</p>
+<div class="highlight-python"><div class="highlight"><pre>anova decision conscious_A##complexity_B
+</pre></div>
+</div>
+<img alt="_images/section3_7.png" src="_images/section3_7.png" />
+<p>To elaborate further the output,</p>
+<ul class="simple">
+<li><strong>Model</strong>: Same as above, this is related to linear regression, where DV is &#8220;decision&#8221; and two IVs are &#8220;conscious_A&#8221; and &#8220;complexity_B&#8221;. This row evaluates whether the linear regression model as a whole is significant or not. p-value of 0.0013 indicate the linear regression model is significant under commonly used alpha level.</li>
+<li><strong>conscious_A</strong>: This is the 1st IV, and we refer it as <em>Between(A)</em> in the class.</li>
+<li><strong>complexity_B</strong>: This is the 2nd IV, and we refer it as <em>Between(B)</em> in the class.</li>
+<li><strong>conscious_A#complexity_B</strong>: This is about interaction of this two IVs, we use <em>Between(AXB)</em> to denote it in the class.</li>
+</ul>
+<p>The mean plot can also be generated using</p>
+<div class="highlight-python"><div class="highlight"><pre>predict yhat
+graph twoway (connect yhat complexity_B if conscious_A == 0) ///
+(connect yhat complexity_B if conscious_A == 1), ///
+legend(label (1 conscious) label(2 unconscious))
+</pre></div>
+</div>
+<p><strong>predict yhat</strong> generate means for each group, and store the means in variable &#8220;yhat&#8221;. The graphing capability of STATA is pretty powerful, you may mess around with it yourself. The above command generates the following mean plot.</p>
+<img alt="_images/section3_8.png" src="_images/section3_8.png" />
+</div>
+<div class="section" id="section-3-4-three-way-between-subject-anova">
+<h2>Section 3.4: Three-way Between-Subject ANOVA<a class="headerlink" href="#section-3-4-three-way-between-subject-anova" title="Permalink to this headline">¶</a></h2>
+<p>Use <strong>clear all</strong> in order to proceed. Load the data we are going to analyze, and it&#8217;s based on question 1 in exam 3. I just add one more variable &#8220;sex&#8221; into the data.</p>
+<div class="highlight-python"><div class="highlight"><pre>use decision_2.dta
+</pre></div>
+</div>
+<p>A third factor &#8220;sex&#8221; is added, where 0 means male and 1 means female. Label can be used to add more information to this variable.</p>
+<div class="highlight-python"><div class="highlight"><pre>label define factor_C 0 &quot;male&quot; 1 &quot;female&quot;, replace
+label values sex_C factor_C
+</pre></div>
+</div>
+<p>The generic form of conducting three-way ANOVA analysis is very similar to two-way</p>
+<div class="highlight-python"><div class="highlight"><pre>anova DV 1stIV##2ndIV##3rdIV
+</pre></div>
+</div>
+<p>For the example here, the command would be</p>
+<div class="highlight-python"><div class="highlight"><pre>anova decision conscious_A##complexity_B##sex_C
+</pre></div>
+</div>
+<img alt="_images/section3_9.png" src="_images/section3_9.png" />
+<p>As you may remember, 7 F-scores can be generated from these three-way ANOVA test: 3 main effects, 3 two-way interaction, and 1 three-way interaction.</p>
+<ul class="simple">
+<li><strong>conscious_A</strong>: This is about main effect of factor A.</li>
+<li><strong>complexity_B</strong>: This is about main effect of factor B.</li>
+<li><strong>sex_C</strong>: This is about main effect of factor C.</li>
+<li><strong>conscious_A#complexity_B</strong>: Two-way interaction between factor A and factor B.</li>
+<li><strong>conscious_A#sex_C</strong>: Two-way interaction between factor A and factor C.</li>
+<li><strong>complexity_B#sex_C</strong>: Two-way interaction between factor B and factor C.</li>
+<li><strong>conscious_A#complexity_B#sex_C</strong>: Three-way interaction of all three factors A, B and C.</li>
+</ul>
+<p>You can also play around with graphing in STATA. The following command provide you with one possible way to get a mean plot which helps to visualize the three-way interaction in this example.</p>
+<div class="highlight-python"><div class="highlight"><pre>predict yhat
+
+graph twoway (connect yhat complexity_B if conscious_A == 0 &amp; sex_C == 0) ///
+      (connect yhat complexity_B if conscious_A == 1 &amp; sex_C == 0), ///
+      legend(label (1 conscious) label(2 unconscious)) ///
+      title(&quot;Male&quot;) saving(male)
+
+graph twoway (connect yhat complexity_B if conscious_A == 0 &amp; sex_C == 1) ///
+      (connect yhat complexity_B if conscious_A == 1 &amp; sex_C == 1), ///
+      legend(label (1 conscious) label(2 unconscious)) ///
+      title(&quot;Female&quot;) saving(female)
+
+graph combine male.gph female.gph
+</pre></div>
+</div>
+<img alt="_images/section3_10.png" src="_images/section3_10.png" />
+</div>
+<div class="section" id="do-files-and-data-files">
+<span id="files"></span><h2>Do-files and Data files<a class="headerlink" href="#do-files-and-data-files" title="Permalink to this headline">¶</a></h2>
+<p>The do file and data files used in the examples can be found here.</p>
+<ul class="simple">
+<li><a class="reference download internal" href="_downloads/section3.do"><tt class="xref download docutils literal"><span class="pre">Do</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">3</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/dog_fear.dta"><tt class="xref download docutils literal"><span class="pre">Data</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">3.1</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/memory.dta"><tt class="xref download docutils literal"><span class="pre">Data</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">3.2</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/decision.dta"><tt class="xref download docutils literal"><span class="pre">Data</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">3.3</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/decision_2.dta"><tt class="xref download docutils literal"><span class="pre">Data</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">3.4</span></tt></a></li>
+</ul>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="section2.html"><strong>Section 2: t Test Flavors</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Guang Zuo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
