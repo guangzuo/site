@@ -2,12 +2,70 @@
  **Optinal K300 Project:** Regarding Panel Study of Income Dynamics (PSID)
 ===========================================================================
 
+Section 1: Questions
+====================
+
+- **Data file:**
+
+  - The data file :download:`k300_psid.dta<code/project/k300_psid.dta>` can be downloanded here. This is the file you are going to use in your project. You need to refer to :ref:`section2` for the detailed information regarding this data set. 
+
+  - The original Panel Study of Income Dynamics (PSID) data gathers information about a very large sample of people, individuals are interviewed annually over thier life time. The PSID collects data on a wide array of social, demographic, health, economic, geospatial and psychological data. The data set we use here is just a small subset of it. 
+
+- **Format Requirement:**
+
+  You need to submit *TWO files* to be able to receive full credits, one is a text file and the other is a do-file.
+
+  - **Text File:** In this file, you need to clearly label the question number, paste all the relevant figures and test output you obtained from STATA.
+
+  - **Do-file:** You need to provide me with your detailed do file. You need to make sure I can run it and get the figures and results containing in your text file. Significant amount of credits would be deducted if do-file is not working.
+
+- **Questions:**
+
+  - **Part I: Exploratory Data Analysis**
+    
+    1. You're interested in finding out how the distribution of people's wage income (log wage) evolves over time. Try to replicate the figures provided below. On the left, various percentiles of individuals' log wage incomes are plotted against time. Note that different percentiles are normalized to be 1 at the beginning in the year 1971. For the figure on the right, standard deviation of people's wage income is plotted against time.
+       
+       Briefly describe the trend you've discovered in these plots. 
+
+       .. image::  pics/section_project_1.png
+	  :width: 49 %
+       .. image::  pics/section_project_2.png
+	  :width: 49 %
+
+    2. Pick one year (I chose the year 1980), and just use the data in that year to conduct your analysis. Within that year, identify the factors which may affect people's income. Use mean plot to help you visualize the main effects and interaction effect.
+
+       For example, I identified educational attainment, region, industry can affect people's income. So I plotted the main effect regarding factor "educational attainment" (the figure on the left), and the interaction effect of factor "region" and factor "industry" in the figure on the right. 
+       
+       Following my example, you need to first list all the factors that may affect people's income, and then generate the mean plots regarding all the main effects and interaction effects. To get full credit, you need to list the factors and generate the relevant plots as much as possible.  
+
+       .. image::  pics/section_project_3.png
+	  :width: 49 %
+       .. image::  pics/section_project_4.png
+	  :width: 49 %
+		  
+  - **Part II: Inferential Statistics**
+
+    3. **(Continuation of Question 2)**, now use the ANOVA tests we've learned to conduct statistical tests to check significance of relevant main effects and interaction effects.  
+    
+    4. **(Appreciate the equivalence between ANOVA and linear regression)** Conduct the same analysis as you did in question 3 using linear regression technique. You need to make sure you get the same results as in question 3. 
+
+  - **Part III: Challenging Question**
+
+    5. The figure on the right in question 1, we plotted standard deviation of log wage over time. It seems there is a significant increase in the standard deviation after 1980's. Could you (i). provide your reasoning why this change is observed; (ii) provide rigorous statistical test to check whether the change in standard deviation is significant.   
+
+       
+.. _section2:
+
 Section 2: Detailed Information about PSID Data
 ===============================================
 
+PSID data_ can be found in the website provided by University of Michigan. Detailed documents_ can be found in the provided webpage.
+
+.. _data: http://simba.isr.umich.edu/Zips/ZipMain.aspx
+.. _documents: http://psidonline.isr.umich.edu/Guide/documents.aspx
+
 Section 2.1: Lists of Variables
 -------------------------------
-
 - :ref:`x11101ll` 
 - :ref:`year`
 - :ref:`age`

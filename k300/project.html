@@ -46,8 +46,57 @@
         
   <div class="section" id="optinal-k300-project-regarding-panel-study-of-income-dynamics-psid">
 <h1><strong>Optinal K300 Project:</strong> Regarding Panel Study of Income Dynamics (PSID)<a class="headerlink" href="#optinal-k300-project-regarding-panel-study-of-income-dynamics-psid" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="section-1-questions">
+<h2>Section 1: Questions<a class="headerlink" href="#section-1-questions" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>Data file:</strong></p>
+<ul class="simple">
+<li>The data file <a class="reference download internal" href="_downloads/k300_psid.dta"><tt class="xref download docutils literal"><span class="pre">k300_psid.dta</span></tt></a> can be downloanded here. This is the file you are going to use in your project. You need to refer to <a class="reference internal" href="#section2"><em>Section 2: Detailed Information about PSID Data</em></a> for the detailed information regarding this data set.</li>
+<li>The original Panel Study of Income Dynamics (PSID) data gathers information about a very large sample of people, individuals are interviewed annually over thier life time. The PSID collects data on a wide array of social, demographic, health, economic, geospatial and psychological data. The data set we use here is just a small subset of it.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Format Requirement:</strong></p>
+<p>You need to submit <em>TWO files</em> to be able to receive full credits, one is a text file and the other is a do-file.</p>
+<ul class="simple">
+<li><strong>Text File:</strong> In this file, you need to clearly label the question number, paste all the relevant figures and test output you obtained from STATA.</li>
+<li><strong>Do-file:</strong> You need to provide me with your detailed do file. You need to make sure I can run it and get the figures and results containing in your text file. Significant amount of credits would be deducted if do-file is not working.</li>
+</ul>
+</li>
+<li><p class="first"><strong>Questions:</strong></p>
+<ul>
+<li><p class="first"><strong>Part I: Exploratory Data Analysis</strong></p>
+<ol class="arabic">
+<li><p class="first">You&#8217;re interested in finding out how the distribution of people&#8217;s wage income (log wage) evolves over time. Try to replicate the figures provided below. On the left, various percentiles of individuals&#8217; log wage incomes are plotted against time. Note that different percentiles are normalized to be 1 at the beginning in the year 1971. For the figure on the right, standard deviation of people&#8217;s wage income is plotted against time.</p>
+<p>Briefly describe the trend you&#8217;ve discovered in these plots.</p>
+<a class="reference internal image-reference" href="_images/section_project_1.png"><img alt="_images/section_project_1.png" src="_images/section_project_1.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/section_project_2.png"><img alt="_images/section_project_2.png" src="_images/section_project_2.png" style="width: 49%;" /></a>
+</li>
+<li><p class="first">Pick one year (I chose the year 1980), and just use the data in that year to conduct your analysis. Within that year, identify the factors which may affect people&#8217;s income. Use mean plot to help you visualize the main effects and interaction effect.</p>
+<p>For example, I identified educational attainment, region, industry can affect people&#8217;s income. So I plotted the main effect regarding factor &#8220;educational attainment&#8221; (the figure on the left), and the interaction effect of factor &#8220;region&#8221; and factor &#8220;industry&#8221; in the figure on the right.</p>
+<p>Following my example, you need to first list all the factors that may affect people&#8217;s income, and then generate the mean plots regarding all the main effects and interaction effects. To get full credit, you need to list the factors and generate the relevant plots as much as possible.</p>
+<a class="reference internal image-reference" href="_images/section_project_3.png"><img alt="_images/section_project_3.png" src="_images/section_project_3.png" style="width: 49%;" /></a>
+<a class="reference internal image-reference" href="_images/section_project_4.png"><img alt="_images/section_project_4.png" src="_images/section_project_4.png" style="width: 49%;" /></a>
+</li>
+</ol>
+</li>
+<li><p class="first"><strong>Part II: Inferential Statistics</strong></p>
+<ol class="arabic simple" start="3">
+<li><strong>(Continuation of Question 2)</strong>, now use the ANOVA tests we&#8217;ve learned to conduct statistical tests to check significance of relevant main effects and interaction effects.</li>
+<li><strong>(Appreciate the equivalence between ANOVA and linear regression)</strong> Conduct the same analysis as you did in question 3 using linear regression technique. You need to make sure you get the same results as in question 3.</li>
+</ol>
+</li>
+<li><p class="first"><strong>Part III: Challenging Question</strong></p>
+<ol class="arabic simple" start="5">
+<li>The figure on the right in question 1, we plotted standard deviation of log wage over time. It seems there is a significant increase in the standard deviation after 1980&#8217;s. Could you (i). provide your reasoning why this change is observed; (ii) provide rigorous statistical test to check whether the change in standard deviation is significant.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="section-2-detailed-information-about-psid-data">
-<h2>Section 2: Detailed Information about PSID Data<a class="headerlink" href="#section-2-detailed-information-about-psid-data" title="Permalink to this headline">¶</a></h2>
+<span id="section2"></span><h2>Section 2: Detailed Information about PSID Data<a class="headerlink" href="#section-2-detailed-information-about-psid-data" title="Permalink to this headline">¶</a></h2>
+<p>PSID <a class="reference external" href="http://simba.isr.umich.edu/Zips/ZipMain.aspx">data</a> can be found in the website provided by University of Michigan. Detailed <a class="reference external" href="http://psidonline.isr.umich.edu/Guide/documents.aspx">documents</a> can be found in the provided webpage.</p>
 <div class="section" id="section-2-1-lists-of-variables">
 <h3>Section 2.1: Lists of Variables<a class="headerlink" href="#section-2-1-lists-of-variables" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
