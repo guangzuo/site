@@ -1,0 +1,768 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Optinal K300 Project: Regarding Panel Study of Income Dynamics (PSID) &mdash; Stata User Manual in K300 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Stata User Manual in K300 1.0 documentation" href="index.html" />
+    <link rel="prev" title="Sectio 3: Analysis of Variance (ANOVA)" href="section3.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Stata User Manual in K300 1.0 documentation</span></a></h1>
+        <h2 class="heading"><span>Optinal K300 Project: Regarding Panel Study of Income Dynamics (PSID)</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="section3.html"><strong>Sectio 3: Analysis of Variance (ANOVA)</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="optinal-k300-project-regarding-panel-study-of-income-dynamics-psid">
+<h1><strong>Optinal K300 Project:</strong> Regarding Panel Study of Income Dynamics (PSID)<a class="headerlink" href="#optinal-k300-project-regarding-panel-study-of-income-dynamics-psid" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="section-2-detailed-information-about-psid-data">
+<h2>Section 2: Detailed Information about PSID Data<a class="headerlink" href="#section-2-detailed-information-about-psid-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="section-2-1-lists-of-variables">
+<h3>Section 2.1: Lists of Variables<a class="headerlink" href="#section-2-1-lists-of-variables" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="#x11101ll"><em>x11101ll</em></a></li>
+<li><a class="reference internal" href="#year"><em>year</em></a></li>
+<li><a class="reference internal" href="#age"><em>age</em></a></li>
+<li><a class="reference internal" href="#educ"><em>educ</em></a></li>
+<li><a class="reference internal" href="#indwgt"><em>indwgt</em></a></li>
+<li><a class="reference internal" href="#empstatus"><em>empstatus</em></a></li>
+<li><a class="reference internal" href="#industry"><em>industry</em></a></li>
+<li><a class="reference internal" href="#region"><em>region</em></a></li>
+<li><a class="reference internal" href="#homeowner"><em>homeowner</em></a></li>
+<li><a class="reference internal" href="#familysize"><em>familysize</em></a></li>
+<li><a class="reference internal" href="#cpiurs"><em>CPIURS</em></a></li>
+<li><a class="reference internal" href="#real-wagehead"><em>real_wagehead</em></a></li>
+<li><a class="reference internal" href="#real-housevalue"><em>real_housevalue</em></a></li>
+<li><a class="reference internal" href="#real-faminc"><em>real_faminc</em></a></li>
+<li><a class="reference internal" href="#educgrp"><em>educgrp</em></a></li>
+<li><a class="reference internal" href="#birth"><em>birth</em></a></li>
+<li><a class="reference internal" href="#industry-grp"><em>industry_grp</em></a></li>
+<li><a class="reference internal" href="#log-real-wagehead"><em>log_real_wagehead</em></a></li>
+<li><a class="reference internal" href="#age2"><em>age2</em></a></li>
+<li><a class="reference internal" href="#age3"><em>age3</em></a></li>
+</ul>
+</div>
+<div class="section" id="section-2-2-more-on-variables">
+<h3>Section 2.2: More on Variables<a class="headerlink" href="#section-2-2-more-on-variables" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="x11101ll">
+<span id="id1"></span><h4><strong>x11101ll</strong><a class="headerlink" href="#x11101ll" title="Permalink to this headline">¶</a></h4>
+<p>This is personal identification number, same number denotes the data is from the same person.</p>
+</div>
+<div class="section" id="year">
+<span id="id2"></span><h4><strong>year</strong><a class="headerlink" href="#year" title="Permalink to this headline">¶</a></h4>
+<p>The year when the data was collected, it takes value from 1971 to 2011.</p>
+</div>
+<div class="section" id="age">
+<span id="id3"></span><h4><strong>age</strong><a class="headerlink" href="#age" title="Permalink to this headline">¶</a></h4>
+<p>The age of individual, age at the time of the interview.</p>
+</div>
+<div class="section" id="educ">
+<span id="id4"></span><h4><strong>educ</strong><a class="headerlink" href="#educ" title="Permalink to this headline">¶</a></h4>
+<p>The number of grades of school that the head accomplished. Note that the way this variable is coded is not consistent through the years:</p>
+<ul>
+<li><p class="first">Year 1968 ~ 1974 and 1985 ~ 1990</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>cannot read or write</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>0-5 grades</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>6-8 grades</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>9-11 grades</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>12 grades, high school</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>12 grades plus non-academic training</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>college, no degree</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>college degree, no advanced degree mentioned</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>college, advanced or professional degree</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1975 ~ 1984 and 1991 ~ 2011</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>none</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>one</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>two</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>three</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>four</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>five</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>six</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>seven</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>eight</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>nine</td>
+</tr>
+<tr class="row-even"><td>10</td>
+<td>ten</td>
+</tr>
+<tr class="row-odd"><td>11</td>
+<td>eleven</td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td>twelve; GED</td>
+</tr>
+<tr class="row-odd"><td>13</td>
+<td>first year of college</td>
+</tr>
+<tr class="row-even"><td>14</td>
+<td>second year of college, with or without Associate&#8217;s degree</td>
+</tr>
+<tr class="row-odd"><td>15</td>
+<td>third year of college</td>
+</tr>
+<tr class="row-even"><td>16</td>
+<td>fourth year of college; college graduate</td>
+</tr>
+<tr class="row-odd"><td>17</td>
+<td>at least some postgraduate work</td>
+</tr>
+<tr class="row-even"><td>99</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="indwgt">
+<span id="id5"></span><h4><strong>indwgt</strong><a class="headerlink" href="#indwgt" title="Permalink to this headline">¶</a></h4>
+<p>Individual weight. If you are not familiar with weight in the survey data, you can ignore this variable.</p>
+</div>
+<div class="section" id="empstatus">
+<span id="id6"></span><h4><strong>empstatus</strong><a class="headerlink" href="#empstatus" title="Permalink to this headline">¶</a></h4>
+<p>The employment status of individual: working now, unemployed, retired or other. Note that the way this variable is coded is also not consistent throughout the years:</p>
+<ul>
+<li><p class="first">Year 1968 ~ 1975</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Working now, or only temporarily laid off</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Looking for work, unemployed</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>Retired, permanently disabled</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>housewife</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>student</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>Other</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1976 ~ 1996</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Working now</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Only temporarily laid off, sick leave or maternity leave</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>Looking for work, unemployed</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>Retired</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>permanently disabled; temporarily disable (from 1996 on)</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>housewife</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>student</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>Other; &#8220;workfare&#8221;; in prison or jail</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>NA; refused (from 1996 on)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1997 ~ 2001</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Working now</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Only temporarily laid off, sick leave or maternity leave</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>Looking for work, unemployed</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>Retired</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>permanently disabled; temporarily disable (from 1996 on)</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>Keeping house</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>student</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>Other; &#8220;workfare&#8221;; in prison or jail</td>
+</tr>
+<tr class="row-even"><td>98</td>
+<td>DK</td>
+</tr>
+<tr class="row-odd"><td>99</td>
+<td>NA; refused</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 2003</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Wild code</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Working now</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>Only temporarily laid off, sick leave or maternity leave</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>Looking for work, unemployed</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>Retired</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>permanently disabled; temporarily disable (from 1996 on)</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>Keeping house</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>student</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>Other; &#8220;workfare&#8221;; in prison or jail</td>
+</tr>
+<tr class="row-odd"><td>22</td>
+<td>Wild code</td>
+</tr>
+<tr class="row-even"><td>99</td>
+<td>NA; refused</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="industry">
+<span id="id7"></span><h4><strong>industry</strong><a class="headerlink" href="#industry" title="Permalink to this headline">¶</a></h4>
+<p>The main occupation of the individual. The way how this variable is coded is as follows:</p>
+<ul>
+<li><p class="first">Year 1968 ~ 2001</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.: not eligible for retroactive coding</td>
+</tr>
+<tr class="row-odd"><td>17-28</td>
+<td>Agriculture, Forestry, and Fisheries</td>
+</tr>
+<tr class="row-even"><td>47-57</td>
+<td>Mining</td>
+</tr>
+<tr class="row-odd"><td>67-77</td>
+<td>Construction</td>
+</tr>
+<tr class="row-even"><td>107-398</td>
+<td>Manufacturing</td>
+</tr>
+<tr class="row-odd"><td>407-479</td>
+<td>Transportation, Communications, and Other Public Utilities</td>
+</tr>
+<tr class="row-even"><td>507-698</td>
+<td>Wholesale and Retail Trade</td>
+</tr>
+<tr class="row-odd"><td>707-718</td>
+<td>Finance, Insurance, and Real Estate</td>
+</tr>
+<tr class="row-even"><td>727-759</td>
+<td>Business and Repair Services</td>
+</tr>
+<tr class="row-odd"><td>769-798</td>
+<td>Personal Services</td>
+</tr>
+<tr class="row-even"><td>807-809</td>
+<td>Entertainment and Recreation Service</td>
+</tr>
+<tr class="row-odd"><td>828-897</td>
+<td>Professional and Related Services</td>
+</tr>
+<tr class="row-even"><td>907-937</td>
+<td>Public Administration</td>
+</tr>
+<tr class="row-odd"><td>999</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 2003 ~ 2011</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.: did not work for money or has not worked for money</td>
+</tr>
+<tr class="row-odd"><td>17-29</td>
+<td>Agriculture, Forestry, and Fisheries</td>
+</tr>
+<tr class="row-even"><td>37-49</td>
+<td>Mining</td>
+</tr>
+<tr class="row-odd"><td>57-69</td>
+<td>Utilities</td>
+</tr>
+<tr class="row-even"><td>77</td>
+<td>Construction</td>
+</tr>
+<tr class="row-odd"><td>107-399</td>
+<td>Manufacturing</td>
+</tr>
+<tr class="row-even"><td>407-459</td>
+<td>Wholesale Trade</td>
+</tr>
+<tr class="row-odd"><td>467-579</td>
+<td>Retail Trade</td>
+</tr>
+<tr class="row-even"><td>607-639</td>
+<td>Transportation and Warehousing</td>
+</tr>
+<tr class="row-odd"><td>647-679</td>
+<td>Information</td>
+</tr>
+<tr class="row-even"><td>687-699</td>
+<td>Finance and Insurance</td>
+</tr>
+<tr class="row-odd"><td>707-719</td>
+<td>Real Estate and Rental and Leasing</td>
+</tr>
+<tr class="row-even"><td>727-749</td>
+<td>Professional, Scientific, and Technical Services</td>
+</tr>
+<tr class="row-odd"><td>757-779</td>
+<td>Management, Administrative and Support, and Waste Management Services</td>
+</tr>
+<tr class="row-even"><td>786-789</td>
+<td>Educational Services</td>
+</tr>
+<tr class="row-odd"><td>797-847</td>
+<td>Health Care and Social Assistance</td>
+</tr>
+<tr class="row-even"><td>848</td>
+<td>Wild code</td>
+</tr>
+<tr class="row-odd"><td>856-859</td>
+<td>Arts, Entertainment, and Recreation</td>
+</tr>
+<tr class="row-even"><td>866-869</td>
+<td>Accommodations and Food Services</td>
+</tr>
+<tr class="row-odd"><td>877-929</td>
+<td>Other Services (Except Public Administration)</td>
+</tr>
+<tr class="row-even"><td>937-987</td>
+<td>Public Administration and Active Duty Military</td>
+</tr>
+<tr class="row-odd"><td>999</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="region">
+<span id="id8"></span><h4><strong>region</strong><a class="headerlink" href="#region" title="Permalink to this headline">¶</a></h4>
+<p>Region is where some individual lived at the time of interview. In the data provided to you, I&#8217;ve just kept 4 possible values where 1 means northeast, 2 means north central, 3 means south and 4 means west.</p>
+<ul>
+<li><p class="first">Year 1968 ~ 1969</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Northeast
+(Connecticut, Maine, Massachusetts, New Hampshire,
+New Jersey, New York, Pennsylvania, Rhode Island, Vermont)</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>North Central
+(Illinois, Indiana, Iowa, Kansas, Michigan, Minnesota,
+Missouri, Nebraska, North Dakota, Ohio, South Dakota,
+Wisconsin)</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>South
+(Alabama, Arkansas, Delaware, Florida, Georgia, Kentucky,
+Louisiana, Maryland, Mississippi, North Carolina,
+Oklahoma, South Carolina, Tennessee, Texas, Virginia,
+Washington DC, West Virginia)</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>West
+(Arizona, California, Colorado, Idaho, Montana, Nevada,
+New Mexico, Oregon, Utah, Washington, Wyoming)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1970 ~ 2011</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Wild code (from 1999 onward)</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Northeast</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>North Central</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>South</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>West</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>Alaska, Hawaii</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>Foreign country</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>NA (from 1972 onward)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="homeowner">
+<span id="id9"></span><h4><strong>homeowner</strong><a class="headerlink" href="#homeowner" title="Permalink to this headline">¶</a></h4>
+<p>Whether an individual owns his home or pay rent or other.</p>
+<ul>
+<li><p class="first">Year 1968 ~ 1993</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Owns home (or trailer, fully or jointly)</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>Rents (or shares rent)</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>Neither (owns nor rents)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">Year 1994 ~ 2011</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value/Range</th>
+<th class="head">Code Value/Range Text</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Inap.</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Owns or is buying home, either fully or jointly; mobile
+home owners who rent lots are included here</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>Pays rent</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>Neither owns nor rents</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>DK; NA; refused (Wild code in year 2007)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="familysize">
+<span id="id10"></span><h4><strong>familysize</strong><a class="headerlink" href="#familysize" title="Permalink to this headline">¶</a></h4>
+<p>Number of people (children plus adults) in this FAMILY UNIT.</p>
+</div>
+<div class="section" id="cpiurs">
+<span id="id11"></span><h4><strong>CPIURS</strong><a class="headerlink" href="#cpiurs" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://www.census.gov/hhes/www/income/data/incpovhlth/2012/CPI-U-RS-Index-2012.pdf">CPI-URS</a> is the annual average Consumper Price Index research series (CPI-U-RS) where the price level in Dec. 1977 is set to be 100.</p>
+</div>
+<div class="section" id="real-wagehead">
+<span id="id12"></span><h4><strong>real_wagehead</strong><a class="headerlink" href="#real-wagehead" title="Permalink to this headline">¶</a></h4>
+<p>Amount of individual&#8217;s wage and salary income, which is normalized using CPI-U-RS. So the dollar value is in terms of Dec. 1977 dollar.</p>
+</div>
+<div class="section" id="real-housevalue">
+<span id="id13"></span><h4><strong>real_housevalue</strong><a class="headerlink" href="#real-housevalue" title="Permalink to this headline">¶</a></h4>
+<p>The value of house if any in terms of Dec. 1977 dollar.</p>
+</div>
+<div class="section" id="real-faminc">
+<span id="id14"></span><h4><strong>real_faminc</strong><a class="headerlink" href="#real-faminc" title="Permalink to this headline">¶</a></h4>
+<p>This variable represents the summation of the following variables: taxable income of Head and Wife; total transfer of Head and Wife; taxable prorated income of others; total prorated transfers of others. The value is in terms of Dec. 1977 dollar.</p>
+</div>
+<div class="section" id="educgrp">
+<span id="id15"></span><h4><strong>educgrp</strong><a class="headerlink" href="#educgrp" title="Permalink to this headline">¶</a></h4>
+<p>This variable is generated from variable <strong>educ</strong>. It can take six values where 1 means elementary school, 2 means some high school, 3 means high school graduate, 4 means some college, 5 means college graduate, and 6 means graduate school.</p>
+</div>
+<div class="section" id="birth">
+<span id="id16"></span><h4><strong>birth</strong><a class="headerlink" href="#birth" title="Permalink to this headline">¶</a></h4>
+<p>The year when some individual was born.</p>
+</div>
+<div class="section" id="industry-grp">
+<span id="id17"></span><h4><strong>industry_grp</strong><a class="headerlink" href="#industry-grp" title="Permalink to this headline">¶</a></h4>
+<p>This variable is generated from variable <strong>industry</strong>. It takes five values: 1 denotes agriculture, 2 denotes mining, 3 denotes constructing, 4 denotes manufacturing, and 5 denotes others.</p>
+</div>
+<div class="section" id="log-real-wagehead">
+<span id="id18"></span><h4><strong>log_real_wagehead</strong><a class="headerlink" href="#log-real-wagehead" title="Permalink to this headline">¶</a></h4>
+<p>This is just the log value of the variable <strong>real_wagehead</strong>.</p>
+</div>
+<div class="section" id="age2">
+<span id="id19"></span><h4><strong>age2</strong><a class="headerlink" href="#age2" title="Permalink to this headline">¶</a></h4>
+<p>This is the age square of some individual.</p>
+</div>
+<div class="section" id="age3">
+<span id="id20"></span><h4><strong>age3</strong><a class="headerlink" href="#age3" title="Permalink to this headline">¶</a></h4>
+<p>This is just age cube of some individual.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="section3.html"><strong>Sectio 3: Analysis of Variance (ANOVA)</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Guang Zuo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

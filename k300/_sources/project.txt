@@ -1,0 +1,420 @@
+===========================================================================
+ **Optinal K300 Project:** Regarding Panel Study of Income Dynamics (PSID)
+===========================================================================
+
+Section 2: Detailed Information about PSID Data
+===============================================
+
+Section 2.1: Lists of Variables
+-------------------------------
+
+- :ref:`x11101ll` 
+- :ref:`year`
+- :ref:`age`
+- :ref:`educ`
+- :ref:`indwgt`
+- :ref:`empstatus`
+- :ref:`industry`
+- :ref:`region`
+- :ref:`homeowner`
+- :ref:`familysize`
+- :ref:`CPIURS`
+- :ref:`real_wagehead`
+- :ref:`real_housevalue`
+- :ref:`real_faminc`
+- :ref:`educgrp`
+- :ref:`birth`
+- :ref:`industry_grp`
+- :ref:`log_real_wagehead`
+- :ref:`age2`
+- :ref:`age3`
+
+
+Section 2.2: More on Variables
+------------------------------
+
+.. _x11101ll:
+
+**x11101ll**
+~~~~~~~~~~~~
+
+This is personal identification number, same number denotes the data is from the same person.
+
+.. _year:
+
+**year**
+~~~~~~~~
+
+The year when the data was collected, it takes value from 1971 to 2011.
+
+.. _age:
+
+**age**
+~~~~~~~
+
+The age of individual, age at the time of the interview.
+
+.. _educ:
+
+**educ**
+~~~~~~~~
+
+The number of grades of school that the head accomplished. Note that the way this variable is coded is not consistent through the years:
+
+- Year 1968 ~ 1974 and 1985 ~ 1990
+
+    ==============  ============================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ============================================
+    0               cannot read or write
+    1               0-5 grades
+    2               6-8 grades
+    3               9-11 grades
+    4               12 grades, high school
+    5               12 grades plus non-academic training
+    6               college, no degree
+    7               college degree, no advanced degree mentioned
+    8               college, advanced or professional degree
+    9               NA
+    ==============  ============================================
+
+
+- Year 1975 ~ 1984 and 1991 ~ 2011
+
+    ==============  ==========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ==========================================================
+    0               none
+    1               one
+    2               two
+    3               three
+    4               four
+    5               five
+    6               six
+    7               seven
+    8               eight
+    9               nine
+    10              ten
+    11              eleven
+    12              twelve; GED
+    13              first year of college
+    14              second year of college, with or without Associate's degree
+    15              third year of college
+    16              fourth year of college; college graduate
+    17              at least some postgraduate work
+    99              NA
+    ==============  ==========================================================   
+
+.. _indwgt:
+
+**indwgt**
+~~~~~~~~~~
+
+Individual weight. If you are not familiar with weight in the survey data, you can ignore this variable.
+
+.. _empstatus:
+
+**empstatus**
+~~~~~~~~~~~~~
+
+The employment status of individual: working now, unemployed, retired or other. Note that the way this variable is coded is also not consistent throughout the years:
+
+- Year 1968 ~ 1975
+
+    ==============  =============================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  =============================================
+    1               Working now, or only temporarily laid off
+    2               Looking for work, unemployed
+    3               Retired, permanently disabled
+    4               housewife
+    5               student
+    6               Other
+    ==============  =============================================
+
+- Year 1976 ~ 1996
+
+    ==============  ========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================================
+    1               Working now
+    2               Only temporarily laid off, sick leave or maternity leave
+    3               Looking for work, unemployed
+    4               Retired
+    5               permanently disabled; temporarily disable (from 1996 on)
+    6               housewife
+    7               student
+    8               Other; "workfare"; in prison or jail
+    9               NA; refused (from 1996 on)
+    ==============  ========================================================
+
+- Year 1997 ~ 2001
+
+    ==============  ========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================================
+    1               Working now
+    2               Only temporarily laid off, sick leave or maternity leave
+    3               Looking for work, unemployed
+    4               Retired
+    5               permanently disabled; temporarily disable (from 1996 on)
+    6               Keeping house
+    7               student
+    8               Other; "workfare"; in prison or jail
+    98              DK
+    99              NA; refused
+    ==============  ========================================================
+
+- Year 2003
+
+    ==============  ========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================================
+    0               Wild code
+    1               Working now
+    2               Only temporarily laid off, sick leave or maternity leave
+    3               Looking for work, unemployed
+    4               Retired
+    5               permanently disabled; temporarily disable (from 1996 on)
+    6               Keeping house
+    7               student
+    8               Other; "workfare"; in prison or jail
+    22              Wild code
+    99              NA; refused
+    ==============  ========================================================
+
+
+.. _industry:
+
+**industry**
+~~~~~~~~~~~~
+
+The main occupation of the individual. The way how this variable is coded is as follows:
+
+- Year 1968 ~ 2001
+
+    ==============  ===========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ===========================================================
+    0               Inap.: not eligible for retroactive coding
+    17-28           Agriculture, Forestry, and Fisheries
+    47-57           Mining
+    67-77           Construction
+    107-398         Manufacturing
+    407-479         Transportation, Communications, and Other Public Utilities
+    507-698         Wholesale and Retail Trade
+    707-718         Finance, Insurance, and Real Estate
+    727-759         Business and Repair Services
+    769-798         Personal Services
+    807-809         Entertainment and Recreation Service
+    828-897         Professional and Related Services
+    907-937         Public Administration
+    999             NA
+    ==============  ===========================================================
+
+- Year 2003 ~ 2011
+
+    ==============  =====================================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  =====================================================================
+    0               Inap.: did not work for money or has not worked for money
+    17-29           Agriculture, Forestry, and Fisheries
+    37-49           Mining
+    57-69           Utilities
+    77              Construction
+    107-399         Manufacturing
+    407-459         Wholesale Trade
+    467-579         Retail Trade
+    607-639         Transportation and Warehousing
+    647-679         Information
+    687-699         Finance and Insurance
+    707-719         Real Estate and Rental and Leasing
+    727-749         Professional, Scientific, and Technical Services
+    757-779         Management, Administrative and Support, and Waste Management Services
+    786-789         Educational Services
+    797-847         Health Care and Social Assistance
+    848             Wild code
+    856-859         Arts, Entertainment, and Recreation
+    866-869         Accommodations and Food Services
+    877-929         Other Services (Except Public Administration)
+    937-987         Public Administration and Active Duty Military
+    999             NA
+    ==============  =====================================================================
+
+.. _region:
+
+**region**
+~~~~~~~~~~
+
+Region is where some individual lived at the time of interview. In the data provided to you, I've just kept 4 possible values where 1 means northeast, 2 means north central, 3 means south and 4 means west.
+
+
+- Year 1968 ~ 1969
+
+    ==============  ==========================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ==========================================================
+    1               Northeast
+                    (Connecticut, Maine, Massachusetts, New Hampshire,
+		    New Jersey, New York, Pennsylvania, Rhode Island, Vermont)
+    2               North Central
+                    (Illinois, Indiana, Iowa, Kansas, Michigan, Minnesota,
+		    Missouri, Nebraska, North Dakota, Ohio, South Dakota,
+		    Wisconsin)
+    3               South
+                    (Alabama, Arkansas, Delaware, Florida, Georgia, Kentucky,
+		    Louisiana, Maryland, Mississippi, North Carolina,
+		    Oklahoma, South Carolina, Tennessee, Texas, Virginia,
+		    Washington DC, West Virginia)
+    4               West
+                    (Arizona, California, Colorado, Idaho, Montana, Nevada,
+		    New Mexico, Oregon, Utah, Washington, Wyoming)
+    ==============  ==========================================================
+
+- Year 1970 ~ 2011
+
+    ==============  ============================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ============================
+    0               Wild code (from 1999 onward)
+    1               Northeast
+    2               North Central
+    3               South
+    4               West
+    5               Alaska, Hawaii
+    6               Foreign country
+    9               NA (from 1972 onward)
+    ==============  ============================
+
+.. _homeowner:
+
+**homeowner**
+~~~~~~~~~~~~~
+
+Whether an individual owns his home or pay rent or other. 
+
+- Year 1968 ~ 1993
+
+    ==============  ========================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  ========================================
+    1               Owns home (or trailer, fully or jointly)
+    5               Rents (or shares rent)
+    8               Neither (owns nor rents)
+    ==============  ========================================
+
+- Year 1994 ~ 2011
+
+    ==============  =======================================================
+
+    Value/Range     Code Value/Range Text 
+
+    ==============  =======================================================
+    0               Inap.
+    1               Owns or is buying home, either fully or jointly; mobile
+                    home owners who rent lots are included here
+    5               Pays rent
+    8               Neither owns nor rents
+    9               DK; NA; refused (Wild code in year 2007)
+    ==============  =======================================================
+
+.. _familysize:
+
+**familysize**
+~~~~~~~~~~~~~~
+
+Number of people (children plus adults) in this FAMILY UNIT.
+
+.. _CPIURS:
+
+**CPIURS**
+~~~~~~~~~~
+
+CPI-URS_ is the annual average Consumper Price Index research series (CPI-U-RS) where the price level in Dec. 1977 is set to be 100.
+
+.. _CPI-URS: https://www.census.gov/hhes/www/income/data/incpovhlth/2012/CPI-U-RS-Index-2012.pdf
+
+.. _real_wagehead:
+
+**real_wagehead**
+~~~~~~~~~~~~~~~~~
+Amount of individual's wage and salary income, which is normalized using CPI-U-RS. So the dollar value is in terms of Dec. 1977 dollar. 
+
+.. _real_housevalue:
+
+**real_housevalue**
+~~~~~~~~~~~~~~~~~~~
+
+The value of house if any in terms of Dec. 1977 dollar. 
+
+.. _real_faminc:
+
+**real_faminc**
+~~~~~~~~~~~~~~~
+
+This variable represents the summation of the following variables: taxable income of Head and Wife; total transfer of Head and Wife; taxable prorated income of others; total prorated transfers of others. The value is in terms of Dec. 1977 dollar.
+
+.. _educgrp:
+
+**educgrp**
+~~~~~~~~~~~
+
+This variable is generated from variable **educ**. It can take six values where 1 means elementary school, 2 means some high school, 3 means high school graduate, 4 means some college, 5 means college graduate, and 6 means graduate school. 
+
+
+.. _birth:
+
+**birth**
+~~~~~~~~~
+
+The year when some individual was born. 
+
+.. _industry_grp:
+
+**industry_grp**
+~~~~~~~~~~~~~~~~
+
+This variable is generated from variable **industry**. It takes five values: 1 denotes agriculture, 2 denotes mining, 3 denotes constructing, 4 denotes manufacturing, and 5 denotes others. 
+
+.. _log_real_wagehead:
+
+**log_real_wagehead**
+~~~~~~~~~~~~~~~~~~~~~
+
+This is just the log value of the variable **real_wagehead**.
+
+.. _age2:
+
+**age2**
+~~~~~~~~
+
+This is the age square of some individual.
+
+.. _age3:
+
+**age3**
+~~~~~~~~
+
+This is just age cube of some individual. 

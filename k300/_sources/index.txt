@@ -14,3 +14,4 @@ Contents:
    section1
    section2
    section3
+   project
