@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Section 4: Linear Regression &mdash; Stata User Manual in K300 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Stata User Manual in K300 1.0 documentation" href="index.html" />
+    <link rel="next" title="Optinal K300 Project: Regarding Panel Study of Income Dynamics (PSID)" href="project.html" />
+    <link rel="prev" title="Sectio 3: Analysis of Variance (ANOVA)" href="section3.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Stata User Manual in K300 1.0 documentation</span></a></h1>
+        <h2 class="heading"><span>Section 4: Linear Regression</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="section3.html"><strong>Sectio 3: Analysis of Variance (ANOVA)</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="project.html"><strong>Optinal K300 Project:</strong> Regarding Panel Study of Income Dynamics (PSID)</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="section-4-linear-regression">
+<h1><strong>Section 4: Linear Regression</strong><a class="headerlink" href="#section-4-linear-regression" title="Permalink to this headline">¶</a></h1>
+<p>This section will walk you through using STATA to conduct linear regression analysis. Simple linear regression, multi-variate linear regression, and the equivalence between ANOVA and linear regression will be covered.</p>
+<div class="section" id="section-4-1-simple-linear-regression">
+<h2>Section 4.1: Simple Linear Regression<a class="headerlink" href="#section-4-1-simple-linear-regression" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="depression-vs-alcohol-consumption">
+<h3><em>Depression Vs Alcohol Consumption</em><a class="headerlink" href="#depression-vs-alcohol-consumption" title="Permalink to this headline">¶</a></h3>
+<p>This is the practice problem we went through in the class, it talks about the relationship between depression scores and alcohol consumption. Load the data we are going to use.</p>
+<div class="highlight-python"><div class="highlight"><pre>use depression_alcohol.dta
+</pre></div>
+</div>
+<p>If you use <strong>edit</strong> command to inspect your data, you will find out that there are two variables: depression score, and alcohol consumption. Since we plan to use depression score to predict alcohol consumption, we set depression score to be variable <span class="math">\(x\)</span> (predictor), and set alcohol score to be variable <span class="math">\(y\)</span> (criterion). To get a better picture of the data we have, we can generate scatter plot of these two variables and plot the best fitting line.</p>
+<div class="highlight-python"><div class="highlight"><pre>graph twoway (scatter alcohol depression) (lfit depression alcohol)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/section4_1.png"><img alt="_images/section4_1.png" src="_images/section4_1.png" style="width: 49%;" /></a>
+<p>In the above command, two graphs can be generated. Parentheses <em>()</em> are used to separate two graphs and to make sure these two plots appear in the same figure. In the second plot, <strong>lfit</strong> is used to generate linear fitting line. Now to conduct simple linear regression, use can use <strong>regress</strong> command to do the work. The generic form is</p>
+<div class="highlight-python"><div class="highlight"><pre>regress y x
+</pre></div>
+</div>
+<p>For the example here, it would be</p>
+<div class="highlight-python"><div class="highlight"><pre>regress alcohol depression
+</pre></div>
+</div>
+<p>The output can be found in the picture below:</p>
+<a class="reference internal image-reference" href="_images/section4_2.png"><img alt="_images/section4_2.png" src="_images/section4_2.png" style="width: 60%;" /></a>
+<p>The output needs to be further explained:</p>
+<ul class="simple">
+<li><strong>Source Table</strong>: This gives results regarding whether the linear model as a whole is significant or not, or in other words whether all the coefficients in the linear regression model are zero. <strong>SS Total</strong> gives the total variability in variable <span class="math">\(y\)</span>, the dependent variable (DV); <strong>SS Model</strong> gives the variability of the DV that can be explained by all the independent variables (IVs) using this linear regression model; <strong>SS Residual</strong> represents the variability of DV that cannot be explained by the model. These different sources of <strong>SS</strong> are not different from what we&#8217;ve seen in ANOVA test. Where SS Model and SS Residual are just equivalent to SS Between and SS Within in ANOVA test. In this source table <strong>df</strong> (degree of freedom) and <strong>MS</strong> (same as <span class="math">\(S^2\)</span> in ANOVA test) are also given. Note that <span class="math">\(df_{Total} = N-1\)</span>, <span class="math">\(df_{Model} = k\)</span>, and <span class="math">\(df_{Residual} = N-k-1\)</span> where <span class="math">\(N\)</span> is the number of observation in the data, <span class="math">\(k\)</span> is the number of independent variables. In the simple linear regression case, <span class="math">\(k=1\)</span> since we only have one independent variable.</li>
+<li><strong>F(1, 3)</strong>: It gives the F-score regarding whether the linear regression model as whole is significant or not.</li>
+<li><strong>Prob &gt; F</strong>: The p-value about the significance of the linear regression model. Apparently in this case, the model is not significant since p is bigger than 5%.</li>
+<li><strong>R-square</strong>: Same as the effect size <span class="math">\(R^2\)</span> in ANOVA test, here it means the proportion of the variability in DV that can be explained by the variability in all the independent variables (IVs).</li>
+<li><strong>Adj R-squared</strong>: Adjusted <span class="math">\(R^2\)</span> which takes into the adjustment of number of IVs, since <span class="math">\(R^2\)</span> would in general increase as the number of IVs increases.</li>
+<li><strong>Root MSE</strong>: It is the standard deviation of the error term, and is the square root of the <span class="math">\(MS_{Residual}\)</span>.</li>
+<li><strong>alcohol</strong>: This column shows all the DVs and IVs. The variable on the top <em>alcohol</em> is the dependent variable, and the variables down below are all the independent variables. <em>_cons</em> represents the constant (or the y-intercept).</li>
+<li><strong>Coef</strong>: This column gives regression coefficients.</li>
+<li><strong>Std. Err.</strong>: These are the standard errors associated with the coefficients. Same as the t tests we&#8217;ve learned, standard error is used to compute the t test statistic.</li>
+<li><strong>t</strong>: The values in this column are derived from taking the ratio of <strong>Coef.</strong> and <strong>Std. Err.</strong>, same as what we did in our t tests. These are the t test statistic regarding whether <strong>Coef</strong> is significantly different from zero or not.</li>
+<li><strong>P&gt;|t|</strong>: This gives the p-value for testing the significance of each <strong>Coef</strong>. Take 0.104 for example, it means the coefficient in front of variable <em>depression</em> is not significantly different from zero.</li>
+<li><strong>[95% Conf. Interval]</strong>: This shows the 95% confidence interval for the coefficient.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="section-4-2-multi-variate-linear-regression-and-anova">
+<h2>Section 4.2: Multi-variate Linear Regression and ANOVA<a class="headerlink" href="#section-4-2-multi-variate-linear-regression-and-anova" title="Permalink to this headline">¶</a></h2>
+<p>Multi-variate linear regression is powerful, this section demonstrates that the analysis done by ANOVA can also be done by using multi-variate linear regression analysis. I will use the example in lecture 36, which talks about how background music type affects the rate of shoplifting.</p>
+<div class="section" id="linear-regression-and-one-way-between-anova">
+<h3>Linear Regression and One-Way Between ANOVA<a class="headerlink" href="#linear-regression-and-one-way-between-anova" title="Permalink to this headline">¶</a></h3>
+<p>The first example is regarding One-Way Between ANOVA and linear regression, since we assume that all 12 stores in the data set are distinct. You can use the following command to inspect the data we are talking about here.</p>
+<div class="highlight-python"><div class="highlight"><pre>use between_regression.dta
+edit
+</pre></div>
+</div>
+<p>There are 12 data points, each represents the number of shoplifting from one of 12 distinct stores. One-Way Between ANOVA test can be used to determine whether music type affect the number of shoplifting.</p>
+<div class="highlight-python"><div class="highlight"><pre>anova shoplifting music
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/section4_3.png"><img alt="_images/section4_3.png" src="_images/section4_3.png" style="width: 60%;" /></a>
+<p>From the above output, we can see that the F-score in ANOVA test is 1 and the associated p-value is 0.4053. The same analysis can be done by using linear regression analysis with the help of dummy variable. In this example, we need to define two dummy variables regarding background music type. Fortunately, there&#8217;s no need for us to construct the dummy variables directly. <strong>xi</strong> command can automatically create the dummy variables needed.</p>
+<div class="highlight-python"><div class="highlight"><pre>xi : regress shoplifting i.music
+</pre></div>
+</div>
+<p>By using the <strong>xi</strong> together with <strong>regress</strong>, dummy variables can be directly created without additional work. In the figure below, the data on the left is the original data before using <strong>xi</strong>, the data on the right shows the data after two dummy variables have been created.</p>
+<a class="reference internal image-reference" href="_images/section4_4.png"><img alt="_images/section4_4.png" src="_images/section4_4.png" style="width: 24%;" /></a>
+<a class="reference internal image-reference" href="_images/section4_5.png"><img alt="_images/section4_5.png" src="_images/section4_5.png" style="width: 43%;" /></a>
+<p>The output of regression analysis can be found in the following picture.</p>
+<a class="reference internal image-reference" href="_images/section4_6.png"><img alt="_images/section4_6.png" src="_images/section4_6.png" style="width: 59%;" /></a>
+<p>After the regression is done, we can test whether the population coefficient in front of these two dummy variables are both zero or not. The command is given as:</p>
+<div class="highlight-python"><div class="highlight"><pre>test _Imusic_2 _Imusic_3
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/section4_7.png"><img alt="_images/section4_7.png" src="_images/section4_7.png" style="width: 30%;" /></a>
+<p>As can be seen clearly from the result, we end up with the same F-score and the same p-value. The conclusion would be the same as you would get in ANOVA test: we fail to reject the null and the effect of music type on shoplifting was not significant.</p>
+</div>
+<div class="section" id="linear-regression-and-two-way-within-anova">
+<h3>Linear Regression and Two-Way Within ANOVA<a class="headerlink" href="#linear-regression-and-two-way-within-anova" title="Permalink to this headline">¶</a></h3>
+<p>This is a slightly different version from the example we just talked about. In this case, a group of 4 different stores are tested repeatedly. So in order to determine whether background music affects shoplifting, we need to use One-Way Within-Subject ANOVA test.</p>
+<div class="highlight-python"><div class="highlight"><pre>clear all
+edit
+anova shoplifting music participant, repeated(music)
+</pre></div>
+</div>
+<p>The result can be found in the following picture. The F-score we are interested in to determine the effect of music on shoplifting is 1 with a p value of 0.4219.</p>
+<a class="reference internal image-reference" href="_images/section4_8.png"><img alt="_images/section4_8.png" src="_images/section4_8.png" style="width: 59%;" /></a>
+<p>In the data set, variable <em>participant</em> represents different stores. Here we have four different stores denoting as A, B, C, and D. To use linear regression analysis, we need to create another set of dummy variables regarding different stores. The <strong>xi</strong> command can do the work for us.</p>
+<div class="highlight-python"><div class="highlight"><pre>xi : regress shoplifting i.music i.participant
+</pre></div>
+</div>
+<p>The <strong>xi</strong> generates two sets of dummy variables regarding variable <em>music</em> and <em>participant</em>, the following figures give all the dummy variables created.</p>
+<a class="reference internal image-reference" href="_images/section4_9.png"><img alt="_images/section4_9.png" src="_images/section4_9.png" style="width: 28%;" /></a>
+<a class="reference internal image-reference" href="_images/section4_10.png"><img alt="_images/section4_10.png" src="_images/section4_10.png" style="width: 63%;" /></a>
+<p>The linear regression result is also given here:</p>
+<a class="reference internal image-reference" href="_images/section4_11.png"><img alt="_images/section4_11.png" src="_images/section4_11.png" style="width: 59%;" /></a>
+<p>Again under linear regression framework, to determine whether music type affect shoplifting significantly, one need to test whether the coefficients in front of the dummy variables for music type are both zero or not:</p>
+<div class="highlight-python"><div class="highlight"><pre>test _Imusic_2 _Imusic_3
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/section4_12.png"><img alt="_images/section4_12.png" src="_images/section4_12.png" style="width: 30%;" /></a>
+<p>As well expected, the F score, as well as p-value, is the same as we have in ANOVA analysis. F test score is 1 with a p-value of 0.4219.</p>
+</div>
+</div>
+<div class="section" id="do-files-and-data-files">
+<h2>Do-files and Data files<a class="headerlink" href="#do-files-and-data-files" title="Permalink to this headline">¶</a></h2>
+<p>The do file and data files used in this section can be found here.</p>
+<ul class="simple">
+<li><a class="reference download internal" href="_downloads/section4.do"><tt class="xref download docutils literal"><span class="pre">Do</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">4</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/depression_alcohol.dta"><tt class="xref download docutils literal"><span class="pre">Data</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">4.1</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/between_regression.dta"><tt class="xref download docutils literal"><span class="pre">Data</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">4.2</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/within_regression.dta"><tt class="xref download docutils literal"><span class="pre">Data</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">Section</span> <span class="pre">4.2</span></tt></a></li>
+</ul>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="section3.html"><strong>Sectio 3: Analysis of Variance (ANOVA)</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="project.html"><strong>Optinal K300 Project:</strong> Regarding Panel Study of Income Dynamics (PSID)</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Guang Zuo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
