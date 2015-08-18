@@ -15,3 +15,9 @@
 =======
 - :download:`信托合作项目申请清单参考稿<../wxtrust/reference/1.doc>`
 - :download:`信托项目尽职调查参考模版<../wxtrust/reference/2.docx>`
+
+3. 业务学习资料
+===============
+
+- :download:`事务类业务发展方向及转型路径（模式探讨）<../wxtrust/reference/李建平.pptx>`
+

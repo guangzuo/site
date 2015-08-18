@@ -64,8 +64,43 @@
 	.. image:: ../wxtrust/memo/camsing/1.png
 		   :width: 150 %
 
+    - 公司二批寄来资料(2015/8/18 周二)    
+
+      - 中国仪器2009万
+
+	- :download:`01发票扫描件<../wxtrust/memo/camsing/from_camsing/客户资料/中国仪器2009万/发票/01发票扫描件.pdf>`
+
+	- :download:`02发票扫描件<../wxtrust/memo/camsing/from_camsing/客户资料/中国仪器2009万/发票/02发票扫描件.pdf>`
+
+	- :download:`03发票扫描件<../wxtrust/memo/camsing/from_camsing/客户资料/中国仪器2009万/发票/03发票扫描件.pdf>`
+
+	- :download:`04发票扫描件<../wxtrust/memo/camsing/from_camsing/客户资料/中国仪器2009万/发票/04发票扫描件.pdf>`
+
+	- :download:`05发票扫描件<../wxtrust/memo/camsing/from_camsing/客户资料/中国仪器2009万/发票/05发票扫描件.pdf>`
+
+	- :download:`15SC-YLS-01 合同扫描件<../wxtrust/memo/camsing/from_camsing/客户资料/中国仪器2009万/15SC-YLS-01 合同扫描件.pdf>`
+
+	- :download:`15SC-YLS-02 合同扫描件<../wxtrust/memo/camsing/from_camsing/客户资料/中国仪器2009万/15SC-YLS-02 合同扫描件.pdf>`
+
+	- :download:`15SC-YLS-03 合同扫描件<../wxtrust/memo/camsing/from_camsing/客户资料/中国仪器2009万/15SC-YLS-03 合同扫描件.pdf>`
+
+	- :download:`15SC-YLS-04 合同扫描件<../wxtrust/memo/camsing/from_camsing/客户资料/中国仪器2009万/15SC-YLS-04 合同扫描件.pdf>`
+
+	- :download:`15SC-YLS-05 合同扫描件<../wxtrust/memo/camsing/from_camsing/客户资料/中国仪器2009万/15SC-YLS-05 合同扫描件.pdf>`	  
       
-      
+      - 中移动2084万
+
+	- :download:`CMFJ20140133合同<../wxtrust/memo/camsing/from_camsing/客户资料/中移动2084万/CMFJ20140133合同.pdf>`
+	- :download:`CMFJ20140133合同 签收单<../wxtrust/memo/camsing/from_camsing/客户资料/中移动2084万/CMFJ20140133合同 签收单.pdf>`
+	- :download:`发票<../wxtrust/memo/camsing/from_camsing/客户资料/中移动2084万/发票.pdf>`
+	- :download:`回单<../wxtrust/memo/camsing/from_camsing/客户资料/中移动2084万/回单.jpg>`	  	      
+	
+      - 苏宁
+
+	- :download:`SNCX201408012合同(21826440)<../wxtrust/memo/camsing/from_camsing/客户资料/苏宁/SNCX201408012合同(21826440).pdf>`
+	- :download:`发票(21826440)<../wxtrust/memo/camsing/from_camsing/客户资料/苏宁/发票(21826440).pdf>`
+	- :download:`银行回单<../wxtrust/memo/camsing/from_camsing/客户资料/苏宁/银行回单.pdf>`
+
 
 (iv) 意向函
 
